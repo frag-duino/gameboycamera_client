@@ -53,7 +53,7 @@ namespace GameboyCameraClient
         int set_vref = 3;
         int set_i = 0;
         int set_edge = 0;
-        int set_offset = 0;
+        byte set_offset = 0;
         int set_z = 2;
 
         int dataIn, temp;
@@ -77,6 +77,8 @@ namespace GameboyCameraClient
             trackBar_vref_Scroll(null, null);
             trackBar_edge.Value = set_edge;
             trackBar_edge_Scroll(null, null);
+            trackBar_gain.Value = set_gain;
+            trackBar_gain_Scroll(null, null);
 
             textBox1.AppendText("Initialized\r\n");
 
@@ -95,20 +97,28 @@ namespace GameboyCameraClient
             comboBox_baud.Items.Add(115200);
             comboBox_baud.Items.Add(250000);
             comboBox_baud.SelectedIndex = 0;
+            comboBox_baud_SelectedIndexChanged(null, null);
             
             comboBox_calibration.Items.Add(Helper.VALUERANGE_CALIBRATION[0]); // No calibration
             comboBox_calibration.Items.Add(Helper.VALUERANGE_CALIBRATION[1]); // Positive
             comboBox_calibration.Items.Add(Helper.VALUERANGE_CALIBRATION[2]); // Negative
             comboBox_calibration.SelectedIndex = 1;
+            comboBox_calibration_SelectedIndexChanged(null, null);
 
             comboBox_vhmode.Items.Add(Helper.VALUERANGE_VHMODE[0]); // No edge
             comboBox_vhmode.Items.Add(Helper.VALUERANGE_VHMODE[1]); // Horizontal edge
             comboBox_vhmode.Items.Add(Helper.VALUERANGE_VHMODE[2]); // Vertical edge
             comboBox_vhmode.Items.Add(Helper.VALUERANGE_VHMODE[3]); // 2-d edge mode
             comboBox_vhmode.SelectedIndex = 0;
+            comboBox_vhmode_SelectedIndexChanged(null, null);
 
-            trackBar_vref_Scroll(null, null);
-            trackBar_gain_Scroll(null, null);
+            comboBox_edge_enhancement_mode.Items.Add(Helper.VALUERANGE_EDGE_ENHANCEMENT_MODE[0]);
+            comboBox_edge_enhancement_mode.Items.Add(Helper.VALUERANGE_EDGE_ENHANCEMENT_MODE[1]);
+            comboBox_edge_enhancement_mode.SelectedIndex = 0;
+            comboBox_edge_enhancement_mode_SelectedIndexChanged(null, null);
+
+            checkBox_inverted_CheckedChanged(null, null);
+            checkBox_n_CheckedChanged(null, null);
         }
 
         private void bt_start_Click(object sender, EventArgs e)
@@ -219,7 +229,7 @@ namespace GameboyCameraClient
         private void trackBar_c1_Scroll(object sender, EventArgs e)
         {
             set_c1 = trackBar_c1.Value;
-            label_c1_value.Text = Helper.getBinaryRepresentation(set_c1, 8);
+            label_c1_value.Text = set_c1 + " / " + Helper.getBinaryRepresentation(set_c1, 8);
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -239,12 +249,13 @@ namespace GameboyCameraClient
         private void trackBar_gain_Scroll(object sender, EventArgs e)
         {
             set_gain = trackBar_gain.Value;
-            label_gain_value.Text = trackBar_gain.Value + " / " + Helper.VALUERANGE_GAIN[set_gain]+" bel";
+            label_gain_value.Text = set_gain + " bel / " + Helper.getBinaryRepresentation(set_gain, 5);
         }
 
         private void trackBar_vref_Scroll(object sender, EventArgs e)
         {
-            label_vref_value.Text = Helper.VALUERANGE_VREF[trackBar_vref.Value].ToString()+"V";
+            set_vref = trackBar_vref.Value;
+            label_vref_value.Text = Helper.VALUERANGE_VREF[set_vref].ToString() + "V / " + Helper.getBinaryRepresentation(set_vref, 3);
         }
 
         private void comboBox_calibration_SelectedIndexChanged(object sender, EventArgs e)
@@ -256,21 +267,22 @@ namespace GameboyCameraClient
             else if (comboBox_calibration.SelectedIndex == 2)
                 set_z = 1; // 01 = Negative
 
-            label_calibration_value.Text = set_z.ToString();
+            label_calibration_value.Text = set_z.ToString() + " / " + Helper.getBinaryRepresentation(set_z, 2);
         }
 
         private void trackBar_offset_Scroll(object sender, EventArgs e)
         {
-            sbyte temp2 = (sbyte)trackBar_offset.Value;
-            if (temp2 > 0)
+            byte temp2 = (byte) trackBar_offset.Value;
+            if (trackBar_offset.Value >= 0)
             {
-                label_offset_value.Text = "+" + temp2 * 32 + " mV";
+                temp2 = (byte) (temp2 + ((byte)32));
+                label_offset_value.Text = "+" + trackBar_offset.Value * 32 + " mV / " + Helper.getBinaryRepresentation(temp2, 6);
             }
-            else if (temp2 < 0)
+            else if (trackBar_offset.Value < 0)
             {
-                label_offset_value.Text = temp2 * 32 + " mV";
+                temp2 = (byte)((32 - temp2)-32);
+                label_offset_value.Text = trackBar_offset.Value * 32 + " mV / " + Helper.getBinaryRepresentation(temp2, 6);
             }
-            else { label_offset_value.Text = "0 mV"; }
             set_offset = temp2;
         }
 
@@ -280,7 +292,6 @@ namespace GameboyCameraClient
                 set_i = 1;
             else
                 set_i = 0;
-            label_inverted_value.Text = "" + set_i;
         }
 
         private void checkBox_n_CheckedChanged(object sender, EventArgs e)
@@ -317,20 +328,28 @@ namespace GameboyCameraClient
 
         private void trackBar_edge_Scroll(object sender, EventArgs e)
         {
-            set_edge = trackBar_edge.Value;
-            label_edge_value.Text = Helper.VALUERANGE_EDGERATIO[trackBar_edge.Value]+"%";
+            set_edge = trackBar_edge.Value & 7; // & 0111
+            if (comboBox_edge_enhancement_mode.SelectedIndex == 1)
+                set_edge = set_edge | 8;
+
+            label_edge_value.Text = Helper.VALUERANGE_EDGERATIO[trackBar_edge.Value] + "% / " + Helper.getBinaryRepresentation(set_edge, 4);
         }
 
         private void comboBox_vhmode_SelectedIndexChanged(object sender, EventArgs e)
         {
             set_vh = comboBox_vhmode.SelectedIndex;
-            label_vhmode_value.Text = set_vh + "";
+            label_vhmode_value.Text = set_vh + " / " + Helper.getBinaryRepresentation(set_vh, 2);
+        }
+
+        private void comboBox_edge_enhancement_mode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            trackBar_edge_Scroll(null, null);
         }
 
         private void trackBar_c0_Scroll(object sender, EventArgs e)
         {
             set_c0 = trackBar_c0.Value;
-            label_c0_value.Text = set_c0.ToString();
+            label_c0_value.Text = set_c0 + " / " + Helper.getBinaryRepresentation(set_c0, 8);
         }
     }
 }

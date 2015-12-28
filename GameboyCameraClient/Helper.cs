@@ -14,6 +14,7 @@ namespace GameboyCameraClient
         public static int[] VALUERANGE_EDGERATIO = { 50, 75, 100, 125, 200, 300, 400, 500 };
         public static String[] VALUERANGE_VHMODE = { "No edge operation", "Horizontal edge mode", "Vertical edge mode", "2-D edge mode" };
         public static String[] VALUERANGE_CALIBRATION = { "No calibration", "Calibration for positive signal", "Calibration for negative signal" };
+        public static String[] VALUERANGE_EDGE_ENHANCEMENT_MODE = { "edge extraction mode", "edge enhancement mode" };
 
         static public String getBinaryRepresentation(int value, int amount_digits)
         {

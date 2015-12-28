@@ -47,6 +47,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.comboBox_baud = new System.Windows.Forms.ComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label_vhmode_value = new System.Windows.Forms.Label();
             this.label_edge_value = new System.Windows.Forms.Label();
             this.trackBar_edge = new System.Windows.Forms.TrackBar();
             this.label_edge = new System.Windows.Forms.Label();
@@ -65,8 +66,8 @@
             this.label_offset_value = new System.Windows.Forms.Label();
             this.trackBar_offset = new System.Windows.Forms.TrackBar();
             this.label_offset = new System.Windows.Forms.Label();
-            this.label_vhmode_value = new System.Windows.Forms.Label();
-            this.label_inverted_value = new System.Windows.Forms.Label();
+            this.comboBox_edge_enhancement_mode = new System.Windows.Forms.ComboBox();
+            this.label_edge_enhancement_mode = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_gain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_c0)).BeginInit();
@@ -82,9 +83,9 @@
             // 
             // bt_start
             // 
-            this.bt_start.Location = new System.Drawing.Point(860, 207);
+            this.bt_start.Location = new System.Drawing.Point(900, 255);
             this.bt_start.Name = "bt_start";
-            this.bt_start.Size = new System.Drawing.Size(200, 82);
+            this.bt_start.Size = new System.Drawing.Size(90, 21);
             this.bt_start.TabIndex = 1;
             this.bt_start.Text = "Take Picture";
             this.bt_start.UseVisualStyleBackColor = true;
@@ -101,9 +102,9 @@
             this.groupBox1.Controls.Add(this.trackBar_c0);
             this.groupBox1.Controls.Add(this.label_c0);
             this.groupBox1.Controls.Add(this.trackBar_c1);
-            this.groupBox1.Location = new System.Drawing.Point(301, 100);
+            this.groupBox1.Location = new System.Drawing.Point(299, 91);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(282, 189);
+            this.groupBox1.Size = new System.Drawing.Size(250, 198);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Light";
@@ -132,7 +133,7 @@
             this.trackBar_gain.Location = new System.Drawing.Point(17, 131);
             this.trackBar_gain.Maximum = 31;
             this.trackBar_gain.Name = "trackBar_gain";
-            this.trackBar_gain.Size = new System.Drawing.Size(250, 45);
+            this.trackBar_gain.Size = new System.Drawing.Size(231, 45);
             this.trackBar_gain.TabIndex = 6;
             this.trackBar_gain.Scroll += new System.EventHandler(this.trackBar_gain_Scroll);
             // 
@@ -169,7 +170,7 @@
             this.trackBar_c0.Location = new System.Drawing.Point(17, 80);
             this.trackBar_c0.Maximum = 255;
             this.trackBar_c0.Name = "trackBar_c0";
-            this.trackBar_c0.Size = new System.Drawing.Size(250, 45);
+            this.trackBar_c0.Size = new System.Drawing.Size(231, 45);
             this.trackBar_c0.TabIndex = 2;
             this.trackBar_c0.Scroll += new System.EventHandler(this.trackBar_c0_Scroll);
             // 
@@ -188,14 +189,14 @@
             this.trackBar_c1.Location = new System.Drawing.Point(17, 32);
             this.trackBar_c1.Maximum = 255;
             this.trackBar_c1.Name = "trackBar_c1";
-            this.trackBar_c1.Size = new System.Drawing.Size(250, 45);
+            this.trackBar_c1.Size = new System.Drawing.Size(231, 45);
             this.trackBar_c1.TabIndex = 0;
             this.trackBar_c1.Scroll += new System.EventHandler(this.trackBar_c1_Scroll);
             // 
             // label_calibration_value
             // 
             this.label_calibration_value.AutoSize = true;
-            this.label_calibration_value.Location = new System.Drawing.Point(90, 152);
+            this.label_calibration_value.Location = new System.Drawing.Point(89, 171);
             this.label_calibration_value.Name = "label_calibration_value";
             this.label_calibration_value.Size = new System.Drawing.Size(12, 13);
             this.label_calibration_value.TabIndex = 12;
@@ -204,7 +205,7 @@
             // label_calibration
             // 
             this.label_calibration.AutoSize = true;
-            this.label_calibration.Location = new System.Drawing.Point(6, 152);
+            this.label_calibration.Location = new System.Drawing.Point(5, 171);
             this.label_calibration.Name = "label_calibration";
             this.label_calibration.Size = new System.Drawing.Size(78, 13);
             this.label_calibration.TabIndex = 11;
@@ -213,9 +214,9 @@
             // comboBox_calibration
             // 
             this.comboBox_calibration.FormattingEnabled = true;
-            this.comboBox_calibration.Location = new System.Drawing.Point(18, 168);
+            this.comboBox_calibration.Location = new System.Drawing.Point(17, 187);
             this.comboBox_calibration.Name = "comboBox_calibration";
-            this.comboBox_calibration.Size = new System.Drawing.Size(238, 21);
+            this.comboBox_calibration.Size = new System.Drawing.Size(160, 21);
             this.comboBox_calibration.TabIndex = 10;
             this.comboBox_calibration.SelectedIndexChanged += new System.EventHandler(this.comboBox_calibration_SelectedIndexChanged);
             // 
@@ -226,7 +227,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(842, 320);
+            this.textBox1.Size = new System.Drawing.Size(1049, 320);
             this.textBox1.TabIndex = 3;
             // 
             // comboBox_comport
@@ -242,7 +243,7 @@
             // 
             this.groupBox2.Controls.Add(this.comboBox_baud);
             this.groupBox2.Controls.Add(this.comboBox_comport);
-            this.groupBox2.Location = new System.Drawing.Point(448, 12);
+            this.groupBox2.Location = new System.Drawing.Point(414, 12);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(135, 82);
             this.groupBox2.TabIndex = 5;
@@ -260,6 +261,8 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.label_edge_enhancement_mode);
+            this.groupBox3.Controls.Add(this.comboBox_edge_enhancement_mode);
             this.groupBox3.Controls.Add(this.label_vhmode_value);
             this.groupBox3.Controls.Add(this.label_edge_value);
             this.groupBox3.Controls.Add(this.trackBar_edge);
@@ -267,12 +270,21 @@
             this.groupBox3.Controls.Add(this.label_vhmode);
             this.groupBox3.Controls.Add(this.comboBox_vhmode);
             this.groupBox3.Controls.Add(this.checkBox_n);
-            this.groupBox3.Location = new System.Drawing.Point(860, 17);
+            this.groupBox3.Location = new System.Drawing.Point(811, 12);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(200, 184);
+            this.groupBox3.Size = new System.Drawing.Size(250, 222);
             this.groupBox3.TabIndex = 6;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Edge extraction";
+            // 
+            // label_vhmode_value
+            // 
+            this.label_vhmode_value.AutoSize = true;
+            this.label_vhmode_value.Location = new System.Drawing.Point(67, 63);
+            this.label_vhmode_value.Name = "label_vhmode_value";
+            this.label_vhmode_value.Size = new System.Drawing.Size(12, 13);
+            this.label_vhmode_value.TabIndex = 19;
+            this.label_vhmode_value.Text = "x";
             // 
             // label_edge_value
             // 
@@ -298,9 +310,9 @@
             this.label_edge.AutoSize = true;
             this.label_edge.Location = new System.Drawing.Point(6, 112);
             this.label_edge.Name = "label_edge";
-            this.label_edge.Size = new System.Drawing.Size(126, 13);
+            this.label_edge.Size = new System.Drawing.Size(139, 13);
             this.label_edge.TabIndex = 8;
-            this.label_edge.Text = "Edge enhancement ratio:";
+            this.label_edge.Text = "E: Edge enhancement ratio:";
             // 
             // label_vhmode
             // 
@@ -316,7 +328,7 @@
             this.comboBox_vhmode.FormattingEnabled = true;
             this.comboBox_vhmode.Location = new System.Drawing.Point(9, 79);
             this.comboBox_vhmode.Name = "comboBox_vhmode";
-            this.comboBox_vhmode.Size = new System.Drawing.Size(161, 21);
+            this.comboBox_vhmode.Size = new System.Drawing.Size(160, 21);
             this.comboBox_vhmode.TabIndex = 6;
             this.comboBox_vhmode.SelectedIndexChanged += new System.EventHandler(this.comboBox_vhmode_SelectedIndexChanged);
             // 
@@ -336,9 +348,9 @@
             this.groupBox4.Controls.Add(this.checkBox_x);
             this.groupBox4.Controls.Add(this.checkBox_m);
             this.groupBox4.Controls.Add(this.checkBox_p);
-            this.groupBox4.Location = new System.Drawing.Point(301, 12);
+            this.groupBox4.Location = new System.Drawing.Point(299, 12);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(141, 82);
+            this.groupBox4.Size = new System.Drawing.Size(107, 82);
             this.groupBox4.TabIndex = 7;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "1-D filtering kernel";
@@ -348,7 +360,7 @@
             this.checkBox_x.AutoSize = true;
             this.checkBox_x.Checked = true;
             this.checkBox_x.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_x.Location = new System.Drawing.Point(102, 28);
+            this.checkBox_x.Location = new System.Drawing.Point(11, 51);
             this.checkBox_x.Name = "checkBox_x";
             this.checkBox_x.Size = new System.Drawing.Size(33, 17);
             this.checkBox_x.TabIndex = 12;
@@ -383,7 +395,7 @@
             // checkBox_inverted
             // 
             this.checkBox_inverted.AutoSize = true;
-            this.checkBox_inverted.Location = new System.Drawing.Point(9, 130);
+            this.checkBox_inverted.Location = new System.Drawing.Point(9, 135);
             this.checkBox_inverted.Name = "checkBox_inverted";
             this.checkBox_inverted.Size = new System.Drawing.Size(74, 17);
             this.checkBox_inverted.TabIndex = 13;
@@ -393,7 +405,6 @@
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.label_inverted_value);
             this.groupBox5.Controls.Add(this.label_calibration_value);
             this.groupBox5.Controls.Add(this.checkBox_inverted);
             this.groupBox5.Controls.Add(this.label_calibration);
@@ -404,9 +415,9 @@
             this.groupBox5.Controls.Add(this.label_offset_value);
             this.groupBox5.Controls.Add(this.trackBar_offset);
             this.groupBox5.Controls.Add(this.label_offset);
-            this.groupBox5.Location = new System.Drawing.Point(589, 12);
+            this.groupBox5.Location = new System.Drawing.Point(555, 12);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(265, 277);
+            this.groupBox5.Size = new System.Drawing.Size(250, 277);
             this.groupBox5.TabIndex = 8;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Image settings";
@@ -426,7 +437,7 @@
             this.trackBar_vref.Location = new System.Drawing.Point(6, 88);
             this.trackBar_vref.Maximum = 7;
             this.trackBar_vref.Name = "trackBar_vref";
-            this.trackBar_vref.Size = new System.Drawing.Size(250, 45);
+            this.trackBar_vref.Size = new System.Drawing.Size(238, 45);
             this.trackBar_vref.TabIndex = 15;
             this.trackBar_vref.Scroll += new System.EventHandler(this.trackBar_vref_Scroll);
             // 
@@ -455,7 +466,7 @@
             this.trackBar_offset.Maximum = 31;
             this.trackBar_offset.Minimum = -31;
             this.trackBar_offset.Name = "trackBar_offset";
-            this.trackBar_offset.Size = new System.Drawing.Size(250, 45);
+            this.trackBar_offset.Size = new System.Drawing.Size(238, 45);
             this.trackBar_offset.TabIndex = 13;
             this.trackBar_offset.Scroll += new System.EventHandler(this.trackBar_offset_Scroll);
             // 
@@ -468,23 +479,23 @@
             this.label_offset.TabIndex = 13;
             this.label_offset.Text = "Offset:";
             // 
-            // label_vhmode_value
+            // comboBox_edge_enhancement_mode
             // 
-            this.label_vhmode_value.AutoSize = true;
-            this.label_vhmode_value.Location = new System.Drawing.Point(67, 63);
-            this.label_vhmode_value.Name = "label_vhmode_value";
-            this.label_vhmode_value.Size = new System.Drawing.Size(12, 13);
-            this.label_vhmode_value.TabIndex = 19;
-            this.label_vhmode_value.Text = "x";
+            this.comboBox_edge_enhancement_mode.FormattingEnabled = true;
+            this.comboBox_edge_enhancement_mode.Location = new System.Drawing.Point(10, 191);
+            this.comboBox_edge_enhancement_mode.Name = "comboBox_edge_enhancement_mode";
+            this.comboBox_edge_enhancement_mode.Size = new System.Drawing.Size(160, 21);
+            this.comboBox_edge_enhancement_mode.TabIndex = 20;
+            this.comboBox_edge_enhancement_mode.SelectedIndexChanged += new System.EventHandler(this.comboBox_edge_enhancement_mode_SelectedIndexChanged);
             // 
-            // label_inverted_value
+            // label_edge_enhancement_mode
             // 
-            this.label_inverted_value.AutoSize = true;
-            this.label_inverted_value.Location = new System.Drawing.Point(89, 131);
-            this.label_inverted_value.Name = "label_inverted_value";
-            this.label_inverted_value.Size = new System.Drawing.Size(12, 13);
-            this.label_inverted_value.TabIndex = 9;
-            this.label_inverted_value.Text = "x";
+            this.label_edge_enhancement_mode.AutoSize = true;
+            this.label_edge_enhancement_mode.Location = new System.Drawing.Point(6, 171);
+            this.label_edge_enhancement_mode.Name = "label_edge_enhancement_mode";
+            this.label_edge_enhancement_mode.Size = new System.Drawing.Size(151, 13);
+            this.label_edge_enhancement_mode.TabIndex = 21;
+            this.label_edge_enhancement_mode.Text = "E3: Edge enhancement mode:";
             // 
             // Form1
             // 
@@ -559,7 +570,8 @@
         private System.Windows.Forms.Label label_offset;
         private System.Windows.Forms.Label label_edge_value;
         private System.Windows.Forms.Label label_vhmode_value;
-        private System.Windows.Forms.Label label_inverted_value;
+        private System.Windows.Forms.Label label_edge_enhancement_mode;
+        private System.Windows.Forms.ComboBox comboBox_edge_enhancement_mode;
     }
 }
 
