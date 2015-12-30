@@ -47,6 +47,8 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.comboBox_baud = new System.Windows.Forms.ComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label_edge_enhancement_mode = new System.Windows.Forms.Label();
+            this.comboBox_edge_enhancement_mode = new System.Windows.Forms.ComboBox();
             this.label_vhmode_value = new System.Windows.Forms.Label();
             this.label_edge_value = new System.Windows.Forms.Label();
             this.trackBar_edge = new System.Windows.Forms.TrackBar();
@@ -66,8 +68,7 @@
             this.label_offset_value = new System.Windows.Forms.Label();
             this.trackBar_offset = new System.Windows.Forms.TrackBar();
             this.label_offset = new System.Windows.Forms.Label();
-            this.comboBox_edge_enhancement_mode = new System.Windows.Forms.ComboBox();
-            this.label_edge_enhancement_mode = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_gain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_c0)).BeginInit();
@@ -83,7 +84,7 @@
             // 
             // bt_start
             // 
-            this.bt_start.Location = new System.Drawing.Point(900, 255);
+            this.bt_start.Location = new System.Drawing.Point(821, 255);
             this.bt_start.Name = "bt_start";
             this.bt_start.Size = new System.Drawing.Size(90, 21);
             this.bt_start.TabIndex = 1;
@@ -276,6 +277,24 @@
             this.groupBox3.TabIndex = 6;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Edge extraction";
+            // 
+            // label_edge_enhancement_mode
+            // 
+            this.label_edge_enhancement_mode.AutoSize = true;
+            this.label_edge_enhancement_mode.Location = new System.Drawing.Point(6, 171);
+            this.label_edge_enhancement_mode.Name = "label_edge_enhancement_mode";
+            this.label_edge_enhancement_mode.Size = new System.Drawing.Size(151, 13);
+            this.label_edge_enhancement_mode.TabIndex = 21;
+            this.label_edge_enhancement_mode.Text = "E3: Edge enhancement mode:";
+            // 
+            // comboBox_edge_enhancement_mode
+            // 
+            this.comboBox_edge_enhancement_mode.FormattingEnabled = true;
+            this.comboBox_edge_enhancement_mode.Location = new System.Drawing.Point(10, 191);
+            this.comboBox_edge_enhancement_mode.Name = "comboBox_edge_enhancement_mode";
+            this.comboBox_edge_enhancement_mode.Size = new System.Drawing.Size(160, 21);
+            this.comboBox_edge_enhancement_mode.TabIndex = 20;
+            this.comboBox_edge_enhancement_mode.SelectedIndexChanged += new System.EventHandler(this.comboBox_edge_enhancement_mode_SelectedIndexChanged);
             // 
             // label_vhmode_value
             // 
@@ -479,29 +498,21 @@
             this.label_offset.TabIndex = 13;
             this.label_offset.Text = "Offset:";
             // 
-            // comboBox_edge_enhancement_mode
+            // button1
             // 
-            this.comboBox_edge_enhancement_mode.FormattingEnabled = true;
-            this.comboBox_edge_enhancement_mode.Location = new System.Drawing.Point(10, 191);
-            this.comboBox_edge_enhancement_mode.Name = "comboBox_edge_enhancement_mode";
-            this.comboBox_edge_enhancement_mode.Size = new System.Drawing.Size(160, 21);
-            this.comboBox_edge_enhancement_mode.TabIndex = 20;
-            this.comboBox_edge_enhancement_mode.SelectedIndexChanged += new System.EventHandler(this.comboBox_edge_enhancement_mode_SelectedIndexChanged);
-            // 
-            // label_edge_enhancement_mode
-            // 
-            this.label_edge_enhancement_mode.AutoSize = true;
-            this.label_edge_enhancement_mode.Location = new System.Drawing.Point(6, 171);
-            this.label_edge_enhancement_mode.Name = "label_edge_enhancement_mode";
-            this.label_edge_enhancement_mode.Size = new System.Drawing.Size(151, 13);
-            this.label_edge_enhancement_mode.TabIndex = 21;
-            this.label_edge_enhancement_mode.Text = "E3: Edge enhancement mode:";
+            this.button1.Location = new System.Drawing.Point(952, 255);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(90, 21);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "Stop";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1070, 627);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -572,6 +583,7 @@
         private System.Windows.Forms.Label label_vhmode_value;
         private System.Windows.Forms.Label label_edge_enhancement_mode;
         private System.Windows.Forms.ComboBox comboBox_edge_enhancement_mode;
+        private System.Windows.Forms.Button button1;
     }
 }
 
