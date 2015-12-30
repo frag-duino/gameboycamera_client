@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.bt_start = new System.Windows.Forms.Button();
+            this.button_start = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label_gain_value = new System.Windows.Forms.Label();
             this.label_gain = new System.Windows.Forms.Label();
@@ -68,7 +68,7 @@
             this.label_offset_value = new System.Windows.Forms.Label();
             this.trackBar_offset = new System.Windows.Forms.TrackBar();
             this.label_offset = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.button_stop = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_gain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_c0)).BeginInit();
@@ -82,15 +82,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_offset)).BeginInit();
             this.SuspendLayout();
             // 
-            // bt_start
+            // button_start
             // 
-            this.bt_start.Location = new System.Drawing.Point(821, 255);
-            this.bt_start.Name = "bt_start";
-            this.bt_start.Size = new System.Drawing.Size(90, 21);
-            this.bt_start.TabIndex = 1;
-            this.bt_start.Text = "Take Picture";
-            this.bt_start.UseVisualStyleBackColor = true;
-            this.bt_start.Click += new System.EventHandler(this.bt_start_Click);
+            this.button_start.Location = new System.Drawing.Point(12, 244);
+            this.button_start.Name = "button_start";
+            this.button_start.Size = new System.Drawing.Size(87, 45);
+            this.button_start.TabIndex = 1;
+            this.button_start.Text = "Take Picture";
+            this.button_start.UseVisualStyleBackColor = true;
+            this.button_start.Click += new System.EventHandler(this.bt_start_Click);
             // 
             // groupBox1
             // 
@@ -103,9 +103,9 @@
             this.groupBox1.Controls.Add(this.trackBar_c0);
             this.groupBox1.Controls.Add(this.label_c0);
             this.groupBox1.Controls.Add(this.trackBar_c1);
-            this.groupBox1.Location = new System.Drawing.Point(299, 91);
+            this.groupBox1.Location = new System.Drawing.Point(190, 100);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(250, 198);
+            this.groupBox1.Size = new System.Drawing.Size(250, 189);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Light";
@@ -228,7 +228,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(1049, 320);
+            this.textBox1.Size = new System.Drawing.Size(940, 320);
             this.textBox1.TabIndex = 3;
             // 
             // comboBox_comport
@@ -244,7 +244,7 @@
             // 
             this.groupBox2.Controls.Add(this.comboBox_baud);
             this.groupBox2.Controls.Add(this.comboBox_comport);
-            this.groupBox2.Location = new System.Drawing.Point(414, 12);
+            this.groupBox2.Location = new System.Drawing.Point(305, 12);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(135, 82);
             this.groupBox2.TabIndex = 5;
@@ -271,7 +271,7 @@
             this.groupBox3.Controls.Add(this.label_vhmode);
             this.groupBox3.Controls.Add(this.comboBox_vhmode);
             this.groupBox3.Controls.Add(this.checkBox_n);
-            this.groupBox3.Location = new System.Drawing.Point(811, 12);
+            this.groupBox3.Location = new System.Drawing.Point(702, 12);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(250, 222);
             this.groupBox3.TabIndex = 6;
@@ -367,7 +367,7 @@
             this.groupBox4.Controls.Add(this.checkBox_x);
             this.groupBox4.Controls.Add(this.checkBox_m);
             this.groupBox4.Controls.Add(this.checkBox_p);
-            this.groupBox4.Location = new System.Drawing.Point(299, 12);
+            this.groupBox4.Location = new System.Drawing.Point(190, 12);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(107, 82);
             this.groupBox4.TabIndex = 7;
@@ -434,7 +434,7 @@
             this.groupBox5.Controls.Add(this.label_offset_value);
             this.groupBox5.Controls.Add(this.trackBar_offset);
             this.groupBox5.Controls.Add(this.label_offset);
-            this.groupBox5.Location = new System.Drawing.Point(555, 12);
+            this.groupBox5.Location = new System.Drawing.Point(446, 12);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(250, 277);
             this.groupBox5.TabIndex = 8;
@@ -498,28 +498,30 @@
             this.label_offset.TabIndex = 13;
             this.label_offset.Text = "Offset:";
             // 
-            // button1
+            // button_stop
             // 
-            this.button1.Location = new System.Drawing.Point(952, 255);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(90, 21);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "Stop";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button_stop.Enabled = false;
+            this.button_stop.Location = new System.Drawing.Point(105, 244);
+            this.button_stop.Name = "button_stop";
+            this.button_stop.Size = new System.Drawing.Size(79, 45);
+            this.button_stop.TabIndex = 9;
+            this.button_stop.Text = "Stop";
+            this.button_stop.UseVisualStyleBackColor = true;
+            this.button_stop.Click += new System.EventHandler(this.button_stop_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1070, 627);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.button_stop);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.bt_start);
+            this.Controls.Add(this.button_start);
             this.Name = "Form1";
             this.Text = "Form1";
             this.groupBox1.ResumeLayout(false);
@@ -543,7 +545,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button bt_start;
+        private System.Windows.Forms.Button button_start;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TrackBar trackBar_c1;
         private System.Windows.Forms.Label label_c1;
@@ -583,7 +585,7 @@
         private System.Windows.Forms.Label label_vhmode_value;
         private System.Windows.Forms.Label label_edge_enhancement_mode;
         private System.Windows.Forms.ComboBox comboBox_edge_enhancement_mode;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button_stop;
     }
 }
 

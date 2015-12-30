@@ -8,6 +8,30 @@ namespace GameboyCameraClient
 {
     class Helper
     {
+
+        // Protocol
+        public static char TYPE_GAIN = 'G';
+        public static char TYPE_VH = 'H';
+        public static char TYPE_N = 'N';
+        public static char TYPE_C1 = '1';
+        public static char TYPE_C0 = '0';
+        public static char TYPE_P = 'P';
+        public static char TYPE_M = 'M';
+        public static char TYPE_X = 'X';
+        public static char TYPE_VREF = 'V';
+        public static char TYPE_I = 'I';
+        public static char TYPE_EDGE = 'E';
+        public static char TYPE_OUT = 'O';
+        public static char TYPE_Z = 'Z';
+
+        public static int MODE_8BIT = 8;
+        public static int MODE_2BIT = 2;
+        public static int MODE_TEST = 0;
+
+        public static char COMMAND_TAKEPHOTO = 'T';
+        public static char COMMAND_SETCONFIG = 'S';
+        public static char COMMAND_COLORDEPTH = 'D';
+
         public static double[] VALUERANGE_GAIN = { 14.0, 15.5, 17.0, 18.5, 20.0, 21.5, 23.0, 24.5, 26.0, 29.0, 32.0, 35.0, 38.0, 41.0, 45.5, 51.5,
             20.0, 21.5, 23.0, 24.5, 26.0, 27.5, 29.0, 30.5, 32.0, 35.0, 38.0, 41.0, 44.0, 47.0, 51.5, 57.5 };
         public static double[] VALUERANGE_VREF = { 0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5 };

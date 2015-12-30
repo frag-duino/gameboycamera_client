@@ -1,66 +1,41 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.IO;
 using System.IO.Ports;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace GameboyCameraClient
 {
     public partial class Form1 : Form
     {
-        byte[] currentPixel = new byte[128 * 128 +100];
-        String input = "";
-        
-        // Protocol
-        const char TYPE_GAIN = 'G';
-        const char TYPE_VH = 'H';
-        const char TYPE_N = 'N';
-        const char TYPE_C1 = '1';
-        const char TYPE_C0 = '0';
-        const char TYPE_P = 'P';
-        const char TYPE_M = 'M';
-        const char TYPE_X = 'X';
-        const char TYPE_VREF = 'V';
-        const char TYPE_I = 'I';
-        const char TYPE_EDGE = 'E';
-        const char TYPE_OUT = 'O';
-        const char TYPE_Z = 'Z';
+       // Variables
+        public int set_gain = 0;
+        public int set_vh = 3;
+        public int set_n = 0;
+        public int set_c1 = 23;
+        public int set_c0 = 27;
+        public int set_p = 1;
+        public int set_m = 0;
+        public int set_x = 1;
+        public int set_vref = 3;
+        public int set_i = 0;
+        public int set_edge = 0;
+        public byte set_offset = 0;
+        public int set_z = 2;
 
-        const int MODE_8BIT = 8;
-        const int MODE_2BIT = 2;
-        const int MODE_TEST = 0;
+        // Serial settings
+        public String comport = "COM3";
+        public int baud = 9600;
 
-        const char COMMAND_TAKEPHOTO = 'T';
-        const char COMMAND_SETCONFIG = 'S';
-        const char COMMAND_COLORDEPTH = 'D';
+        // UI:
+        public Bitmap bitmap;
+        public Graphics graph;
+        public TextBox log;
+        public Button bt_start, bt_stop;
 
-        // Variables
-        Boolean readyToReceive = false;
-        int set_gain = 0;
-        int set_vh = 3;
-        int set_n = 0;
-        int set_c1 = 23;
-        int set_c0 = 27;
-        int set_p = 1;
-        int set_m = 0;
-        int set_x = 1;
-        int set_vref = 3;
-        int set_i = 0;
-        int set_edge = 0;
-        byte set_offset = 0;
-        int set_z = 2;
-
-        int dataIn, temp;
-        int row;
-        int column;
-        String comport = "COM3";
-        int baud = 9600;
+        // Threads
+        GetThread get;
+        Thread get_thread;
 
         public Form1()
         {
@@ -119,111 +94,24 @@ namespace GameboyCameraClient
 
             checkBox_inverted_CheckedChanged(null, null);
             checkBox_n_CheckedChanged(null, null);
+
+            // Create image:
+            bitmap = new Bitmap(128, 128);
+            graph = CreateGraphics();
+            graph.DrawImage(bitmap, 10, 10);
+            log = textBox1;
+            bt_start = button_start;
+            bt_stop = button_stop;
         }
 
         private void bt_start_Click(object sender, EventArgs e)
         {
-
-            Bitmap bitmap = new Bitmap("background.bmp");
-            Graphics graph = CreateGraphics();
-            row = 0;
-            column = 0;
-                        
-            try {
-                SerialPort mySerialport = new SerialPort(comport, baud);
-                mySerialport.Open();
-                while (true)
-                {
-                    if (!readyToReceive)
-                    {
-                        input = mySerialport.ReadLine();
-                        if (input.Contains("ready"))
-                        {
-                            readyToReceive = true;
-                            textBox1.AppendText(">Received ready. Sending config\r\n");
-
-                            // Set the values:
-                            mySerialport.WriteLine("" + TYPE_GAIN + (char)set_gain);
-                            mySerialport.WriteLine("" + TYPE_VH + (char)set_vh);
-                            mySerialport.WriteLine("" + TYPE_N + (char)set_n);
-                            mySerialport.WriteLine("" + TYPE_C1 + (char)set_c1);
-                            mySerialport.WriteLine("" + TYPE_C0 + (char)set_c0);
-                            mySerialport.WriteLine("" + TYPE_P + (char)set_p);
-                            mySerialport.WriteLine("" + TYPE_M + (char)set_m);
-                            mySerialport.WriteLine("" + TYPE_X + (char)set_x);
-                            mySerialport.WriteLine("" + TYPE_VREF + (char)set_vref);
-                            mySerialport.WriteLine("" + TYPE_I + (char)set_i);
-                            mySerialport.WriteLine("" + TYPE_EDGE + (char)set_edge);
-                            mySerialport.WriteLine("" + TYPE_OUT + (char)set_offset);
-                            mySerialport.WriteLine("" + TYPE_Z + (char)set_z);
-
-                            mySerialport.WriteLine("" + COMMAND_COLORDEPTH + (char)MODE_2BIT);
-                            mySerialport.WriteLine("" + COMMAND_SETCONFIG);
-                            mySerialport.WriteLine("" + COMMAND_TAKEPHOTO);
-
-                            textBox1.AppendText(">finished sending config\r\n");
-
-                            while (true)
-                            {
-                                input = mySerialport.ReadLine();
-                                textBox1.AppendText("<" + input.Replace("\n", "\r\n") + "\r\n");
-                                if (input.Contains("IMAGE:"))
-                                    break;
-                            }
-                        }
-                        else if (input.Contains("END!"))
-                        {
-                            textBox1.AppendText("Found the end!\r\n");
-                            break;
-                        }
-                    }
-
-                    if (readyToReceive)
-                    {
-                        dataIn = mySerialport.ReadByte();
-
-                        for (int pixel = 0; pixel < 4; pixel++)
-                        {
-
-                            temp = dataIn;
-                            temp = temp << (pixel * 2);
-                            temp = temp & 0xFF;
-                            temp = temp >> 6;
-
-                            // println(dataIn);
-                            temp *= 64;
-
-                            Color c = Color.FromArgb(temp, temp, temp);
-                            bitmap.SetPixel(column, row, c);
-
-                            column++;
-
-                            if (column == 128)
-                            {
-                                column = 0;
-                                row++;
-                            }
-
-
-                            if (row == 123) // TODO: 5 pixel fehlen!
-                            {
-                                readyToReceive = false;
-                                graph.DrawImage(bitmap, 10, 10);
-                                break;
-                            }
-
-                        }
-                        graph.DrawImage(bitmap, 10, 10);
-                    }
-                }
-                mySerialport.Close();
-                textBox1.AppendText("Serial Port closed\r\n");
-            }
-            catch (IOException ex)
-            { textBox1.AppendText(ex.ToString()); }
-
-                                 
-            textBox1.AppendText("Finished");
+            get = new GetThread(this);
+            get_thread = new Thread(new ThreadStart(get.getPhoto));
+            get_thread.Start();
+            bt_start.Enabled = false;
+            bt_stop.Enabled = true;
+            
         }
 
         private void trackBar_c1_Scroll(object sender, EventArgs e)
@@ -344,6 +232,11 @@ namespace GameboyCameraClient
         private void comboBox_edge_enhancement_mode_SelectedIndexChanged(object sender, EventArgs e)
         {
             trackBar_edge_Scroll(null, null);
+        }
+
+        private void button_stop_Click(object sender, EventArgs e)
+        {
+            get.stopThread();
         }
 
         private void trackBar_c0_Scroll(object sender, EventArgs e)
