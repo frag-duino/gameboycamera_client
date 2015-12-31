@@ -69,6 +69,8 @@
             this.trackBar_offset = new System.Windows.Forms.TrackBar();
             this.label_offset = new System.Windows.Forms.Label();
             this.button_stop = new System.Windows.Forms.Button();
+            this.comboBox_resolution = new System.Windows.Forms.ComboBox();
+            this.label_resolution = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_gain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_c0)).BeginInit();
@@ -94,18 +96,15 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.label_gain_value);
-            this.groupBox1.Controls.Add(this.label_gain);
-            this.groupBox1.Controls.Add(this.trackBar_gain);
             this.groupBox1.Controls.Add(this.label_c0_value);
             this.groupBox1.Controls.Add(this.label_c1_value);
             this.groupBox1.Controls.Add(this.label_c1);
             this.groupBox1.Controls.Add(this.trackBar_c0);
             this.groupBox1.Controls.Add(this.label_c0);
             this.groupBox1.Controls.Add(this.trackBar_c1);
-            this.groupBox1.Location = new System.Drawing.Point(190, 100);
+            this.groupBox1.Location = new System.Drawing.Point(190, 170);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(250, 189);
+            this.groupBox1.Size = new System.Drawing.Size(250, 119);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Light";
@@ -113,7 +112,7 @@
             // label_gain_value
             // 
             this.label_gain_value.AutoSize = true;
-            this.label_gain_value.Location = new System.Drawing.Point(43, 115);
+            this.label_gain_value.Location = new System.Drawing.Point(35, 213);
             this.label_gain_value.Name = "label_gain_value";
             this.label_gain_value.Size = new System.Drawing.Size(12, 13);
             this.label_gain_value.TabIndex = 8;
@@ -122,7 +121,7 @@
             // label_gain
             // 
             this.label_gain.AutoSize = true;
-            this.label_gain.Location = new System.Drawing.Point(14, 115);
+            this.label_gain.Location = new System.Drawing.Point(6, 213);
             this.label_gain.Name = "label_gain";
             this.label_gain.Size = new System.Drawing.Size(32, 13);
             this.label_gain.TabIndex = 7;
@@ -131,7 +130,7 @@
             // trackBar_gain
             // 
             this.trackBar_gain.LargeChange = 1;
-            this.trackBar_gain.Location = new System.Drawing.Point(17, 131);
+            this.trackBar_gain.Location = new System.Drawing.Point(9, 229);
             this.trackBar_gain.Maximum = 31;
             this.trackBar_gain.Name = "trackBar_gain";
             this.trackBar_gain.Size = new System.Drawing.Size(231, 45);
@@ -141,7 +140,7 @@
             // label_c0_value
             // 
             this.label_c0_value.AutoSize = true;
-            this.label_c0_value.Location = new System.Drawing.Point(43, 64);
+            this.label_c0_value.Location = new System.Drawing.Point(36, 64);
             this.label_c0_value.Name = "label_c0_value";
             this.label_c0_value.Size = new System.Drawing.Size(12, 13);
             this.label_c0_value.TabIndex = 5;
@@ -150,7 +149,7 @@
             // label_c1_value
             // 
             this.label_c1_value.AutoSize = true;
-            this.label_c1_value.Location = new System.Drawing.Point(43, 16);
+            this.label_c1_value.Location = new System.Drawing.Point(36, 16);
             this.label_c1_value.Name = "label_c1_value";
             this.label_c1_value.Size = new System.Drawing.Size(12, 13);
             this.label_c1_value.TabIndex = 4;
@@ -159,7 +158,7 @@
             // label_c1
             // 
             this.label_c1.AutoSize = true;
-            this.label_c1.Location = new System.Drawing.Point(14, 16);
+            this.label_c1.Location = new System.Drawing.Point(7, 16);
             this.label_c1.Name = "label_c1";
             this.label_c1.Size = new System.Drawing.Size(23, 13);
             this.label_c1.TabIndex = 3;
@@ -168,7 +167,7 @@
             // trackBar_c0
             // 
             this.trackBar_c0.LargeChange = 1;
-            this.trackBar_c0.Location = new System.Drawing.Point(17, 80);
+            this.trackBar_c0.Location = new System.Drawing.Point(10, 80);
             this.trackBar_c0.Maximum = 255;
             this.trackBar_c0.Name = "trackBar_c0";
             this.trackBar_c0.Size = new System.Drawing.Size(231, 45);
@@ -178,7 +177,7 @@
             // label_c0
             // 
             this.label_c0.AutoSize = true;
-            this.label_c0.Location = new System.Drawing.Point(14, 64);
+            this.label_c0.Location = new System.Drawing.Point(7, 64);
             this.label_c0.Name = "label_c0";
             this.label_c0.Size = new System.Drawing.Size(26, 13);
             this.label_c0.TabIndex = 1;
@@ -187,7 +186,7 @@
             // trackBar_c1
             // 
             this.trackBar_c1.LargeChange = 1;
-            this.trackBar_c1.Location = new System.Drawing.Point(17, 32);
+            this.trackBar_c1.Location = new System.Drawing.Point(12, 32);
             this.trackBar_c1.Maximum = 255;
             this.trackBar_c1.Name = "trackBar_c1";
             this.trackBar_c1.Size = new System.Drawing.Size(231, 45);
@@ -197,7 +196,7 @@
             // label_calibration_value
             // 
             this.label_calibration_value.AutoSize = true;
-            this.label_calibration_value.Location = new System.Drawing.Point(89, 171);
+            this.label_calibration_value.Location = new System.Drawing.Point(89, 163);
             this.label_calibration_value.Name = "label_calibration_value";
             this.label_calibration_value.Size = new System.Drawing.Size(12, 13);
             this.label_calibration_value.TabIndex = 12;
@@ -206,7 +205,7 @@
             // label_calibration
             // 
             this.label_calibration.AutoSize = true;
-            this.label_calibration.Location = new System.Drawing.Point(5, 171);
+            this.label_calibration.Location = new System.Drawing.Point(6, 163);
             this.label_calibration.Name = "label_calibration";
             this.label_calibration.Size = new System.Drawing.Size(78, 13);
             this.label_calibration.TabIndex = 11;
@@ -215,7 +214,7 @@
             // comboBox_calibration
             // 
             this.comboBox_calibration.FormattingEnabled = true;
-            this.comboBox_calibration.Location = new System.Drawing.Point(17, 187);
+            this.comboBox_calibration.Location = new System.Drawing.Point(17, 179);
             this.comboBox_calibration.Name = "comboBox_calibration";
             this.comboBox_calibration.Size = new System.Drawing.Size(160, 21);
             this.comboBox_calibration.TabIndex = 10;
@@ -234,7 +233,7 @@
             // comboBox_comport
             // 
             this.comboBox_comport.FormattingEnabled = true;
-            this.comboBox_comport.Location = new System.Drawing.Point(6, 19);
+            this.comboBox_comport.Location = new System.Drawing.Point(6, 18);
             this.comboBox_comport.Name = "comboBox_comport";
             this.comboBox_comport.Size = new System.Drawing.Size(121, 21);
             this.comboBox_comport.TabIndex = 4;
@@ -242,11 +241,13 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label_resolution);
             this.groupBox2.Controls.Add(this.comboBox_baud);
             this.groupBox2.Controls.Add(this.comboBox_comport);
-            this.groupBox2.Location = new System.Drawing.Point(305, 12);
+            this.groupBox2.Controls.Add(this.comboBox_resolution);
+            this.groupBox2.Location = new System.Drawing.Point(190, 63);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(135, 82);
+            this.groupBox2.Size = new System.Drawing.Size(250, 101);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Serial";
@@ -254,9 +255,9 @@
             // comboBox_baud
             // 
             this.comboBox_baud.FormattingEnabled = true;
-            this.comboBox_baud.Location = new System.Drawing.Point(6, 47);
+            this.comboBox_baud.Location = new System.Drawing.Point(133, 19);
             this.comboBox_baud.Name = "comboBox_baud";
-            this.comboBox_baud.Size = new System.Drawing.Size(121, 21);
+            this.comboBox_baud.Size = new System.Drawing.Size(111, 21);
             this.comboBox_baud.TabIndex = 5;
             this.comboBox_baud.SelectedIndexChanged += new System.EventHandler(this.comboBox_baud_SelectedIndexChanged);
             // 
@@ -369,7 +370,7 @@
             this.groupBox4.Controls.Add(this.checkBox_p);
             this.groupBox4.Location = new System.Drawing.Point(190, 12);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(107, 82);
+            this.groupBox4.Size = new System.Drawing.Size(250, 45);
             this.groupBox4.TabIndex = 7;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "1-D filtering kernel";
@@ -379,7 +380,7 @@
             this.checkBox_x.AutoSize = true;
             this.checkBox_x.Checked = true;
             this.checkBox_x.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_x.Location = new System.Drawing.Point(11, 51);
+            this.checkBox_x.Location = new System.Drawing.Point(135, 17);
             this.checkBox_x.Name = "checkBox_x";
             this.checkBox_x.Size = new System.Drawing.Size(33, 17);
             this.checkBox_x.TabIndex = 12;
@@ -390,7 +391,7 @@
             // checkBox_m
             // 
             this.checkBox_m.AutoSize = true;
-            this.checkBox_m.Location = new System.Drawing.Point(57, 28);
+            this.checkBox_m.Location = new System.Drawing.Point(73, 17);
             this.checkBox_m.Name = "checkBox_m";
             this.checkBox_m.Size = new System.Drawing.Size(35, 17);
             this.checkBox_m.TabIndex = 11;
@@ -403,7 +404,7 @@
             this.checkBox_p.AutoSize = true;
             this.checkBox_p.Checked = true;
             this.checkBox_p.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_p.Location = new System.Drawing.Point(11, 28);
+            this.checkBox_p.Location = new System.Drawing.Point(10, 17);
             this.checkBox_p.Name = "checkBox_p";
             this.checkBox_p.Size = new System.Drawing.Size(33, 17);
             this.checkBox_p.TabIndex = 10;
@@ -424,8 +425,11 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.label_gain_value);
             this.groupBox5.Controls.Add(this.label_calibration_value);
+            this.groupBox5.Controls.Add(this.label_gain);
             this.groupBox5.Controls.Add(this.checkBox_inverted);
+            this.groupBox5.Controls.Add(this.trackBar_gain);
             this.groupBox5.Controls.Add(this.label_calibration);
             this.groupBox5.Controls.Add(this.label_vref_value);
             this.groupBox5.Controls.Add(this.comboBox_calibration);
@@ -509,6 +513,24 @@
             this.button_stop.UseVisualStyleBackColor = true;
             this.button_stop.Click += new System.EventHandler(this.button_stop_Click);
             // 
+            // comboBox_resolution
+            // 
+            this.comboBox_resolution.FormattingEnabled = true;
+            this.comboBox_resolution.Location = new System.Drawing.Point(10, 61);
+            this.comboBox_resolution.Name = "comboBox_resolution";
+            this.comboBox_resolution.Size = new System.Drawing.Size(117, 21);
+            this.comboBox_resolution.TabIndex = 18;
+            this.comboBox_resolution.SelectedIndexChanged += new System.EventHandler(this.comboBox_resolution_SelectedIndexChanged);
+            // 
+            // label_resolution
+            // 
+            this.label_resolution.AutoSize = true;
+            this.label_resolution.Location = new System.Drawing.Point(7, 45);
+            this.label_resolution.Name = "label_resolution";
+            this.label_resolution.Size = new System.Drawing.Size(60, 13);
+            this.label_resolution.TabIndex = 19;
+            this.label_resolution.Text = "Resolution:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -530,6 +552,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_c0)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_c1)).EndInit();
             this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_edge)).EndInit();
@@ -586,6 +609,8 @@
         private System.Windows.Forms.Label label_edge_enhancement_mode;
         private System.Windows.Forms.ComboBox comboBox_edge_enhancement_mode;
         private System.Windows.Forms.Button button_stop;
+        private System.Windows.Forms.Label label_resolution;
+        private System.Windows.Forms.ComboBox comboBox_resolution;
     }
 }
 

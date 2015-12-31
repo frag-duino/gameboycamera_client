@@ -24,9 +24,11 @@ namespace GameboyCameraClient
         public static char TYPE_OUT = 'O';
         public static char TYPE_Z = 'Z';
 
-        public static int MODE_8BIT = 8;
+        public static int[] MODE_RESOLUTION = { 2, 8, 0, 1 };
         public static int MODE_2BIT = 2;
-        public static int MODE_TEST = 0;
+        public static int MODE_8BIT = 8;
+        public static int MODE_TEST2BIT = 0;
+        public static int MODE_TEST8BIT = 1;
 
         public static char COMMAND_TAKEPHOTO = 'T';
         public static char COMMAND_SETCONFIG = 'S';
@@ -39,7 +41,8 @@ namespace GameboyCameraClient
         public static String[] VALUERANGE_VHMODE = { "No edge operation", "Horizontal edge mode", "Vertical edge mode", "2-D edge mode" };
         public static String[] VALUERANGE_CALIBRATION = { "No calibration", "Calibration for positive signal", "Calibration for negative signal" };
         public static String[] VALUERANGE_EDGE_ENHANCEMENT_MODE = { "edge extraction mode", "edge enhancement mode" };
-
+        public static String[] VALUERANGE_RESOLUTION = { "2 Bit (4 colors)", "8 Bit (255 colors)", "2 Bit Test Mode", "8 Bit Test Mode" };
+        
         static public String getBinaryRepresentation(int value, int amount_digits)
         {
             String output = "";
