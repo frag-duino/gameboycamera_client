@@ -22,7 +22,7 @@ namespace GameboyCameraClient
         public int set_edge = 0;
         public byte set_offset = 0;
         public int set_z = 2;
-        public int set_resolution= 2;
+        public int set_colordepth= 2;
 
         // Serial settings
         public String comport = "COM3";
@@ -37,6 +37,7 @@ namespace GameboyCameraClient
         // Threads
         GetThread get;
         Thread get_thread;
+        public Boolean update_config = false; // Send the settings to the module
 
         public Form1()
         {
@@ -72,7 +73,7 @@ namespace GameboyCameraClient
             comboBox_baud.Items.Add(9600);
             comboBox_baud.Items.Add(115200);
             comboBox_baud.Items.Add(250000);
-            comboBox_baud.SelectedIndex = 0;
+            comboBox_baud.SelectedIndex = 1; // 115200
             comboBox_baud_SelectedIndexChanged(null, null);
             
             comboBox_calibration.Items.Add(Helper.VALUERANGE_CALIBRATION[0]); // No calibration
@@ -97,7 +98,8 @@ namespace GameboyCameraClient
             comboBox_resolution.Items.Add(Helper.VALUERANGE_RESOLUTION[1]); // 8Bit
             comboBox_resolution.Items.Add(Helper.VALUERANGE_RESOLUTION[2]); // 2Bit Test
             comboBox_resolution.Items.Add(Helper.VALUERANGE_RESOLUTION[3]); // 8Bit Test
-            
+            comboBox_resolution.SelectedIndex = 0;
+            comboBox_resolution_SelectedIndexChanged(null, null);
 
             checkBox_inverted_CheckedChanged(null, null);
             checkBox_n_CheckedChanged(null, null);
@@ -248,7 +250,18 @@ namespace GameboyCameraClient
 
         private void comboBox_resolution_SelectedIndexChanged(object sender, EventArgs e)
         {
-            set_resolution = Helper.MODE_RESOLUTION[comboBox_resolution.SelectedIndex];
+            set_colordepth = Helper.MODE_RESOLUTION[comboBox_resolution.SelectedIndex];
+        }
+
+        private void button_clear_Click(object sender, EventArgs e)
+        {
+            log.Clear();
+        }
+
+        private void button_sendsettings_Click(object sender, EventArgs e)
+        {
+            update_config = true;
+            textBox1.AppendText("Updating Config");
         }
 
         private void trackBar_c0_Scroll(object sender, EventArgs e)

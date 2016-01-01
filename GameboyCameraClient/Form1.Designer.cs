@@ -30,22 +30,24 @@
         {
             this.button_start = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label_gain_value = new System.Windows.Forms.Label();
-            this.label_gain = new System.Windows.Forms.Label();
-            this.trackBar_gain = new System.Windows.Forms.TrackBar();
             this.label_c0_value = new System.Windows.Forms.Label();
             this.label_c1_value = new System.Windows.Forms.Label();
             this.label_c1 = new System.Windows.Forms.Label();
             this.trackBar_c0 = new System.Windows.Forms.TrackBar();
             this.label_c0 = new System.Windows.Forms.Label();
             this.trackBar_c1 = new System.Windows.Forms.TrackBar();
+            this.label_gain_value = new System.Windows.Forms.Label();
+            this.label_gain = new System.Windows.Forms.Label();
+            this.trackBar_gain = new System.Windows.Forms.TrackBar();
             this.label_calibration_value = new System.Windows.Forms.Label();
             this.label_calibration = new System.Windows.Forms.Label();
             this.comboBox_calibration = new System.Windows.Forms.ComboBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.comboBox_comport = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label_resolution = new System.Windows.Forms.Label();
             this.comboBox_baud = new System.Windows.Forms.ComboBox();
+            this.comboBox_resolution = new System.Windows.Forms.ComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label_edge_enhancement_mode = new System.Windows.Forms.Label();
             this.comboBox_edge_enhancement_mode = new System.Windows.Forms.ComboBox();
@@ -69,12 +71,12 @@
             this.trackBar_offset = new System.Windows.Forms.TrackBar();
             this.label_offset = new System.Windows.Forms.Label();
             this.button_stop = new System.Windows.Forms.Button();
-            this.comboBox_resolution = new System.Windows.Forms.ComboBox();
-            this.label_resolution = new System.Windows.Forms.Label();
+            this.button_clear = new System.Windows.Forms.Button();
+            this.button_sendsettings = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar_gain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_c0)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_c1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar_gain)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_edge)).BeginInit();
@@ -86,9 +88,9 @@
             // 
             // button_start
             // 
-            this.button_start.Location = new System.Drawing.Point(12, 244);
+            this.button_start.Location = new System.Drawing.Point(12, 189);
             this.button_start.Name = "button_start";
-            this.button_start.Size = new System.Drawing.Size(87, 45);
+            this.button_start.Size = new System.Drawing.Size(75, 45);
             this.button_start.TabIndex = 1;
             this.button_start.Text = "Take Picture";
             this.button_start.UseVisualStyleBackColor = true;
@@ -102,40 +104,12 @@
             this.groupBox1.Controls.Add(this.trackBar_c0);
             this.groupBox1.Controls.Add(this.label_c0);
             this.groupBox1.Controls.Add(this.trackBar_c1);
-            this.groupBox1.Location = new System.Drawing.Point(190, 170);
+            this.groupBox1.Location = new System.Drawing.Point(175, 135);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(250, 119);
+            this.groupBox1.Size = new System.Drawing.Size(250, 154);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Light";
-            // 
-            // label_gain_value
-            // 
-            this.label_gain_value.AutoSize = true;
-            this.label_gain_value.Location = new System.Drawing.Point(35, 213);
-            this.label_gain_value.Name = "label_gain_value";
-            this.label_gain_value.Size = new System.Drawing.Size(12, 13);
-            this.label_gain_value.TabIndex = 8;
-            this.label_gain_value.Text = "x";
-            // 
-            // label_gain
-            // 
-            this.label_gain.AutoSize = true;
-            this.label_gain.Location = new System.Drawing.Point(6, 213);
-            this.label_gain.Name = "label_gain";
-            this.label_gain.Size = new System.Drawing.Size(32, 13);
-            this.label_gain.TabIndex = 7;
-            this.label_gain.Text = "Gain:";
-            // 
-            // trackBar_gain
-            // 
-            this.trackBar_gain.LargeChange = 1;
-            this.trackBar_gain.Location = new System.Drawing.Point(9, 229);
-            this.trackBar_gain.Maximum = 31;
-            this.trackBar_gain.Name = "trackBar_gain";
-            this.trackBar_gain.Size = new System.Drawing.Size(231, 45);
-            this.trackBar_gain.TabIndex = 6;
-            this.trackBar_gain.Scroll += new System.EventHandler(this.trackBar_gain_Scroll);
             // 
             // label_c0_value
             // 
@@ -193,6 +167,34 @@
             this.trackBar_c1.TabIndex = 0;
             this.trackBar_c1.Scroll += new System.EventHandler(this.trackBar_c1_Scroll);
             // 
+            // label_gain_value
+            // 
+            this.label_gain_value.AutoSize = true;
+            this.label_gain_value.Location = new System.Drawing.Point(35, 213);
+            this.label_gain_value.Name = "label_gain_value";
+            this.label_gain_value.Size = new System.Drawing.Size(12, 13);
+            this.label_gain_value.TabIndex = 8;
+            this.label_gain_value.Text = "x";
+            // 
+            // label_gain
+            // 
+            this.label_gain.AutoSize = true;
+            this.label_gain.Location = new System.Drawing.Point(6, 213);
+            this.label_gain.Name = "label_gain";
+            this.label_gain.Size = new System.Drawing.Size(32, 13);
+            this.label_gain.TabIndex = 7;
+            this.label_gain.Text = "Gain:";
+            // 
+            // trackBar_gain
+            // 
+            this.trackBar_gain.LargeChange = 1;
+            this.trackBar_gain.Location = new System.Drawing.Point(9, 229);
+            this.trackBar_gain.Maximum = 31;
+            this.trackBar_gain.Name = "trackBar_gain";
+            this.trackBar_gain.Size = new System.Drawing.Size(231, 45);
+            this.trackBar_gain.TabIndex = 6;
+            this.trackBar_gain.Scroll += new System.EventHandler(this.trackBar_gain_Scroll);
+            // 
             // label_calibration_value
             // 
             this.label_calibration_value.AutoSize = true;
@@ -213,6 +215,7 @@
             // 
             // comboBox_calibration
             // 
+            this.comboBox_calibration.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_calibration.FormattingEnabled = true;
             this.comboBox_calibration.Location = new System.Drawing.Point(17, 179);
             this.comboBox_calibration.Name = "comboBox_calibration";
@@ -227,11 +230,12 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(940, 320);
+            this.textBox1.Size = new System.Drawing.Size(925, 320);
             this.textBox1.TabIndex = 3;
             // 
             // comboBox_comport
             // 
+            this.comboBox_comport.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_comport.FormattingEnabled = true;
             this.comboBox_comport.Location = new System.Drawing.Point(6, 18);
             this.comboBox_comport.Name = "comboBox_comport";
@@ -245,21 +249,41 @@
             this.groupBox2.Controls.Add(this.comboBox_baud);
             this.groupBox2.Controls.Add(this.comboBox_comport);
             this.groupBox2.Controls.Add(this.comboBox_resolution);
-            this.groupBox2.Location = new System.Drawing.Point(190, 63);
+            this.groupBox2.Location = new System.Drawing.Point(175, 63);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(250, 101);
+            this.groupBox2.Size = new System.Drawing.Size(250, 74);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Serial";
             // 
+            // label_resolution
+            // 
+            this.label_resolution.AutoSize = true;
+            this.label_resolution.Location = new System.Drawing.Point(6, 48);
+            this.label_resolution.Name = "label_resolution";
+            this.label_resolution.Size = new System.Drawing.Size(82, 13);
+            this.label_resolution.TabIndex = 19;
+            this.label_resolution.Text = "Color resolution:";
+            // 
             // comboBox_baud
             // 
+            this.comboBox_baud.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_baud.FormattingEnabled = true;
-            this.comboBox_baud.Location = new System.Drawing.Point(133, 19);
+            this.comboBox_baud.Location = new System.Drawing.Point(133, 18);
             this.comboBox_baud.Name = "comboBox_baud";
             this.comboBox_baud.Size = new System.Drawing.Size(111, 21);
             this.comboBox_baud.TabIndex = 5;
             this.comboBox_baud.SelectedIndexChanged += new System.EventHandler(this.comboBox_baud_SelectedIndexChanged);
+            // 
+            // comboBox_resolution
+            // 
+            this.comboBox_resolution.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_resolution.FormattingEnabled = true;
+            this.comboBox_resolution.Location = new System.Drawing.Point(94, 45);
+            this.comboBox_resolution.Name = "comboBox_resolution";
+            this.comboBox_resolution.Size = new System.Drawing.Size(150, 21);
+            this.comboBox_resolution.TabIndex = 18;
+            this.comboBox_resolution.SelectedIndexChanged += new System.EventHandler(this.comboBox_resolution_SelectedIndexChanged);
             // 
             // groupBox3
             // 
@@ -272,7 +296,7 @@
             this.groupBox3.Controls.Add(this.label_vhmode);
             this.groupBox3.Controls.Add(this.comboBox_vhmode);
             this.groupBox3.Controls.Add(this.checkBox_n);
-            this.groupBox3.Location = new System.Drawing.Point(702, 12);
+            this.groupBox3.Location = new System.Drawing.Point(687, 12);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(250, 222);
             this.groupBox3.TabIndex = 6;
@@ -290,6 +314,7 @@
             // 
             // comboBox_edge_enhancement_mode
             // 
+            this.comboBox_edge_enhancement_mode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_edge_enhancement_mode.FormattingEnabled = true;
             this.comboBox_edge_enhancement_mode.Location = new System.Drawing.Point(10, 191);
             this.comboBox_edge_enhancement_mode.Name = "comboBox_edge_enhancement_mode";
@@ -345,6 +370,7 @@
             // 
             // comboBox_vhmode
             // 
+            this.comboBox_vhmode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_vhmode.FormattingEnabled = true;
             this.comboBox_vhmode.Location = new System.Drawing.Point(9, 79);
             this.comboBox_vhmode.Name = "comboBox_vhmode";
@@ -368,7 +394,7 @@
             this.groupBox4.Controls.Add(this.checkBox_x);
             this.groupBox4.Controls.Add(this.checkBox_m);
             this.groupBox4.Controls.Add(this.checkBox_p);
-            this.groupBox4.Location = new System.Drawing.Point(190, 12);
+            this.groupBox4.Location = new System.Drawing.Point(175, 12);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(250, 45);
             this.groupBox4.TabIndex = 7;
@@ -438,7 +464,7 @@
             this.groupBox5.Controls.Add(this.label_offset_value);
             this.groupBox5.Controls.Add(this.trackBar_offset);
             this.groupBox5.Controls.Add(this.label_offset);
-            this.groupBox5.Location = new System.Drawing.Point(446, 12);
+            this.groupBox5.Location = new System.Drawing.Point(431, 12);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(250, 277);
             this.groupBox5.TabIndex = 8;
@@ -505,37 +531,41 @@
             // button_stop
             // 
             this.button_stop.Enabled = false;
-            this.button_stop.Location = new System.Drawing.Point(105, 244);
+            this.button_stop.Location = new System.Drawing.Point(94, 189);
             this.button_stop.Name = "button_stop";
-            this.button_stop.Size = new System.Drawing.Size(79, 45);
+            this.button_stop.Size = new System.Drawing.Size(75, 45);
             this.button_stop.TabIndex = 9;
             this.button_stop.Text = "Stop";
             this.button_stop.UseVisualStyleBackColor = true;
             this.button_stop.Click += new System.EventHandler(this.button_stop_Click);
             // 
-            // comboBox_resolution
+            // button_clear
             // 
-            this.comboBox_resolution.FormattingEnabled = true;
-            this.comboBox_resolution.Location = new System.Drawing.Point(10, 61);
-            this.comboBox_resolution.Name = "comboBox_resolution";
-            this.comboBox_resolution.Size = new System.Drawing.Size(117, 21);
-            this.comboBox_resolution.TabIndex = 18;
-            this.comboBox_resolution.SelectedIndexChanged += new System.EventHandler(this.comboBox_resolution_SelectedIndexChanged);
+            this.button_clear.Location = new System.Drawing.Point(93, 240);
+            this.button_clear.Name = "button_clear";
+            this.button_clear.Size = new System.Drawing.Size(75, 45);
+            this.button_clear.TabIndex = 10;
+            this.button_clear.Text = "Clear";
+            this.button_clear.UseVisualStyleBackColor = true;
+            this.button_clear.Click += new System.EventHandler(this.button_clear_Click);
             // 
-            // label_resolution
+            // button_sendsettings
             // 
-            this.label_resolution.AutoSize = true;
-            this.label_resolution.Location = new System.Drawing.Point(7, 45);
-            this.label_resolution.Name = "label_resolution";
-            this.label_resolution.Size = new System.Drawing.Size(60, 13);
-            this.label_resolution.TabIndex = 19;
-            this.label_resolution.Text = "Resolution:";
+            this.button_sendsettings.Location = new System.Drawing.Point(12, 240);
+            this.button_sendsettings.Name = "button_sendsettings";
+            this.button_sendsettings.Size = new System.Drawing.Size(75, 45);
+            this.button_sendsettings.TabIndex = 11;
+            this.button_sendsettings.Text = "Send settings";
+            this.button_sendsettings.UseVisualStyleBackColor = true;
+            this.button_sendsettings.Click += new System.EventHandler(this.button_sendsettings_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1070, 627);
+            this.ClientSize = new System.Drawing.Size(942, 627);
+            this.Controls.Add(this.button_sendsettings);
+            this.Controls.Add(this.button_clear);
             this.Controls.Add(this.button_stop);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
@@ -545,12 +575,12 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button_start);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Gameboy Camera Client";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar_gain)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_c0)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_c1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar_gain)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -611,6 +641,8 @@
         private System.Windows.Forms.Button button_stop;
         private System.Windows.Forms.Label label_resolution;
         private System.Windows.Forms.ComboBox comboBox_resolution;
+        private System.Windows.Forms.Button button_clear;
+        private System.Windows.Forms.Button button_sendsettings;
     }
 }
 

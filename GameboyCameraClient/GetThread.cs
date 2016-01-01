@@ -54,37 +54,42 @@ namespace GameboyCameraClient
                     if (!readyToReceive)
                     {
                         input = mySerialport.ReadLine();
-                        if (input.Contains("ready"))
+                        if (input.Contains("!READY!"))
                         {
                             readyToReceive = true;
-                            logOutput(">Received ready. Sending config");
+                            if (parent.update_config)
+                            {
+                                parent.update_config = false;
+                                logOutput(">Received ready. Sending config");
 
-                            // Set the values:
-                            mySerialport.WriteLine("" + Helper.TYPE_GAIN + (char)parent.set_gain);
-                            mySerialport.WriteLine("" + Helper.TYPE_VH + (char)parent.set_vh);
-                            mySerialport.WriteLine("" + Helper.TYPE_N + (char)parent.set_n);
-                            mySerialport.WriteLine("" + Helper.TYPE_C1 + (char)parent.set_c1);
-                            mySerialport.WriteLine("" + Helper.TYPE_C0 + (char)parent.set_c0);
-                            mySerialport.WriteLine("" + Helper.TYPE_P + (char)parent.set_p);
-                            mySerialport.WriteLine("" + Helper.TYPE_M + (char)parent.set_m);
-                            mySerialport.WriteLine("" + Helper.TYPE_X + (char)parent.set_x);
-                            mySerialport.WriteLine("" + Helper.TYPE_VREF + (char)parent.set_vref);
-                            mySerialport.WriteLine("" + Helper.TYPE_I + (char)parent.set_i);
-                            mySerialport.WriteLine("" + Helper.TYPE_EDGE + (char)parent.set_edge);
-                            mySerialport.WriteLine("" + Helper.TYPE_OUT + (char)parent.set_offset);
-                            mySerialport.WriteLine("" + Helper.TYPE_Z + (char)parent.set_z);
+                                // Set the values:
+                                mySerialport.WriteLine("" + Helper.TYPE_GAIN + (char)parent.set_gain);
+                                mySerialport.WriteLine("" + Helper.TYPE_VH + (char)parent.set_vh);
+                                mySerialport.WriteLine("" + Helper.TYPE_N + (char)parent.set_n);
+                                mySerialport.WriteLine("" + Helper.TYPE_C1 + (char)parent.set_c1);
+                                mySerialport.WriteLine("" + Helper.TYPE_C0 + (char)parent.set_c0);
+                                mySerialport.WriteLine("" + Helper.TYPE_P + (char)parent.set_p);
+                                mySerialport.WriteLine("" + Helper.TYPE_M + (char)parent.set_m);
+                                mySerialport.WriteLine("" + Helper.TYPE_X + (char)parent.set_x);
+                                mySerialport.WriteLine("" + Helper.TYPE_VREF + (char)parent.set_vref);
+                                mySerialport.WriteLine("" + Helper.TYPE_I + (char)parent.set_i);
+                                mySerialport.WriteLine("" + Helper.TYPE_EDGE + (char)parent.set_edge);
+                                mySerialport.WriteLine("" + Helper.TYPE_OUT + (char)parent.set_offset);
+                                mySerialport.WriteLine("" + Helper.TYPE_Z + (char)parent.set_z);
 
-                            mySerialport.WriteLine("" + Helper.COMMAND_COLORDEPTH + (char)Helper.MODE_2BIT);
-                            mySerialport.WriteLine("" + Helper.COMMAND_SETCONFIG);
+                                mySerialport.WriteLine("" + Helper.COMMAND_COLORDEPTH + (char)parent.set_colordepth);
+                                mySerialport.WriteLine("" + Helper.COMMAND_SETCONFIG);
+                                
+                                logOutput(">finished sending config");
+                            }
+
                             mySerialport.WriteLine("" + Helper.COMMAND_TAKEPHOTO);
-
-                            logOutput(">finished sending config");
-
-                            while (true)
+                            
+                            while (running)
                             {
                                 input = mySerialport.ReadLine();
                                 logOutput("<" + input.Replace("\n", "\r\n"));
-                                if (input.Contains("IMAGE:"))
+                                if (input.Contains("!IMAGE!"))
                                     break;
                             }
                         }
