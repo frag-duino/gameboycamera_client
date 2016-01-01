@@ -12,13 +12,17 @@ namespace GameboyCameraClient
 
         // Variables
         Form1 parent;
-        int dataIn, temp;
+        int temp;
         int row;
         int column;
         Boolean readyToReceive = false;
         String input = "";
         Boolean running = true;
         SerialPort mySerialport;
+        byte[] inBuffer;
+        int receivedlength = 0;
+        int endcounter = 0;
+        Boolean finished = false;
 
         public GetThread(Form1 parent)
         {
@@ -47,6 +51,7 @@ namespace GameboyCameraClient
             try
             {
                 mySerialport = new SerialPort(parent.comport, parent.baud);
+                inBuffer = new byte[mySerialport.ReadBufferSize];
                 mySerialport.ReadTimeout = 5000;
                 mySerialport.Open();
                 while (running)
@@ -93,7 +98,7 @@ namespace GameboyCameraClient
                                     break;
                             }
                         }
-                        else if (input.Contains("END!"))
+                        else if (input.Contains("!END!"))
                         {
                             logOutput("Found the end!");
                             break;
@@ -102,38 +107,67 @@ namespace GameboyCameraClient
 
                     if (readyToReceive)
                     {
-                        dataIn = mySerialport.ReadByte();
-
-                        for (int pixel = 0; pixel < 4; pixel++)
+                        // dataIn = mySerialport.ReadByte();
+                        receivedlength = mySerialport.Read(inBuffer, 0, inBuffer.Length);
+                        for (int i = 0; i < receivedlength; i++)
                         {
-
-                            temp = dataIn;
-                            temp = temp << (pixel * 2);
-                            temp = temp & 0xFF;
-                            temp = temp >> 6;
-
-                            temp *= 64; // because of 2 bit 0-3 -> 0-255
-
-                            Color c = Color.FromArgb(temp, temp, temp);
-                            parent.bitmap.SetPixel(column, row, c);
-
-                            column++;
-
-                            if (column == 128)
-                            {
-                                column = 0;
-                                row++;
-                            }
-
-                            if (row == 123) // TODO: 5 pixel fehlen!
-                            {
-                                readyToReceive = false;
-                                parent.graph.DrawImage(parent.bitmap, 10, 10);
+                            if (finished)
                                 break;
+
+                            // Check if the last 3 Bytes arrived:
+                            if (inBuffer[i] == 0x33)
+                            {
+                                endcounter++;
+                                if (endcounter == 3)
+                                {
+                                    finished = true;
+                                    break;
+                                }
+                            }
+                            else {
+                                endcounter = 0;
                             }
 
+
+                            for (int pixel = 0; pixel < 4; pixel++)
+                            {
+                                temp = inBuffer[i];
+                                temp = temp << (pixel * 2);
+                                temp = temp & 0xFF;
+                                temp = temp >> 6;
+
+                                temp *= 64; // because of 2 bit 0-3 -> 0-255
+
+                                Color c = Color.FromArgb(temp, temp, temp);
+                                parent.bitmap.SetPixel(column, row, c);
+
+                                column++;
+
+                                if (column == 128)
+                                {
+                                    column = 0;
+                                    row++;
+                                }
+
+                                if (row == 128)
+                                {
+                                    logOutput("Last byte reached");
+                                    finished = true;
+                                    break;
+                                }
+                            }
                         }
+                        
                         parent.graph.DrawImage(parent.bitmap, 10, 10);
+                        if (finished)
+                        {
+                            logOutput("finished=true");
+                            readyToReceive = false;
+                            endcounter = 0;
+                            row = 0;
+                            column = 0;
+                            finished = false;
+                        }
                     }
                 }
             }
@@ -153,7 +187,6 @@ namespace GameboyCameraClient
                 parent.bt_stop.Enabled = false;
             });
             logOutput("Thread Finished");
-
         }
     }
 }
