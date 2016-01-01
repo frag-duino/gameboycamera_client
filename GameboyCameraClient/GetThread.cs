@@ -12,9 +12,9 @@ namespace GameboyCameraClient
 
         // Variables
         Form1 parent;
-        int temp;
-        int row;
-        int column;
+        int temp=0;
+        int row=0;
+        int column=0;
         Boolean readyToReceive = false;
         String input = "";
         Boolean running = true;
@@ -37,17 +37,19 @@ namespace GameboyCameraClient
 
         void logOutput(String value)
         {
-            parent.log.Invoke((MethodInvoker)delegate ()
+            try {
+                parent.log.Invoke((MethodInvoker)delegate ()
             {
                 parent.log.AppendText(value + "\r\n");
             });
+            } catch(Exception ec)
+            {
+                Console.WriteLine(ec);
+            }
         }
 
         public void getPhoto()
         {
-            row = 0;
-            column = 0;
-
             try
             {
                 mySerialport = new SerialPort(parent.comport, parent.baud);
@@ -59,6 +61,7 @@ namespace GameboyCameraClient
                     if (!readyToReceive)
                     {
                         input = mySerialport.ReadLine();
+
                         if (input.Contains("!READY!"))
                         {
                             readyToReceive = true;
@@ -107,8 +110,7 @@ namespace GameboyCameraClient
 
                     if (readyToReceive)
                     {
-                        // dataIn = mySerialport.ReadByte();
-                        receivedlength = mySerialport.Read(inBuffer, 0, inBuffer.Length);
+                    receivedlength = mySerialport.Read(inBuffer, 0, inBuffer.Length);
                         for (int i = 0; i < receivedlength; i++)
                         {
                             if (finished)
@@ -157,16 +159,22 @@ namespace GameboyCameraClient
                                 }
                             }
                         }
-                        
-                        parent.graph.DrawImage(parent.bitmap, 10, 10);
+                        try {
+                            parent.graph.DrawImage(parent.bitmap, 10, 10);
+                        }
+                        catch(Exception ec)
+                        {
+                            Console.WriteLine("Already finished: " + ec.ToString());
+                        }
+
                         if (finished)
                         {
                             logOutput("finished=true");
+                            finished = false;
                             readyToReceive = false;
                             endcounter = 0;
                             row = 0;
                             column = 0;
-                            finished = false;
                         }
                     }
                 }
