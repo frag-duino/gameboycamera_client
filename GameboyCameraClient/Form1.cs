@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.IO.Ports;
 using System.Threading;
@@ -42,6 +43,7 @@ namespace GameboyCameraClient
         public Form1()
         {
             InitializeComponent();
+            this.FormClosing += Form1_FormClosing;
 
             // Load default values:
             trackBar_c1.Value = set_c1;
@@ -111,8 +113,14 @@ namespace GameboyCameraClient
             log = textBox1;
             bt_start = button_start;
             bt_stop = button_stop;
+                    
         }
-
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (get != null)
+                get.stopThread();
+        }
+      
         private void bt_start_Click(object sender, EventArgs e)
         {
             get = new GetThread(this);

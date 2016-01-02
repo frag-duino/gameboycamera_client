@@ -23,6 +23,7 @@ namespace GameboyCameraClient
         int receivedlength = 0;
         int endcounter = 0;
         Boolean finished = false;
+        Boolean getNextPhoto = false;
 
         public GetThread(Form1 parent)
         {
@@ -61,8 +62,8 @@ namespace GameboyCameraClient
                     if (!readyToReceive)
                     {
                         input = mySerialport.ReadLine();
-
-                        if (input.Contains("!READY!"))
+                        
+                        if (getNextPhoto || input.Contains("!READY!"))
                         {
                             readyToReceive = true;
                             if (parent.update_config)
@@ -172,6 +173,7 @@ namespace GameboyCameraClient
                             logOutput("finished=true");
                             finished = false;
                             readyToReceive = false;
+                            getNextPhoto = true;
                             endcounter = 0;
                             row = 0;
                             column = 0;
