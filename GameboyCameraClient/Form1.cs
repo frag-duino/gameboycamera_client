@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Drawing;
 using System.IO.Ports;
 using System.Threading;
@@ -25,8 +24,8 @@ namespace GameboyCameraClient
         public int set_z = 2;
 
         // Image variables
-        public int set_colordepth = '2';
-        public int set_resolution = '1';
+        public int set_colordepth = Helper.COLORDEPTH_2BIT;
+        public int set_resolution = Helper.RESOLUTION_128PX;
         public int set_mode = Helper.MODE_REGULAR;
 
         // Serial settings

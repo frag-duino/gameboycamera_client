@@ -45,6 +45,7 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.comboBox_comport = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.checkBox_testmode = new System.Windows.Forms.CheckBox();
             this.label_resolution = new System.Windows.Forms.Label();
             this.comboBox_baud = new System.Windows.Forms.ComboBox();
             this.comboBox_resolution = new System.Windows.Forms.ComboBox();
@@ -73,7 +74,6 @@
             this.button_stop = new System.Windows.Forms.Button();
             this.button_clear = new System.Windows.Forms.Button();
             this.button_sendsettings = new System.Windows.Forms.Button();
-            this.checkBox_testmode = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_c0)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_c1)).BeginInit();
@@ -105,9 +105,9 @@
             this.groupBox1.Controls.Add(this.trackBar_c0);
             this.groupBox1.Controls.Add(this.label_c0);
             this.groupBox1.Controls.Add(this.trackBar_c1);
-            this.groupBox1.Location = new System.Drawing.Point(175, 135);
+            this.groupBox1.Location = new System.Drawing.Point(175, 168);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(250, 154);
+            this.groupBox1.Size = new System.Drawing.Size(250, 118);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Light";
@@ -253,15 +253,26 @@
             this.groupBox2.Controls.Add(this.comboBox_resolution);
             this.groupBox2.Location = new System.Drawing.Point(175, 63);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(250, 74);
+            this.groupBox2.Size = new System.Drawing.Size(250, 101);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Serial";
             // 
+            // checkBox_testmode
+            // 
+            this.checkBox_testmode.AutoSize = true;
+            this.checkBox_testmode.Location = new System.Drawing.Point(133, 48);
+            this.checkBox_testmode.Name = "checkBox_testmode";
+            this.checkBox_testmode.Size = new System.Drawing.Size(77, 17);
+            this.checkBox_testmode.TabIndex = 20;
+            this.checkBox_testmode.Text = "Test-Mode";
+            this.checkBox_testmode.UseVisualStyleBackColor = true;
+            this.checkBox_testmode.CheckedChanged += new System.EventHandler(this.checkBox_testmode_CheckedChanged);
+            // 
             // label_resolution
             // 
             this.label_resolution.AutoSize = true;
-            this.label_resolution.Location = new System.Drawing.Point(6, 48);
+            this.label_resolution.Location = new System.Drawing.Point(3, 48);
             this.label_resolution.Name = "label_resolution";
             this.label_resolution.Size = new System.Drawing.Size(60, 13);
             this.label_resolution.TabIndex = 19;
@@ -281,9 +292,9 @@
             // 
             this.comboBox_resolution.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_resolution.FormattingEnabled = true;
-            this.comboBox_resolution.Location = new System.Drawing.Point(72, 45);
+            this.comboBox_resolution.Location = new System.Drawing.Point(6, 70);
             this.comboBox_resolution.Name = "comboBox_resolution";
-            this.comboBox_resolution.Size = new System.Drawing.Size(125, 21);
+            this.comboBox_resolution.Size = new System.Drawing.Size(238, 21);
             this.comboBox_resolution.TabIndex = 18;
             this.comboBox_resolution.SelectedIndexChanged += new System.EventHandler(this.comboBox_resolution_SelectedIndexChanged);
             // 
@@ -560,17 +571,6 @@
             this.button_sendsettings.Text = "Send settings";
             this.button_sendsettings.UseVisualStyleBackColor = true;
             this.button_sendsettings.Click += new System.EventHandler(this.button_sendsettings_Click);
-            // 
-            // checkBox_testmode
-            // 
-            this.checkBox_testmode.AutoSize = true;
-            this.checkBox_testmode.Location = new System.Drawing.Point(203, 48);
-            this.checkBox_testmode.Name = "checkBox_testmode";
-            this.checkBox_testmode.Size = new System.Drawing.Size(47, 17);
-            this.checkBox_testmode.TabIndex = 20;
-            this.checkBox_testmode.Text = "Test";
-            this.checkBox_testmode.UseVisualStyleBackColor = true;
-            this.checkBox_testmode.CheckedChanged += new System.EventHandler(this.checkBox_testmode_CheckedChanged);
             // 
             // Form1
             // 
