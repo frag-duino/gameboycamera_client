@@ -87,8 +87,10 @@ namespace GameboyCameraClient
                                 mySerialport.WriteLine("" + Helper.TYPE_Z + (char)parent.set_z);
 
                                 mySerialport.WriteLine("" + Helper.COMMAND_COLORDEPTH + (char)parent.set_colordepth);
+                                mySerialport.WriteLine("" + Helper.COMMAND_MODE + (char)parent.set_mode);
+                                mySerialport.WriteLine("" + Helper.COMMAND_RESOLUTION + (char)parent.set_resolution);
                                 mySerialport.WriteLine("" + Helper.COMMAND_SETCONFIG);
-                                
+
                                 logOutput(">finished sending config");
                             }
 

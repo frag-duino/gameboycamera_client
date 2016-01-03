@@ -23,7 +23,11 @@ namespace GameboyCameraClient
         public int set_edge = 0;
         public byte set_offset = 0;
         public int set_z = 2;
-        public int set_colordepth= 2;
+
+        // Image variables
+        public int set_colordepth = '2';
+        public int set_resolution = '1';
+        public int set_mode = Helper.MODE_REGULAR;
 
         // Serial settings
         public String comport = "COM3";
@@ -96,15 +100,15 @@ namespace GameboyCameraClient
             comboBox_edge_enhancement_mode.SelectedIndex = 0;
             comboBox_edge_enhancement_mode_SelectedIndexChanged(null, null);
 
-            comboBox_resolution.Items.Add(Helper.VALUERANGE_RESOLUTION[0]); // 2Bit
-            comboBox_resolution.Items.Add(Helper.VALUERANGE_RESOLUTION[1]); // 8Bit
-            comboBox_resolution.Items.Add(Helper.VALUERANGE_RESOLUTION[2]); // 2Bit Test
-            comboBox_resolution.Items.Add(Helper.VALUERANGE_RESOLUTION[3]); // 8Bit Test
+            comboBox_resolution.Items.Add(Helper.VALUERANGE_RESOLUTION[0]); // 2Bit, 128x128
+            comboBox_resolution.Items.Add(Helper.VALUERANGE_RESOLUTION[1]); // 8Bit, 32x32
+            comboBox_resolution.Items.Add(Helper.VALUERANGE_RESOLUTION[2]); // 8Bit, 128x128
             comboBox_resolution.SelectedIndex = 0;
             comboBox_resolution_SelectedIndexChanged(null, null);
 
             checkBox_inverted_CheckedChanged(null, null);
             checkBox_n_CheckedChanged(null, null);
+            checkBox_testmode_CheckedChanged(null, null);
 
             // Create image:
             bitmap = new Bitmap(128, 128);
@@ -258,7 +262,21 @@ namespace GameboyCameraClient
 
         private void comboBox_resolution_SelectedIndexChanged(object sender, EventArgs e)
         {
-            set_colordepth = Helper.MODE_RESOLUTION[comboBox_resolution.SelectedIndex];
+            if (comboBox_resolution.SelectedIndex == 0) // 2Bit, 128x128
+            {
+                set_colordepth = Helper.COLORDEPTH_2BIT;
+                set_resolution = Helper.RESOLUTION_128PX;
+            }
+            else if (comboBox_resolution.SelectedIndex == 1) // 8Bit,  32x32
+            {
+                set_colordepth = Helper.COLORDEPTH_8BIT;
+                set_resolution = Helper.RESOLUTION_32PX;
+            }
+            else if (comboBox_resolution.SelectedIndex == 2) // 8Bit, 128x128
+            {
+                set_colordepth = Helper.COLORDEPTH_8BIT;
+                set_resolution = Helper.RESOLUTION_128PX;
+            }
         }
 
         private void button_clear_Click(object sender, EventArgs e)
@@ -270,6 +288,14 @@ namespace GameboyCameraClient
         {
             update_config = true;
             textBox1.AppendText("Updating Config");
+        }
+
+        private void checkBox_testmode_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_testmode.Checked)
+                set_mode = Helper.MODE_TEST;
+            else
+                set_mode = Helper.MODE_REGULAR;
         }
 
         private void trackBar_c0_Scroll(object sender, EventArgs e)

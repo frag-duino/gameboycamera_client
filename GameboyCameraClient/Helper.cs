@@ -24,15 +24,18 @@ namespace GameboyCameraClient
         public static char TYPE_OUT = 'O';
         public static char TYPE_Z = 'Z';
 
-        public static int[] MODE_RESOLUTION = { 2, 8, 0, 1 };
-        public static int MODE_2BIT = 2;
-        public static int MODE_8BIT = 8;
-        public static int MODE_TEST2BIT = 0;
-        public static int MODE_TEST8BIT = 1;
+        public static int COLORDEPTH_8BIT = 8;
+        public static int COLORDEPTH_2BIT = 2;
+        public static int RESOLUTION_128PX = 1;
+        public static int RESOLUTION_32PX = 3;
+        public static int MODE_REGULAR = 0;
+        public static int MODE_TEST = 1;
 
         public static char COMMAND_TAKEPHOTO = 'T';
         public static char COMMAND_SETCONFIG = 'S';
         public static char COMMAND_COLORDEPTH = 'D';
+        public static char COMMAND_RESOLUTION = 'R';
+        public static char COMMAND_MODE = 'F';
 
         public static double[] VALUERANGE_GAIN = { 14.0, 15.5, 17.0, 18.5, 20.0, 21.5, 23.0, 24.5, 26.0, 29.0, 32.0, 35.0, 38.0, 41.0, 45.5, 51.5,
             20.0, 21.5, 23.0, 24.5, 26.0, 27.5, 29.0, 30.5, 32.0, 35.0, 38.0, 41.0, 44.0, 47.0, 51.5, 57.5 };
@@ -41,7 +44,7 @@ namespace GameboyCameraClient
         public static String[] VALUERANGE_VHMODE = { "No edge operation", "Horizontal edge mode", "Vertical edge mode", "2-D edge mode" };
         public static String[] VALUERANGE_CALIBRATION = { "No calibration", "Calibration for positive signal", "Calibration for negative signal" };
         public static String[] VALUERANGE_EDGE_ENHANCEMENT_MODE = { "edge extraction mode", "edge enhancement mode" };
-        public static String[] VALUERANGE_RESOLUTION = { "2 Bit (4 colors)", "8 Bit (255 colors)", "2 Bit Test Mode", "8 Bit Test Mode" };
+        public static String[] VALUERANGE_RESOLUTION = { "2Bit (4 colors) 128x32px", "8Bit (255 colors) 32x32px", "8 Bit (255 colors) 128x128px" };
         
         static public String getBinaryRepresentation(int value, int amount_digits)
         {

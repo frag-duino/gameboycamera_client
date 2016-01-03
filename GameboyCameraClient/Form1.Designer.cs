@@ -73,6 +73,7 @@
             this.button_stop = new System.Windows.Forms.Button();
             this.button_clear = new System.Windows.Forms.Button();
             this.button_sendsettings = new System.Windows.Forms.Button();
+            this.checkBox_testmode = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_c0)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_c1)).BeginInit();
@@ -245,6 +246,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.checkBox_testmode);
             this.groupBox2.Controls.Add(this.label_resolution);
             this.groupBox2.Controls.Add(this.comboBox_baud);
             this.groupBox2.Controls.Add(this.comboBox_comport);
@@ -261,9 +263,9 @@
             this.label_resolution.AutoSize = true;
             this.label_resolution.Location = new System.Drawing.Point(6, 48);
             this.label_resolution.Name = "label_resolution";
-            this.label_resolution.Size = new System.Drawing.Size(82, 13);
+            this.label_resolution.Size = new System.Drawing.Size(60, 13);
             this.label_resolution.TabIndex = 19;
-            this.label_resolution.Text = "Color resolution:";
+            this.label_resolution.Text = "Resolution:";
             // 
             // comboBox_baud
             // 
@@ -279,9 +281,9 @@
             // 
             this.comboBox_resolution.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_resolution.FormattingEnabled = true;
-            this.comboBox_resolution.Location = new System.Drawing.Point(94, 45);
+            this.comboBox_resolution.Location = new System.Drawing.Point(72, 45);
             this.comboBox_resolution.Name = "comboBox_resolution";
-            this.comboBox_resolution.Size = new System.Drawing.Size(150, 21);
+            this.comboBox_resolution.Size = new System.Drawing.Size(125, 21);
             this.comboBox_resolution.TabIndex = 18;
             this.comboBox_resolution.SelectedIndexChanged += new System.EventHandler(this.comboBox_resolution_SelectedIndexChanged);
             // 
@@ -559,6 +561,17 @@
             this.button_sendsettings.UseVisualStyleBackColor = true;
             this.button_sendsettings.Click += new System.EventHandler(this.button_sendsettings_Click);
             // 
+            // checkBox_testmode
+            // 
+            this.checkBox_testmode.AutoSize = true;
+            this.checkBox_testmode.Location = new System.Drawing.Point(203, 48);
+            this.checkBox_testmode.Name = "checkBox_testmode";
+            this.checkBox_testmode.Size = new System.Drawing.Size(47, 17);
+            this.checkBox_testmode.TabIndex = 20;
+            this.checkBox_testmode.Text = "Test";
+            this.checkBox_testmode.UseVisualStyleBackColor = true;
+            this.checkBox_testmode.CheckedChanged += new System.EventHandler(this.checkBox_testmode_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -643,6 +656,7 @@
         private System.Windows.Forms.ComboBox comboBox_resolution;
         private System.Windows.Forms.Button button_clear;
         private System.Windows.Forms.Button button_sendsettings;
+        private System.Windows.Forms.CheckBox checkBox_testmode;
     }
 }
 
