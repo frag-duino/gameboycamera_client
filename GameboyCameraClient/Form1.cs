@@ -12,8 +12,8 @@ namespace GameboyCameraClient
         public int set_gain = 0;
         public int set_vh = 3;
         public int set_n = 0;
-        public int set_c1 = 23;
-        public int set_c0 = 27;
+        public int set_c1 = 8;
+        public int set_c0 = 0;
         public int set_p = 1;
         public int set_m = 0;
         public int set_x = 1;
@@ -30,7 +30,7 @@ namespace GameboyCameraClient
 
         // Serial settings
         public String comport = "COM3";
-        public int baud = 9600;
+        public int baud = 115200;
 
         // UI:
         public Bitmap bitmap;
@@ -123,7 +123,7 @@ namespace GameboyCameraClient
             if (get != null)
                 get.stopThread();
         }
-      
+
         private void bt_start_Click(object sender, EventArgs e)
         {
             get = new GetThread(this);
@@ -131,7 +131,6 @@ namespace GameboyCameraClient
             get_thread.Start();
             bt_start.Enabled = false;
             bt_stop.Enabled = true;
-            
         }
 
         private void trackBar_c1_Scroll(object sender, EventArgs e)

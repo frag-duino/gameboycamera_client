@@ -32,10 +32,12 @@ namespace GameboyCameraClient
         public static int MODE_TEST = 1;
 
         public static char COMMAND_TAKEPHOTO = 'T';
-        public static char COMMAND_SETCONFIG = 'S';
         public static char COMMAND_COLORDEPTH = 'D';
         public static char COMMAND_RESOLUTION = 'R';
         public static char COMMAND_MODE = 'F';
+
+        public static Byte BYTE_PHOTO_BEGIN = 204; // 11001100
+        public static Byte BYTE_PHOTO_END = 51; // 00110011
 
         public static double[] VALUERANGE_GAIN = { 14.0, 15.5, 17.0, 18.5, 20.0, 21.5, 23.0, 24.5, 26.0, 29.0, 32.0, 35.0, 38.0, 41.0, 45.5, 51.5,
             20.0, 21.5, 23.0, 24.5, 26.0, 27.5, 29.0, 30.5, 32.0, 35.0, 38.0, 41.0, 44.0, 47.0, 51.5, 57.5 };
