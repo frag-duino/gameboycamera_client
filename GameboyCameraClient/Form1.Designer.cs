@@ -515,7 +515,7 @@
             // label_offset_value
             // 
             this.label_offset_value.AutoSize = true;
-            this.label_offset_value.Location = new System.Drawing.Point(50, 21);
+            this.label_offset_value.Location = new System.Drawing.Point(71, 21);
             this.label_offset_value.Name = "label_offset_value";
             this.label_offset_value.Size = new System.Drawing.Size(12, 13);
             this.label_offset_value.TabIndex = 14;
@@ -537,9 +537,9 @@
             this.label_offset.AutoSize = true;
             this.label_offset.Location = new System.Drawing.Point(6, 21);
             this.label_offset.Name = "label_offset";
-            this.label_offset.Size = new System.Drawing.Size(38, 13);
+            this.label_offset.Size = new System.Drawing.Size(55, 13);
             this.label_offset.TabIndex = 13;
-            this.label_offset.Text = "Offset:";
+            this.label_offset.Text = "Offset (O):";
             // 
             // button_stop
             // 

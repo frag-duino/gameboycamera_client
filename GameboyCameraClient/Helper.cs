@@ -21,7 +21,7 @@ namespace GameboyCameraClient
         public static char TYPE_VREF = 'V';
         public static char TYPE_I = 'I';
         public static char TYPE_EDGE = 'E';
-        public static char TYPE_OUT = 'O';
+        public static char TYPE_OFFSET = 'O';
         public static char TYPE_Z = 'Z';
 
         public static int COLORDEPTH_8BIT = 8;

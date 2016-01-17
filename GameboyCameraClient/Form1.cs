@@ -91,7 +91,7 @@ namespace GameboyCameraClient
             comboBox_vhmode.Items.Add(Helper.VALUERANGE_VHMODE[1]); // Horizontal edge
             comboBox_vhmode.Items.Add(Helper.VALUERANGE_VHMODE[2]); // Vertical edge
             comboBox_vhmode.Items.Add(Helper.VALUERANGE_VHMODE[3]); // 2-d edge mode
-            comboBox_vhmode.SelectedIndex = 0;
+            comboBox_vhmode.SelectedIndex = 3;
             comboBox_vhmode_SelectedIndexChanged(null, null);
 
             comboBox_edge_enhancement_mode.Items.Add(Helper.VALUERANGE_EDGE_ENHANCEMENT_MODE[0]);
