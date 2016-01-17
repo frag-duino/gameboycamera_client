@@ -20,8 +20,10 @@ namespace GameboyCameraClient
         Boolean running = true;
         SerialPort mySerialport;
         byte[] inBuffer;
+        byte[] outBuffer = new byte[33];
         int receivedlength = 0;
-  
+        
+
         public GetThread(Form1 parent)
         {
             this.parent = parent;
@@ -48,17 +50,98 @@ namespace GameboyCameraClient
             }
         }
 
+                private void sendCommand(char command, int value)
+        {
+            outBuffer[0] = (byte)command;
+            outBuffer[1] = (byte)value;
+            mySerialport.Write(outBuffer, 0, 2);
+        }
+
+        private void sendNewLine()
+        {
+            outBuffer[0] = (byte) '\n';
+            mySerialport.Write(outBuffer, 0, 1);
+        }
+
         public void getPhoto()
         {
             try
             {
+                // Initialize Serial communication:
                 mySerialport = new SerialPort(parent.comport, parent.baud);
+                mySerialport.Parity = Parity.None;
+                mySerialport.StopBits = StopBits.One;
+
                 inBuffer = new byte[mySerialport.ReadBufferSize];
-                // mySerialport.ReadTimeout = 5000;
+                // mySerialport.ReadTimeout = 5000; // Set the timeout
                 mySerialport.Open();
 
                 while (running)
                 {
+                    if (parent.update_config)
+                    {
+                        parent.update_config = false;
+                        logOutput(">Received ready. Sending config");
+                        outBuffer[0] = (byte)Helper.TYPE_GAIN;
+                        outBuffer[1] = (byte)parent.set_gain;
+
+                        outBuffer[2] = (byte)Helper.TYPE_VH;
+                        outBuffer[3] = (byte)parent.set_vh;
+
+                        outBuffer[4] = (byte)Helper.TYPE_N;
+                        outBuffer[5] = (byte)parent.set_n;
+
+                        outBuffer[6] = (byte)Helper.TYPE_C1;
+                        outBuffer[7] = (byte)parent.set_c1;
+
+                        outBuffer[8] = (byte)Helper.TYPE_C0;
+                        outBuffer[9] = (byte)parent.set_c0;
+
+                        outBuffer[10] = (byte)Helper.TYPE_P;
+                        outBuffer[11] = (byte)parent.set_p;
+
+                        outBuffer[12] = (byte)Helper.TYPE_M;
+                        outBuffer[13] = (byte)parent.set_m;
+
+                        outBuffer[14] = (byte)Helper.TYPE_X;
+                        outBuffer[15] = (byte)parent.set_x;
+
+                        outBuffer[16] = (byte)Helper.TYPE_VREF;
+                        outBuffer[17] = (byte)parent.set_vref;
+
+                        outBuffer[18] = (byte)Helper.TYPE_I;
+                        outBuffer[19] = (byte)parent.set_i;
+
+                        outBuffer[20] = (byte)Helper.TYPE_EDGE;
+                        outBuffer[21] = (byte)parent.set_edge;
+
+                        outBuffer[22] = (byte)Helper.TYPE_OUT;
+                        outBuffer[23] = (byte)parent.set_offset;
+
+                        outBuffer[24] = (byte)Helper.TYPE_Z;
+                        outBuffer[25] = (byte)parent.set_z;
+
+                        outBuffer[26] = (byte)Helper.COMMAND_RESOLUTION;
+                        outBuffer[27] = (byte)parent.set_resolution;
+
+                        outBuffer[28] = (byte)Helper.COMMAND_COLORDEPTH;
+                        outBuffer[29] = (byte)parent.set_colordepth;
+
+                        outBuffer[30] = (byte)Helper.COMMAND_MODE;
+                        outBuffer[31] = (byte)parent.set_mode;
+
+                        outBuffer[32] = (byte)'\n'; // Dez: 10
+                        mySerialport.Write(outBuffer, 0, 33);
+                        //sendNewLine();
+
+                        logOutput(">finished sending config");
+
+                        input = mySerialport.ReadLine();
+                        logOutput("Answer:\"" + input + "\"");
+                    }
+
+
+
                     receivedlength = mySerialport.Read(inBuffer, 0, inBuffer.Length);
                     
                     for (int i = 0; i < receivedlength; i++)
