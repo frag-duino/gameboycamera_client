@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO.Ports;
 using System.Threading;
 using System.Windows.Forms;
@@ -52,6 +53,10 @@ namespace GameboyCameraClient
         // UI:
         public Bitmap bitmap_live, bitmap_original;
         public Graphics graph;
+
+        public Bitmap[] bitmap_save = new Bitmap[5];
+        public Graphics[] graph_save = new Graphics[5];
+
         public TextBox log;
         public Button bt_start, bt_stop;
 
@@ -120,8 +125,13 @@ namespace GameboyCameraClient
             // Create image:
             bitmap_live = new Bitmap(256, 256);
             bitmap_original = new Bitmap(128, 128);
+            for (int i = 0; i < 5; i++)
+            {
+                bitmap_save[i] = new Bitmap(128, 128);
+                graph_save[i] = CreateGraphics();
+            }
             graph = CreateGraphics();
-            graph.DrawImage(bitmap_live, 10, 10);
+            // graph.DrawImage(bitmap_live, 10, 10);
             log = textBox1;
             bt_start = button_start;
             bt_stop = button_stop;
@@ -363,6 +373,21 @@ namespace GameboyCameraClient
             haschanged_colordepth = value;
             haschanged_resolution = value;
             haschanged_mode = value;
+        }
+
+        public void saveBitmap() {
+
+            // First shift the images to the right:
+            for (int i = 4; i > 0; i--)
+            {
+                bitmap_save[i] = (Bitmap) bitmap_save[i - 1];
+                graph_save[i].DrawImage(bitmap_save[i], i*128, 295);
+            }
+
+            bitmap_save[0] = (Bitmap) bitmap_original.Clone();
+            graph_save[0].DrawImage(bitmap_save[0], 10, 295);
+
+            bitmap_original.Save("e:\\test.png", ImageFormat.Png);
         }
     }
 }

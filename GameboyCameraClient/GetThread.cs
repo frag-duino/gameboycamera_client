@@ -218,6 +218,7 @@ namespace GameboyCameraClient
                     {
                         logOutput("Found the beginning SHOWING");
                         is_receiving_photo = true;
+                        is_saving = false;
                         row = 0;
                         column = 0;
                         continue;
@@ -226,6 +227,7 @@ namespace GameboyCameraClient
                     {
                         logOutput("Found the beginning SAVING");
                         is_receiving_photo = true;
+                        is_saving = true;
                         row = 0;
                         column = 0;
                         continue;
@@ -259,7 +261,7 @@ namespace GameboyCameraClient
                             parent.bitmap_live.SetPixel(column * 2 + 1, row + 1, c); // For scaling
 
                             if (is_saving) // Save the original filesize
-                                parent.bitmap_original.SetPixel(column, row / 2, c); 
+                                parent.bitmap_original.SetPixel(column, row / 2, c);
 
                             column++;
 
@@ -274,7 +276,7 @@ namespace GameboyCameraClient
                                 // logOutput("Last byte reached (2Bit, 128x128)");
                                 // Save it
                                 if (is_saving)
-                                    parent.bitmap_original.Save("e:\\test.png", ImageFormat.Png);
+                                    parent.saveBitmap();
                                 is_receiving_photo = false;
                                 continue;
                             }
