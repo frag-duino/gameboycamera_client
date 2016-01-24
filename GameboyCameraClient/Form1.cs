@@ -50,7 +50,7 @@ namespace GameboyCameraClient
         public int baud = 115200;
 
         // UI:
-        public Bitmap bitmap;
+        public Bitmap bitmap_live, bitmap_original;
         public Graphics graph;
         public TextBox log;
         public Button bt_start, bt_stop;
@@ -118,13 +118,13 @@ namespace GameboyCameraClient
             checkBox_testmode_CheckedChanged(null, null);
 
             // Create image:
-            bitmap = new Bitmap(256, 256);
+            bitmap_live = new Bitmap(256, 256);
+            bitmap_original = new Bitmap(128, 128);
             graph = CreateGraphics();
-            graph.DrawImage(bitmap, 10, 10);
+            graph.DrawImage(bitmap_live, 10, 10);
             log = textBox1;
             bt_start = button_start;
             bt_stop = button_stop;
-
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
