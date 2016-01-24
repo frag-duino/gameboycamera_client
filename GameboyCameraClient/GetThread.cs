@@ -63,7 +63,7 @@ namespace GameboyCameraClient
 
             while (running)
             {
-                
+
                 if (parent.update_config)
                 {
                     // Send the current config to the device
@@ -113,8 +113,16 @@ namespace GameboyCameraClient
                         }
 
                     logOutput(">finished sending config");
-                    input = mySerialport.ReadLine();
-                    logOutput("Answer:\"" + input + "\"");
+                    try
+                    {
+                        input = mySerialport.ReadLine();
+                        logOutput("Answer:\"" + input + "\"");
+                    }
+                    catch (TimeoutException e)
+                    {
+                        logOutput("Timeout sending config");
+                        continue;
+                    }
                 }
 
                 try {
