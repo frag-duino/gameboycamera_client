@@ -118,7 +118,7 @@ namespace GameboyCameraClient
             checkBox_testmode_CheckedChanged(null, null);
 
             // Create image:
-            bitmap = new Bitmap(128, 128);
+            bitmap = new Bitmap(256, 256);
             graph = CreateGraphics();
             graph.DrawImage(bitmap, 10, 10);
             log = textBox1;

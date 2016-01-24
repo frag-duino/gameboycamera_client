@@ -90,9 +90,9 @@
             // 
             // button_start
             // 
-            this.button_start.Location = new System.Drawing.Point(12, 189);
+            this.button_start.Location = new System.Drawing.Point(3, 266);
             this.button_start.Name = "button_start";
-            this.button_start.Size = new System.Drawing.Size(75, 45);
+            this.button_start.Size = new System.Drawing.Size(92, 23);
             this.button_start.TabIndex = 1;
             this.button_start.Text = "Listen";
             this.button_start.UseVisualStyleBackColor = true;
@@ -106,7 +106,7 @@
             this.groupBox1.Controls.Add(this.trackBar_c0);
             this.groupBox1.Controls.Add(this.label_c0);
             this.groupBox1.Controls.Add(this.trackBar_c1);
-            this.groupBox1.Location = new System.Drawing.Point(175, 153);
+            this.groupBox1.Location = new System.Drawing.Point(294, 153);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(250, 136);
             this.groupBox1.TabIndex = 2;
@@ -227,12 +227,12 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(831, 16);
+            this.textBox1.Location = new System.Drawing.Point(740, 295);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(141, 218);
+            this.textBox1.Size = new System.Drawing.Size(204, 106);
             this.textBox1.TabIndex = 3;
             // 
             // comboBox_comport
@@ -253,7 +253,7 @@
             this.groupBox2.Controls.Add(this.comboBox_baud);
             this.groupBox2.Controls.Add(this.comboBox_comport);
             this.groupBox2.Controls.Add(this.comboBox_resolution);
-            this.groupBox2.Location = new System.Drawing.Point(175, 12);
+            this.groupBox2.Location = new System.Drawing.Point(294, 12);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(250, 135);
             this.groupBox2.TabIndex = 5;
@@ -311,7 +311,7 @@
             this.groupBox3.Controls.Add(this.label_vhmode);
             this.groupBox3.Controls.Add(this.comboBox_vhmode);
             this.groupBox3.Controls.Add(this.checkBox_n);
-            this.groupBox3.Location = new System.Drawing.Point(621, 12);
+            this.groupBox3.Location = new System.Drawing.Point(740, 12);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(204, 222);
             this.groupBox3.TabIndex = 6;
@@ -409,7 +409,7 @@
             this.groupBox4.Controls.Add(this.checkBox_x);
             this.groupBox4.Controls.Add(this.checkBox_m);
             this.groupBox4.Controls.Add(this.checkBox_p);
-            this.groupBox4.Location = new System.Drawing.Point(621, 240);
+            this.groupBox4.Location = new System.Drawing.Point(740, 240);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(204, 49);
             this.groupBox4.TabIndex = 7;
@@ -479,7 +479,7 @@
             this.groupBox5.Controls.Add(this.label_offset_value);
             this.groupBox5.Controls.Add(this.trackBar_offset);
             this.groupBox5.Controls.Add(this.label_offset);
-            this.groupBox5.Location = new System.Drawing.Point(431, 12);
+            this.groupBox5.Location = new System.Drawing.Point(550, 12);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(184, 277);
             this.groupBox5.TabIndex = 8;
@@ -546,9 +546,9 @@
             // button_stop
             // 
             this.button_stop.Enabled = false;
-            this.button_stop.Location = new System.Drawing.Point(94, 189);
+            this.button_stop.Location = new System.Drawing.Point(101, 266);
             this.button_stop.Name = "button_stop";
-            this.button_stop.Size = new System.Drawing.Size(75, 45);
+            this.button_stop.Size = new System.Drawing.Size(92, 23);
             this.button_stop.TabIndex = 9;
             this.button_stop.Text = "Stop";
             this.button_stop.UseVisualStyleBackColor = true;
@@ -556,9 +556,9 @@
             // 
             // button_clear
             // 
-            this.button_clear.Location = new System.Drawing.Point(831, 244);
+            this.button_clear.Location = new System.Drawing.Point(740, 407);
             this.button_clear.Name = "button_clear";
-            this.button_clear.Size = new System.Drawing.Size(141, 43);
+            this.button_clear.Size = new System.Drawing.Size(204, 23);
             this.button_clear.TabIndex = 10;
             this.button_clear.Text = "Clear";
             this.button_clear.UseVisualStyleBackColor = true;
@@ -566,9 +566,9 @@
             // 
             // button_sendsettings
             // 
-            this.button_sendsettings.Location = new System.Drawing.Point(12, 240);
+            this.button_sendsettings.Location = new System.Drawing.Point(199, 266);
             this.button_sendsettings.Name = "button_sendsettings";
-            this.button_sendsettings.Size = new System.Drawing.Size(75, 45);
+            this.button_sendsettings.Size = new System.Drawing.Size(92, 23);
             this.button_sendsettings.TabIndex = 11;
             this.button_sendsettings.Text = "Send all settings";
             this.button_sendsettings.UseVisualStyleBackColor = true;
@@ -588,7 +588,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 461);
+            this.ClientSize = new System.Drawing.Size(954, 438);
             this.Controls.Add(this.button_sendsettings);
             this.Controls.Add(this.button_clear);
             this.Controls.Add(this.button_stop);

@@ -243,17 +243,22 @@ namespace GameboyCameraClient
                             temp *= 85; // because of 2 bit 0-3 -> 0-255
 
                             Color c = Color.FromArgb(temp, temp, temp);
-                            parent.bitmap.SetPixel(column, row, c);
+                            parent.bitmap.SetPixel(column * 2 + 0, row + 0, c);
+                            parent.bitmap.SetPixel(column * 2 + 0, row + 1, c); // For scaling
+                            parent.bitmap.SetPixel(column * 2 + 1, row + 0, c); // For scaling
+                            parent.bitmap.SetPixel(column * 2 + 1, row + 1, c); // For scaling
 
                             column++;
 
                             if (column == 128)
                             {
                                 column = 0;
-                                row++;
+                                row+=2;
+                                // Next row --> double this for scaling
+                                //for(int s=0; s<128;s)
                             }
 
-                            if (row == 128)
+                            if (row == 256)
                             {
                                 logOutput("Last byte reached (2Bit, 128x128)");
                                 is_receiving_photo = false;
