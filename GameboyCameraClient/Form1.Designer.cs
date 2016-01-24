@@ -74,6 +74,7 @@
             this.button_stop = new System.Windows.Forms.Button();
             this.button_clear = new System.Windows.Forms.Button();
             this.button_sendsettings = new System.Windows.Forms.Button();
+            this.bt_refresh = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_c0)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_c1)).BeginInit();
@@ -93,7 +94,7 @@
             this.button_start.Name = "button_start";
             this.button_start.Size = new System.Drawing.Size(75, 45);
             this.button_start.TabIndex = 1;
-            this.button_start.Text = "Take Picture";
+            this.button_start.Text = "Listen";
             this.button_start.UseVisualStyleBackColor = true;
             this.button_start.Click += new System.EventHandler(this.bt_start_Click);
             // 
@@ -105,9 +106,9 @@
             this.groupBox1.Controls.Add(this.trackBar_c0);
             this.groupBox1.Controls.Add(this.label_c0);
             this.groupBox1.Controls.Add(this.trackBar_c1);
-            this.groupBox1.Location = new System.Drawing.Point(175, 168);
+            this.groupBox1.Location = new System.Drawing.Point(175, 153);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(250, 118);
+            this.groupBox1.Size = new System.Drawing.Size(250, 136);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Light";
@@ -192,7 +193,7 @@
             this.trackBar_gain.Location = new System.Drawing.Point(9, 229);
             this.trackBar_gain.Maximum = 31;
             this.trackBar_gain.Name = "trackBar_gain";
-            this.trackBar_gain.Size = new System.Drawing.Size(231, 45);
+            this.trackBar_gain.Size = new System.Drawing.Size(168, 45);
             this.trackBar_gain.TabIndex = 6;
             this.trackBar_gain.Scroll += new System.EventHandler(this.trackBar_gain_Scroll);
             // 
@@ -226,12 +227,12 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 295);
+            this.textBox1.Location = new System.Drawing.Point(831, 16);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(925, 320);
+            this.textBox1.Size = new System.Drawing.Size(141, 218);
             this.textBox1.TabIndex = 3;
             // 
             // comboBox_comport
@@ -240,20 +241,21 @@
             this.comboBox_comport.FormattingEnabled = true;
             this.comboBox_comport.Location = new System.Drawing.Point(6, 18);
             this.comboBox_comport.Name = "comboBox_comport";
-            this.comboBox_comport.Size = new System.Drawing.Size(121, 21);
+            this.comboBox_comport.Size = new System.Drawing.Size(74, 21);
             this.comboBox_comport.TabIndex = 4;
-            this.comboBox_comport.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.comboBox_comport.SelectedIndexChanged += new System.EventHandler(this.comboBox_comport_SelectedIndexChanged);
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.bt_refresh);
             this.groupBox2.Controls.Add(this.checkBox_testmode);
             this.groupBox2.Controls.Add(this.label_resolution);
             this.groupBox2.Controls.Add(this.comboBox_baud);
             this.groupBox2.Controls.Add(this.comboBox_comport);
             this.groupBox2.Controls.Add(this.comboBox_resolution);
-            this.groupBox2.Location = new System.Drawing.Point(175, 63);
+            this.groupBox2.Location = new System.Drawing.Point(175, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(250, 101);
+            this.groupBox2.Size = new System.Drawing.Size(250, 135);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Serial";
@@ -261,7 +263,7 @@
             // checkBox_testmode
             // 
             this.checkBox_testmode.AutoSize = true;
-            this.checkBox_testmode.Location = new System.Drawing.Point(133, 48);
+            this.checkBox_testmode.Location = new System.Drawing.Point(6, 108);
             this.checkBox_testmode.Name = "checkBox_testmode";
             this.checkBox_testmode.Size = new System.Drawing.Size(77, 17);
             this.checkBox_testmode.TabIndex = 20;
@@ -282,9 +284,9 @@
             // 
             this.comboBox_baud.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_baud.FormattingEnabled = true;
-            this.comboBox_baud.Location = new System.Drawing.Point(133, 18);
+            this.comboBox_baud.Location = new System.Drawing.Point(169, 18);
             this.comboBox_baud.Name = "comboBox_baud";
-            this.comboBox_baud.Size = new System.Drawing.Size(111, 21);
+            this.comboBox_baud.Size = new System.Drawing.Size(74, 21);
             this.comboBox_baud.TabIndex = 5;
             this.comboBox_baud.SelectedIndexChanged += new System.EventHandler(this.comboBox_baud_SelectedIndexChanged);
             // 
@@ -309,9 +311,9 @@
             this.groupBox3.Controls.Add(this.label_vhmode);
             this.groupBox3.Controls.Add(this.comboBox_vhmode);
             this.groupBox3.Controls.Add(this.checkBox_n);
-            this.groupBox3.Location = new System.Drawing.Point(687, 12);
+            this.groupBox3.Location = new System.Drawing.Point(621, 12);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(250, 222);
+            this.groupBox3.Size = new System.Drawing.Size(204, 222);
             this.groupBox3.TabIndex = 6;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Edge extraction";
@@ -407,9 +409,9 @@
             this.groupBox4.Controls.Add(this.checkBox_x);
             this.groupBox4.Controls.Add(this.checkBox_m);
             this.groupBox4.Controls.Add(this.checkBox_p);
-            this.groupBox4.Location = new System.Drawing.Point(175, 12);
+            this.groupBox4.Location = new System.Drawing.Point(621, 240);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(250, 45);
+            this.groupBox4.Size = new System.Drawing.Size(204, 49);
             this.groupBox4.TabIndex = 7;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "1-D filtering kernel";
@@ -419,7 +421,7 @@
             this.checkBox_x.AutoSize = true;
             this.checkBox_x.Checked = true;
             this.checkBox_x.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_x.Location = new System.Drawing.Point(135, 17);
+            this.checkBox_x.Location = new System.Drawing.Point(141, 21);
             this.checkBox_x.Name = "checkBox_x";
             this.checkBox_x.Size = new System.Drawing.Size(33, 17);
             this.checkBox_x.TabIndex = 12;
@@ -430,7 +432,7 @@
             // checkBox_m
             // 
             this.checkBox_m.AutoSize = true;
-            this.checkBox_m.Location = new System.Drawing.Point(73, 17);
+            this.checkBox_m.Location = new System.Drawing.Point(88, 21);
             this.checkBox_m.Name = "checkBox_m";
             this.checkBox_m.Size = new System.Drawing.Size(35, 17);
             this.checkBox_m.TabIndex = 11;
@@ -443,7 +445,7 @@
             this.checkBox_p.AutoSize = true;
             this.checkBox_p.Checked = true;
             this.checkBox_p.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_p.Location = new System.Drawing.Point(10, 17);
+            this.checkBox_p.Location = new System.Drawing.Point(12, 21);
             this.checkBox_p.Name = "checkBox_p";
             this.checkBox_p.Size = new System.Drawing.Size(33, 17);
             this.checkBox_p.TabIndex = 10;
@@ -479,7 +481,7 @@
             this.groupBox5.Controls.Add(this.label_offset);
             this.groupBox5.Location = new System.Drawing.Point(431, 12);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(250, 277);
+            this.groupBox5.Size = new System.Drawing.Size(184, 277);
             this.groupBox5.TabIndex = 8;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Image settings";
@@ -499,7 +501,7 @@
             this.trackBar_vref.Location = new System.Drawing.Point(6, 88);
             this.trackBar_vref.Maximum = 7;
             this.trackBar_vref.Name = "trackBar_vref";
-            this.trackBar_vref.Size = new System.Drawing.Size(238, 45);
+            this.trackBar_vref.Size = new System.Drawing.Size(171, 45);
             this.trackBar_vref.TabIndex = 15;
             this.trackBar_vref.Scroll += new System.EventHandler(this.trackBar_vref_Scroll);
             // 
@@ -528,7 +530,7 @@
             this.trackBar_offset.Maximum = 31;
             this.trackBar_offset.Minimum = -31;
             this.trackBar_offset.Name = "trackBar_offset";
-            this.trackBar_offset.Size = new System.Drawing.Size(238, 45);
+            this.trackBar_offset.Size = new System.Drawing.Size(171, 45);
             this.trackBar_offset.TabIndex = 13;
             this.trackBar_offset.Scroll += new System.EventHandler(this.trackBar_offset_Scroll);
             // 
@@ -554,9 +556,9 @@
             // 
             // button_clear
             // 
-            this.button_clear.Location = new System.Drawing.Point(93, 240);
+            this.button_clear.Location = new System.Drawing.Point(831, 244);
             this.button_clear.Name = "button_clear";
-            this.button_clear.Size = new System.Drawing.Size(75, 45);
+            this.button_clear.Size = new System.Drawing.Size(141, 43);
             this.button_clear.TabIndex = 10;
             this.button_clear.Text = "Clear";
             this.button_clear.UseVisualStyleBackColor = true;
@@ -568,15 +570,25 @@
             this.button_sendsettings.Name = "button_sendsettings";
             this.button_sendsettings.Size = new System.Drawing.Size(75, 45);
             this.button_sendsettings.TabIndex = 11;
-            this.button_sendsettings.Text = "Send settings";
+            this.button_sendsettings.Text = "Send all settings";
             this.button_sendsettings.UseVisualStyleBackColor = true;
             this.button_sendsettings.Click += new System.EventHandler(this.button_sendsettings_Click);
+            // 
+            // bt_refresh
+            // 
+            this.bt_refresh.Location = new System.Drawing.Point(86, 18);
+            this.bt_refresh.Name = "bt_refresh";
+            this.bt_refresh.Size = new System.Drawing.Size(74, 21);
+            this.bt_refresh.TabIndex = 12;
+            this.bt_refresh.Text = "Refresh";
+            this.bt_refresh.UseVisualStyleBackColor = true;
+            this.bt_refresh.Click += new System.EventHandler(this.bt_refresh_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(942, 627);
+            this.ClientSize = new System.Drawing.Size(984, 461);
             this.Controls.Add(this.button_sendsettings);
             this.Controls.Add(this.button_clear);
             this.Controls.Add(this.button_stop);
@@ -657,6 +669,7 @@
         private System.Windows.Forms.Button button_clear;
         private System.Windows.Forms.Button button_sendsettings;
         private System.Windows.Forms.CheckBox checkBox_testmode;
+        private System.Windows.Forms.Button bt_refresh;
     }
 }
 

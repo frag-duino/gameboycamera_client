@@ -23,6 +23,13 @@ namespace GameboyCameraClient
         byte[] outBuffer = new byte[33];
         int receivedlength = 0;
 
+        public Boolean something_has_changed()
+        {
+            return parent.haschanged_gain || parent.haschanged_vh || parent.haschanged_n || parent.haschanged_c1 ||
+            parent.haschanged_c0 || parent.haschanged_p || parent.haschanged_m || parent.haschanged_x || parent.haschanged_vref ||
+            parent.haschanged_i || parent.haschanged_edge || parent.haschanged_offset || parent.haschanged_z || 
+            parent.haschanged_colordepth || parent.haschanged_resolution || parent.haschanged_mode;
+        }
 
         public GetThread(Form1 parent)
         {
@@ -64,53 +71,122 @@ namespace GameboyCameraClient
             while (running)
             {
 
-                if (parent.update_config)
+                if (parent.update_config || something_has_changed())
                 {
                     // Send the current config to the device
                     parent.update_config = false;
                     logOutput(">Received ready. Sending config");
-                    outBuffer[0] = (byte)Helper.TYPE_GAIN;
-                    outBuffer[1] = (byte)parent.set_gain;
-                    outBuffer[2] = (byte)Helper.TYPE_VH;
-                    outBuffer[3] = (byte)parent.set_vh;
-                    outBuffer[4] = (byte)Helper.TYPE_N;
-                    outBuffer[5] = (byte)parent.set_n;
-                    outBuffer[6] = (byte)Helper.TYPE_C1;
-                    outBuffer[7] = (byte)parent.set_c1;
-                    outBuffer[8] = (byte)Helper.TYPE_C0;
-                    outBuffer[9] = (byte)parent.set_c0;
-                    outBuffer[10] = (byte)Helper.TYPE_P;
-                    outBuffer[11] = (byte)parent.set_p;
-                    outBuffer[12] = (byte)Helper.TYPE_M;
-                    outBuffer[13] = (byte)parent.set_m;
-                    outBuffer[14] = (byte)Helper.TYPE_X;
-                    outBuffer[15] = (byte)parent.set_x;
-                    outBuffer[16] = (byte)Helper.TYPE_VREF;
-                    outBuffer[17] = (byte)parent.set_vref;
-                    outBuffer[18] = (byte)Helper.TYPE_I;
-                    outBuffer[19] = (byte)parent.set_i;
-                    outBuffer[20] = (byte)Helper.TYPE_EDGE;
-                    outBuffer[21] = (byte)parent.set_edge;
-                    outBuffer[22] = (byte)Helper.TYPE_OFFSET;
-                    outBuffer[23] = (byte)parent.set_offset;
-                    outBuffer[24] = (byte)Helper.TYPE_Z;
-                    outBuffer[25] = (byte)parent.set_z;
-                    outBuffer[26] = (byte)Helper.COMMAND_RESOLUTION;
-                    outBuffer[27] = (byte)parent.set_resolution;
-                    outBuffer[28] = (byte)Helper.COMMAND_COLORDEPTH;
-                    outBuffer[29] = (byte)parent.set_colordepth;
-                    outBuffer[30] = (byte)Helper.COMMAND_MODE;
-                    outBuffer[31] = (byte)parent.set_mode;
-                    outBuffer[32] = (byte)'\n'; // Dec: 10
-                    mySerialport.Write(outBuffer, 0, 33);
+                    temp = 0;
 
+                    if (parent.haschanged_gain)
+                    {
+                        outBuffer[temp] = (byte)Helper.TYPE_GAIN;
+                        outBuffer[temp + 1] = (byte)parent.set_gain;
+                        temp += 2;
+                    }
+                    if (parent.haschanged_vh)
+                    {
+                        outBuffer[temp] = (byte)Helper.TYPE_VH;
+                        outBuffer[temp + 1] = (byte)parent.set_vh;
+                        temp += 2;
+                    }
+                    if (parent.haschanged_n)
+                    {
+                        outBuffer[temp] = (byte)Helper.TYPE_N;
+                        outBuffer[temp + 1] = (byte)parent.set_n;
+                        temp += 2;
+                    }
+                    if (parent.haschanged_c1)
+                    {
+                        outBuffer[temp] = (byte)Helper.TYPE_C1;
+                        outBuffer[temp + 1] = (byte)parent.set_c1;
+                        temp += 2;
+                    }
+                    if (parent.haschanged_c0)
+                    {
+                        outBuffer[temp] = (byte)Helper.TYPE_C0;
+                        outBuffer[temp + 1] = (byte)parent.set_c0;
+                        temp += 2;
+                    }
+                    if (parent.haschanged_p)
+                    {
+                        outBuffer[temp] = (byte)Helper.TYPE_P;
+                        outBuffer[temp + 1] = (byte)parent.set_p;
+                        temp += 2;
+                    }
+                    if (parent.haschanged_m)
+                    {
+                        outBuffer[temp] = (byte)Helper.TYPE_M;
+                        outBuffer[temp + 1] = (byte)parent.set_m;
+                        temp += 2;
+                    }
+                    if (parent.haschanged_x)
+                    {
+                        outBuffer[temp] = (byte)Helper.TYPE_X;
+                        outBuffer[temp + 1] = (byte)parent.set_x;
+                        temp += 2;
+                    }
+                    if (parent.haschanged_vref)
+                    {
+                        outBuffer[temp] = (byte)Helper.TYPE_VREF;
+                        outBuffer[temp + 1] = (byte)parent.set_vref;
+                        temp += 2;
+                    }
+                    if (parent.haschanged_i)
+                    {
+                        outBuffer[temp] = (byte)Helper.TYPE_I;
+                        outBuffer[temp + 1] = (byte)parent.set_i;
+                        temp += 2;
+                    }
+                    if (parent.haschanged_edge)
+                    {
+                        outBuffer[temp] = (byte)Helper.TYPE_EDGE;
+                        outBuffer[temp + 1] = (byte)parent.set_edge;
+                        temp += 2;
+                    }
+                    if (parent.haschanged_offset)
+                    {
+                        outBuffer[temp] = (byte)Helper.TYPE_OFFSET;
+                        outBuffer[temp + 1] = (byte)parent.set_offset;
+                        temp += 2;
+                    }
+                    if (parent.haschanged_z)
+                    {
+                        outBuffer[temp] = (byte)Helper.TYPE_Z;
+                        outBuffer[temp + 1] = (byte)parent.set_z;
+                        temp += 2;
+                    }
+                    if (parent.haschanged_resolution)
+                    {
+                        outBuffer[temp] = (byte)Helper.COMMAND_RESOLUTION;
+                        outBuffer[temp + 1] = (byte)parent.set_resolution;
+                        temp += 2;
+                    }
+                    if (parent.haschanged_colordepth)
+                    {
+                        outBuffer[temp] = (byte)Helper.COMMAND_COLORDEPTH;
+                        outBuffer[temp + 1] = (byte)parent.set_colordepth;
+                        temp += 2;
+                    }
+                    if (parent.haschanged_mode)
+                    {
+                        outBuffer[temp] = (byte)Helper.COMMAND_MODE;
+                        outBuffer[temp + 1] = (byte)parent.set_mode;
+                        temp += 2;
+                    }
+
+                    outBuffer[temp] = (byte)'\n'; // Dec: 10
+                    
                     // Remove /n (Decimal 10) from the stream :( stupid, but works
-                    for (int i = 0; i < 32; i++)
+                    for (int i = 0; i < temp; i++)
                         if (outBuffer[i] == 10)
                         {
                             outBuffer[i]++;
                             logOutput("Removed \\n (dec 10) from the output");
                         }
+                    mySerialport.Write(outBuffer, 0, temp + 1);
+
+                    parent.hasChangedALL(false);
 
                     logOutput(">finished sending config");
                     try
