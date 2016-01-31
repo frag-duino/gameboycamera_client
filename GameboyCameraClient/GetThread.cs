@@ -255,12 +255,15 @@ namespace GameboyCameraClient
                             temp *= 85; // because of 2 bit 0-3 -> 0-255
 
                             Color c = Color.FromArgb(temp, temp, temp);
-                            parent.bitmap_live.SetPixel(column * 2 + 0, row + 0, c);
-                            parent.bitmap_live.SetPixel(column * 2 + 0, row + 1, c); // For scaling
-                            parent.bitmap_live.SetPixel(column * 2 + 1, row + 0, c); // For scaling
-                            parent.bitmap_live.SetPixel(column * 2 + 1, row + 1, c); // For scaling
+                            if (parent.view != null)
+                            {
+                                parent.view.bitmap_live_child.SetPixel(column * 2 + 0, row + 0, c);
+                                parent.view.bitmap_live_child.SetPixel(column * 2 + 0, row + 1, c); // For scaling
+                                parent.view.bitmap_live_child.SetPixel(column * 2 + 1, row + 0, c); // For scaling
+                                parent.view.bitmap_live_child.SetPixel(column * 2 + 1, row + 1, c); // For scaling
+                            }
 
-                            if (is_saving) // Save the original filesize
+                            //if (is_saving) // Save the original filesize
                                 parent.bitmap_original.SetPixel(column, row / 2, c);
 
                             column++;
@@ -287,7 +290,7 @@ namespace GameboyCameraClient
                         temp = inBuffer[i];
                         Color c = Color.FromArgb(temp, temp, temp);
 
-                        parent.bitmap_live.SetPixel(column, row, c);
+                        parent.bitmap_original.SetPixel(column, row, c);
 
                         column++;
 
@@ -309,7 +312,7 @@ namespace GameboyCameraClient
                     {
                         temp = inBuffer[i];
                         Color c = Color.FromArgb(temp, temp, temp);
-                        parent.bitmap_live.SetPixel(column, row, c);
+                        parent.bitmap_original.SetPixel(column, row, c);
 
                         column++;
 
@@ -329,7 +332,12 @@ namespace GameboyCameraClient
                 }
 
                 // Draw the current bitmap
-                try { parent.graph.DrawImage(parent.bitmap_live, 10, 10); }
+                try
+                {
+                    parent.graph_live_parent.DrawImage(parent.bitmap_original, 10, 10);
+                    if (parent.view != null)
+                        parent.view.graph_live_child.DrawImage(parent.view.bitmap_live_child, 10, 10);
+                }
                 catch (Exception ec) { Console.WriteLine("Already finished: " + ec.ToString()); }
             }
 

@@ -45,6 +45,7 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.comboBox_comport = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.bt_refresh = new System.Windows.Forms.Button();
             this.checkBox_testmode = new System.Windows.Forms.CheckBox();
             this.label_resolution = new System.Windows.Forms.Label();
             this.comboBox_baud = new System.Windows.Forms.ComboBox();
@@ -74,7 +75,7 @@
             this.button_stop = new System.Windows.Forms.Button();
             this.button_clear = new System.Windows.Forms.Button();
             this.button_sendsettings = new System.Windows.Forms.Button();
-            this.bt_refresh = new System.Windows.Forms.Button();
+            this.button_newview = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_c0)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_c1)).BeginInit();
@@ -90,9 +91,9 @@
             // 
             // button_start
             // 
-            this.button_start.Location = new System.Drawing.Point(3, 266);
+            this.button_start.Location = new System.Drawing.Point(12, 153);
             this.button_start.Name = "button_start";
-            this.button_start.Size = new System.Drawing.Size(92, 23);
+            this.button_start.Size = new System.Drawing.Size(128, 25);
             this.button_start.TabIndex = 1;
             this.button_start.Text = "Listen";
             this.button_start.UseVisualStyleBackColor = true;
@@ -106,7 +107,7 @@
             this.groupBox1.Controls.Add(this.trackBar_c0);
             this.groupBox1.Controls.Add(this.label_c0);
             this.groupBox1.Controls.Add(this.trackBar_c1);
-            this.groupBox1.Location = new System.Drawing.Point(294, 153);
+            this.groupBox1.Location = new System.Drawing.Point(147, 143);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(250, 136);
             this.groupBox1.TabIndex = 2;
@@ -227,7 +228,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(740, 295);
+            this.textBox1.Location = new System.Drawing.Point(593, 285);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
@@ -253,12 +254,22 @@
             this.groupBox2.Controls.Add(this.comboBox_baud);
             this.groupBox2.Controls.Add(this.comboBox_comport);
             this.groupBox2.Controls.Add(this.comboBox_resolution);
-            this.groupBox2.Location = new System.Drawing.Point(294, 12);
+            this.groupBox2.Location = new System.Drawing.Point(147, 2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(250, 135);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Serial";
+            // 
+            // bt_refresh
+            // 
+            this.bt_refresh.Location = new System.Drawing.Point(86, 18);
+            this.bt_refresh.Name = "bt_refresh";
+            this.bt_refresh.Size = new System.Drawing.Size(74, 21);
+            this.bt_refresh.TabIndex = 12;
+            this.bt_refresh.Text = "Refresh";
+            this.bt_refresh.UseVisualStyleBackColor = true;
+            this.bt_refresh.Click += new System.EventHandler(this.bt_refresh_Click);
             // 
             // checkBox_testmode
             // 
@@ -311,7 +322,7 @@
             this.groupBox3.Controls.Add(this.label_vhmode);
             this.groupBox3.Controls.Add(this.comboBox_vhmode);
             this.groupBox3.Controls.Add(this.checkBox_n);
-            this.groupBox3.Location = new System.Drawing.Point(740, 12);
+            this.groupBox3.Location = new System.Drawing.Point(593, 2);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(204, 222);
             this.groupBox3.TabIndex = 6;
@@ -409,7 +420,7 @@
             this.groupBox4.Controls.Add(this.checkBox_x);
             this.groupBox4.Controls.Add(this.checkBox_m);
             this.groupBox4.Controls.Add(this.checkBox_p);
-            this.groupBox4.Location = new System.Drawing.Point(740, 240);
+            this.groupBox4.Location = new System.Drawing.Point(593, 230);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(204, 49);
             this.groupBox4.TabIndex = 7;
@@ -479,7 +490,7 @@
             this.groupBox5.Controls.Add(this.label_offset_value);
             this.groupBox5.Controls.Add(this.trackBar_offset);
             this.groupBox5.Controls.Add(this.label_offset);
-            this.groupBox5.Location = new System.Drawing.Point(550, 12);
+            this.groupBox5.Location = new System.Drawing.Point(403, 2);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(184, 277);
             this.groupBox5.TabIndex = 8;
@@ -546,9 +557,9 @@
             // button_stop
             // 
             this.button_stop.Enabled = false;
-            this.button_stop.Location = new System.Drawing.Point(101, 266);
+            this.button_stop.Location = new System.Drawing.Point(12, 181);
             this.button_stop.Name = "button_stop";
-            this.button_stop.Size = new System.Drawing.Size(92, 23);
+            this.button_stop.Size = new System.Drawing.Size(128, 25);
             this.button_stop.TabIndex = 9;
             this.button_stop.Text = "Stop";
             this.button_stop.UseVisualStyleBackColor = true;
@@ -566,29 +577,30 @@
             // 
             // button_sendsettings
             // 
-            this.button_sendsettings.Location = new System.Drawing.Point(199, 266);
+            this.button_sendsettings.Location = new System.Drawing.Point(12, 209);
             this.button_sendsettings.Name = "button_sendsettings";
-            this.button_sendsettings.Size = new System.Drawing.Size(92, 23);
+            this.button_sendsettings.Size = new System.Drawing.Size(128, 25);
             this.button_sendsettings.TabIndex = 11;
             this.button_sendsettings.Text = "Send all settings";
             this.button_sendsettings.UseVisualStyleBackColor = true;
             this.button_sendsettings.Click += new System.EventHandler(this.button_sendsettings_Click);
             // 
-            // bt_refresh
+            // button_newview
             // 
-            this.bt_refresh.Location = new System.Drawing.Point(86, 18);
-            this.bt_refresh.Name = "bt_refresh";
-            this.bt_refresh.Size = new System.Drawing.Size(74, 21);
-            this.bt_refresh.TabIndex = 12;
-            this.bt_refresh.Text = "Refresh";
-            this.bt_refresh.UseVisualStyleBackColor = true;
-            this.bt_refresh.Click += new System.EventHandler(this.bt_refresh_Click);
+            this.button_newview.Location = new System.Drawing.Point(12, 238);
+            this.button_newview.Name = "button_newview";
+            this.button_newview.Size = new System.Drawing.Size(128, 25);
+            this.button_newview.TabIndex = 12;
+            this.button_newview.Text = "New window";
+            this.button_newview.UseVisualStyleBackColor = true;
+            this.button_newview.Click += new System.EventHandler(this.button_newview_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(954, 438);
+            this.Controls.Add(this.button_newview);
             this.Controls.Add(this.button_sendsettings);
             this.Controls.Add(this.button_clear);
             this.Controls.Add(this.button_stop);
@@ -670,6 +682,7 @@
         private System.Windows.Forms.Button button_sendsettings;
         private System.Windows.Forms.CheckBox checkBox_testmode;
         private System.Windows.Forms.Button bt_refresh;
+        private System.Windows.Forms.Button button_newview;
     }
 }
 

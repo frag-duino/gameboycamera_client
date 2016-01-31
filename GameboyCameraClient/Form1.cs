@@ -51,12 +51,9 @@ namespace GameboyCameraClient
         public int baud = 115200;
 
         // UI:
-        public Bitmap bitmap_live, bitmap_original;
-        public Graphics graph;
-
-        public Bitmap[] bitmap_save = new Bitmap[5];
-        public Graphics[] graph_save = new Graphics[5];
-
+        public Form_view view;
+        public Bitmap bitmap_original;
+        public Graphics graph_live_parent;
         public TextBox log;
         public Button bt_start, bt_stop;
 
@@ -123,15 +120,9 @@ namespace GameboyCameraClient
             checkBox_testmode_CheckedChanged(null, null);
 
             // Create image:
-            bitmap_live = new Bitmap(256, 256);
             bitmap_original = new Bitmap(128, 128);
-            for (int i = 0; i < 5; i++)
-            {
-                bitmap_save[i] = new Bitmap(128, 128);
-                graph_save[i] = CreateGraphics();
-            }
-            graph = CreateGraphics();
-            // graph.DrawImage(bitmap_live, 10, 10);
+            graph_live_parent = CreateGraphics();
+
             log = textBox1;
             bt_start = button_start;
             bt_stop = button_stop;
@@ -355,6 +346,12 @@ namespace GameboyCameraClient
             }
         }
 
+        private void button_newview_Click(object sender, EventArgs e)
+        {
+            view = new Form_view(this);
+            view.Show();
+        }
+
         public void hasChangedALL(Boolean value)
         {
             haschanged_gain = value;
@@ -380,14 +377,14 @@ namespace GameboyCameraClient
             // First shift the images to the right:
             for (int i = 4; i > 0; i--)
             {
-                bitmap_save[i] = (Bitmap) bitmap_save[i - 1];
-                graph_save[i].DrawImage(bitmap_save[i], i*128, 295);
+               view.bitmap_save[i] = (Bitmap)view.bitmap_save[i - 1];
+                view.graph_save[i].DrawImage(view.bitmap_save[i], i*128, 295);
             }
 
-            bitmap_save[0] = (Bitmap) bitmap_original.Clone();
-            graph_save[0].DrawImage(bitmap_save[0], 10, 295);
+            view.bitmap_save[0] = (Bitmap)bitmap_original.Clone();
+            view.graph_save[0].DrawImage(view.bitmap_save[0], 10, 295);
 
-            bitmap_original.Save("e:\\test.png", ImageFormat.Png);
+            bitmap_original.Save("i:\\test.png", ImageFormat.Png);
         }
     }
 }
