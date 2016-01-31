@@ -17,8 +17,8 @@ namespace GameboyCameraClient
         public Bitmap bitmap_live_child;
         public Graphics graph_live_child;
 
-        public Bitmap[] bitmap_save = new Bitmap[5];
-        public Graphics[] graph_save = new Graphics[5];
+        public Bitmap[] bitmap_save = new Bitmap[8];
+        public Graphics[] graph_save = new Graphics[8];
 
         public Form_view(Form1 parent)
         {
@@ -27,9 +27,9 @@ namespace GameboyCameraClient
             this.FormClosing += FormView_FormClosing;
 
             // Create image:
-            bitmap_live_child = new Bitmap(256, 256);
+            bitmap_live_child = new Bitmap(512, 512);
    
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 8; i++)
             {
                 bitmap_save[i] = new Bitmap(128, 128);
                 graph_save[i] = CreateGraphics();

@@ -373,16 +373,18 @@ namespace GameboyCameraClient
         }
 
         public void saveBitmap() {
-
-            // First shift the images to the right:
-            for (int i = 4; i > 0; i--)
+            if (view != null)
             {
-               view.bitmap_save[i] = (Bitmap)view.bitmap_save[i - 1];
-                view.graph_save[i].DrawImage(view.bitmap_save[i], i*128, 295);
-            }
+                // First shift the images to the right:
+                for (int i = 7; i > 0; i--)
+                {
+                    view.bitmap_save[i] = (Bitmap)view.bitmap_save[i - 1];
+                    view.graph_save[i].DrawImage(view.bitmap_save[i], i * 128, 295);
+                }
 
-            view.bitmap_save[0] = (Bitmap)bitmap_original.Clone();
-            view.graph_save[0].DrawImage(view.bitmap_save[0], 10, 295);
+                view.bitmap_save[0] = (Bitmap)bitmap_original.Clone();
+                view.graph_save[0].DrawImage(view.bitmap_save[0], 10, 295);
+            }
 
             bitmap_original.Save("i:\\test.png", ImageFormat.Png);
         }

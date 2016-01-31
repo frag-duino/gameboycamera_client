@@ -228,12 +228,12 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(593, 285);
+            this.textBox1.Location = new System.Drawing.Point(147, 285);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(204, 106);
+            this.textBox1.Size = new System.Drawing.Size(650, 106);
             this.textBox1.TabIndex = 3;
             // 
             // comboBox_comport
@@ -567,9 +567,9 @@
             // 
             // button_clear
             // 
-            this.button_clear.Location = new System.Drawing.Point(740, 407);
+            this.button_clear.Location = new System.Drawing.Point(12, 285);
             this.button_clear.Name = "button_clear";
-            this.button_clear.Size = new System.Drawing.Size(204, 23);
+            this.button_clear.Size = new System.Drawing.Size(128, 23);
             this.button_clear.TabIndex = 10;
             this.button_clear.Text = "Clear";
             this.button_clear.UseVisualStyleBackColor = true;
@@ -599,7 +599,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(954, 438);
+            this.ClientSize = new System.Drawing.Size(803, 395);
             this.Controls.Add(this.button_newview);
             this.Controls.Add(this.button_sendsettings);
             this.Controls.Add(this.button_clear);
