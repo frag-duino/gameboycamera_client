@@ -16,6 +16,7 @@ namespace GameboyCameraClient
         int temp = 0;
         int row = 0;
         int column = 0;
+        int pointer = 0;
         Boolean is_receiving_photo = false;
         String input = "";
         Boolean running = true;
@@ -264,10 +265,13 @@ namespace GameboyCameraClient
                             }
 
                             // Store the original image too:
-                                parent.bitmap_original.SetPixel(column, row, c);
+                            parent.bitmap_original.SetPixel(column, row, c);
+
+                            // New bitmap print:
+                            parent.data[pointer] = temp;
 
                             column++;
-
+                            pointer++;
                             if (column == 128)
                             {
                                 column = 0;
@@ -333,7 +337,9 @@ namespace GameboyCameraClient
                 // Draw the current bitmap
                 try
                 {
-                    parent.graph_live_parent.DrawImage(parent.bitmap_original, 10, 10);
+                    pointer = 0;
+                    parent.Invalidate();
+                    // parent.graph_live_parent.DrawImage(parent.bitmap_live_parent, 10, 10);
                     if (parent.view != null)
                         parent.view.graph_live_child.DrawImage(parent.view.bitmap_live_child, 0, 0);
                 }

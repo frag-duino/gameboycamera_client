@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO.Ports;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -53,10 +54,12 @@ namespace GameboyCameraClient
         // UI:
         public Form_view view;
         public Bitmap bitmap_original;
+        public Bitmap bitmap_live_parent;
         public Graphics graph_live_parent;
         public TextBox log;
         public Button bt_start, bt_stop;
-
+        public int[] data = new int[128 * 128];
+        
         // Threads
         GetThread get;
         Thread get_thread;
@@ -66,6 +69,7 @@ namespace GameboyCameraClient
         {
             InitializeComponent();
             this.FormClosing += Form1_FormClosing;
+            this.DoubleBuffered = true;
 
             // Load default values:
             trackBar_c1.Value = set_c1;
@@ -121,6 +125,7 @@ namespace GameboyCameraClient
 
             // Create image:
             bitmap_original = new Bitmap(128, 128);
+            bitmap_live_parent = new Bitmap(128, 128);
             graph_live_parent = CreateGraphics();
 
             log = textBox1;
@@ -372,14 +377,15 @@ namespace GameboyCameraClient
             haschanged_mode = value;
         }
 
-        public void saveBitmap() {
+        public void saveBitmap()
+        {
             if (view != null)
             {
                 // First shift the images to the right:
                 for (int i = 7; i > 0; i--)
                 {
-                 //   view.bitmap_save[i] = (Bitmap)view.bitmap_save[i - 1];
-                 //   view.graph_save[i].DrawImage(view.bitmap_save[i], i * 128, 295);
+                    //   view.bitmap_save[i] = (Bitmap)view.bitmap_save[i - 1];
+                    //   view.graph_save[i].DrawImage(view.bitmap_save[i], i * 128, 295);
                 }
 
                 view.bitmap_save[0] = (Bitmap)bitmap_original.Clone();
@@ -390,6 +396,70 @@ namespace GameboyCameraClient
             }
 
             bitmap_original.Save("i:\\test.png", ImageFormat.Png);
+        }
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            MakeMoreBlue(bitmap_live_parent);
+            e.Graphics.DrawImage(bitmap_live_parent, 10, 10);
+        }
+
+
+        private void MakeMoreBlue(Bitmap bmp)
+        {
+            // PixelFormat pxf = PixelFormat.Format24bppRgb; // Specify a pixel format.
+            PixelFormat pxf = PixelFormat.Format24bppRgb; // Specify a pixel format.
+            
+            // Lock the bitmaps bits:
+            Rectangle rect = new Rectangle(0, 0, bmp.Width, bmp.Height);
+            BitmapData bmpData =
+            bmp.LockBits(rect, ImageLockMode.ReadWrite,
+                         pxf);
+
+            // Get the address of the first line.
+            IntPtr ptr = bmpData.Scan0;
+
+            // Declare an array to hold the bytes of the bitmap.
+            // int numBytes = bmp.Width * bmp.Height * 3;
+            int numBytes = bmp.Width * bmp.Height * 3;
+            // int numBytes = bmpData.Stride * bmp.Height;
+            byte[] rgbValues = new byte[numBytes];
+
+            // Copy the RGB values into the array.
+            Marshal.Copy(ptr, rgbValues, 0, numBytes);
+
+            // Manipulate the bitmap, such as changing the
+            // blue value for every other pixel in the the bitmap.
+            for (int counter = 0; counter < numBytes; counter += 3)
+            {
+                rgbValues[counter] = (byte)data[counter/3];
+                rgbValues[counter+1] = (byte)data[counter/3];
+                rgbValues[counter+2] = (byte)data[counter/3];
+            }
+
+            // Copy the RGB values back to the bitmap
+            Marshal.Copy(rgbValues, 0, ptr, numBytes);
+
+            // Unlock the bits.
+            bmp.UnlockBits(bmpData);
+        }
+        private Bitmap CreateBitmap(int width, int height, string s)
+        {
+            Bitmap bmp = new Bitmap(width, height);
+
+            Graphics g = Graphics.FromImage(bmp);
+            g.FillRectangle(new SolidBrush(Color.LightCoral), 0, 0, bmp.Width, bmp.Height);
+            g.DrawRectangle(new Pen(Color.Green, 10), 5, 5, bmp.Width - 10, bmp.Height - 10);
+            g.DrawLine(new Pen(Color.Yellow, 15), 0, 0, bmp.Width, bmp.Height);
+            g.DrawLine(new Pen(Color.Yellow, 15), bmp.Width, 0, 0, bmp.Height);
+
+            SizeF size = g.MeasureString(s, this.Font);
+            g.DrawString(s, this.Font, new SolidBrush(Color.Black),
+                         (bmp.Width - size.Width) / 2,
+                         (bmp.Height - size.Height) / 2);
+            g.Dispose();
+
+            return bmp;
         }
     }
 }
