@@ -53,13 +53,13 @@ namespace GameboyCameraClient
 
         // UI:
         public Form_view view;
-        public Bitmap bitmap_original;
         public Bitmap bitmap_live_parent;
         public Graphics graph_live_parent;
         public TextBox log;
         public Button bt_start, bt_stop;
         public int[] data = new int[128 * 128];
-        
+        byte tempbyte;
+
         // Threads
         GetThread get;
         Thread get_thread;
@@ -124,10 +124,9 @@ namespace GameboyCameraClient
             checkBox_testmode_CheckedChanged(null, null);
 
             // Create image:
-            bitmap_original = new Bitmap(128, 128);
-            bitmap_live_parent = new Bitmap(128, 128);
+            bitmap_live_parent = new Bitmap(128, 128, PixelFormat.Format24bppRgb);
             graph_live_parent = CreateGraphics();
-
+            
             log = textBox1;
             bt_start = button_start;
             bt_stop = button_stop;
@@ -388,78 +387,42 @@ namespace GameboyCameraClient
                     //   view.graph_save[i].DrawImage(view.bitmap_save[i], i * 128, 295);
                 }
 
-                view.bitmap_save[0] = (Bitmap)bitmap_original.Clone();
+                view.bitmap_save[0] = (Bitmap)bitmap_live_parent.Clone();
                 view.graph_save[0].DrawImage(view.bitmap_save[0], 0, 512);
 
                 view.bitmap_last_child = (Bitmap)view.bitmap_live_child.Clone();
                 view.graph_last_child.DrawImage(view.bitmap_last_child, 512, 0);
             }
 
-            bitmap_original.Save("i:\\test.png", ImageFormat.Png);
+            bitmap_live_parent.Save("i:\\test.png", ImageFormat.Png);
         }
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            MakeMoreBlue(bitmap_live_parent);
-            e.Graphics.DrawImage(bitmap_live_parent, 10, 10);
-        }
-
-
-        private void MakeMoreBlue(Bitmap bmp)
-        {
-            // PixelFormat pxf = PixelFormat.Format24bppRgb; // Specify a pixel format.
-            PixelFormat pxf = PixelFormat.Format24bppRgb; // Specify a pixel format.
-            
             // Lock the bitmaps bits:
-            Rectangle rect = new Rectangle(0, 0, bmp.Width, bmp.Height);
+            Rectangle rect = new Rectangle(0, 0, bitmap_live_parent.Width, bitmap_live_parent.Height);
             BitmapData bmpData =
-            bmp.LockBits(rect, ImageLockMode.ReadWrite,
-                         pxf);
+            bitmap_live_parent.LockBits(rect, ImageLockMode.ReadWrite,
+                         PixelFormat.Format24bppRgb);
+            IntPtr ptr = bmpData.Scan0; // Get the address of the first line.
 
-            // Get the address of the first line.
-            IntPtr ptr = bmpData.Scan0;
-
-            // Declare an array to hold the bytes of the bitmap.
-            // int numBytes = bmp.Width * bmp.Height * 3;
-            int numBytes = bmp.Width * bmp.Height * 3;
-            // int numBytes = bmpData.Stride * bmp.Height;
+            // Declare an array to hold the bytes of the bitmap. (3 Byte per Pixel)
+            int numBytes = bitmap_live_parent.Width * bitmap_live_parent.Height * 3; // RGB
             byte[] rgbValues = new byte[numBytes];
 
-            // Copy the RGB values into the array.
-            Marshal.Copy(ptr, rgbValues, 0, numBytes);
-
-            // Manipulate the bitmap, such as changing the
-            // blue value for every other pixel in the the bitmap.
-            for (int counter = 0; counter < numBytes; counter += 3)
+            for (int counter = 0; counter < data.Length; counter++)
             {
-                rgbValues[counter] = (byte)data[counter/3];
-                rgbValues[counter+1] = (byte)data[counter/3];
-                rgbValues[counter+2] = (byte)data[counter/3];
+                tempbyte = Convert.ToByte(data[counter]);
+                rgbValues[(counter * 3) + 0] = tempbyte;
+                rgbValues[(counter * 3) + 1] = tempbyte;
+                rgbValues[(counter * 3) + 2] = tempbyte;
             }
 
-            // Copy the RGB values back to the bitmap
-            Marshal.Copy(rgbValues, 0, ptr, numBytes);
 
-            // Unlock the bits.
-            bmp.UnlockBits(bmpData);
-        }
-        private Bitmap CreateBitmap(int width, int height, string s)
-        {
-            Bitmap bmp = new Bitmap(width, height);
+            Marshal.Copy(rgbValues, 0, ptr, numBytes); // Copy the RGB values back to the bitmap
+            bitmap_live_parent.UnlockBits(bmpData); // Unlock the bits.
 
-            Graphics g = Graphics.FromImage(bmp);
-            g.FillRectangle(new SolidBrush(Color.LightCoral), 0, 0, bmp.Width, bmp.Height);
-            g.DrawRectangle(new Pen(Color.Green, 10), 5, 5, bmp.Width - 10, bmp.Height - 10);
-            g.DrawLine(new Pen(Color.Yellow, 15), 0, 0, bmp.Width, bmp.Height);
-            g.DrawLine(new Pen(Color.Yellow, 15), bmp.Width, 0, 0, bmp.Height);
-
-            SizeF size = g.MeasureString(s, this.Font);
-            g.DrawString(s, this.Font, new SolidBrush(Color.Black),
-                         (bmp.Width - size.Width) / 2,
-                         (bmp.Height - size.Height) / 2);
-            g.Dispose();
-
-            return bmp;
+            e.Graphics.DrawImage(bitmap_live_parent, 10, 10); // Draw it
         }
     }
 }

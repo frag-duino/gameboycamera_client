@@ -16,7 +16,6 @@ namespace GameboyCameraClient
         int temp = 0;
         int row = 0;
         int column = 0;
-        int pointer = 0;
         Boolean is_receiving_photo = false;
         String input = "";
         Boolean running = true;
@@ -238,6 +237,7 @@ namespace GameboyCameraClient
                     {
                         logOutput("Found the ending");
                         is_receiving_photo = false;
+                        parent.Invalidate();
                         continue;
                     }
 
@@ -261,17 +261,17 @@ namespace GameboyCameraClient
                             {
                                 for (int r = 0; r < scaling_factor_childview; r++)
                                     for (int s = 0; s < scaling_factor_childview; s++)
-                                        parent.view.bitmap_live_child.SetPixel(column * scaling_factor_childview + s, row*scaling_factor_childview + r, c);
+                                        parent.view.bitmap_live_child.SetPixel(column * scaling_factor_childview + s, row * scaling_factor_childview + r, c);
                             }
 
                             // Store the original image too:
-                            parent.bitmap_original.SetPixel(column, row, c);
+                            //parent.bitmap_original.SetPixel(column, row, c); // TODO:anpassen
 
                             // New bitmap print:
-                            parent.data[pointer] = temp;
-
+                            parent.data[row * 128 + column] = temp;
+                                                        
                             column++;
-                            pointer++;
+                            
                             if (column == 128)
                             {
                                 column = 0;
@@ -293,7 +293,7 @@ namespace GameboyCameraClient
                         temp = inBuffer[i];
                         Color c = Color.FromArgb(temp, temp, temp);
 
-                        parent.bitmap_original.SetPixel(column, row, c);
+                       // parent.bitmap_original.SetPixel(column, row, c);
 
                         column++;
 
@@ -315,7 +315,7 @@ namespace GameboyCameraClient
                     {
                         temp = inBuffer[i];
                         Color c = Color.FromArgb(temp, temp, temp);
-                        parent.bitmap_original.SetPixel(column, row, c);
+                        // parent.bitmap_original.SetPixel(column, row, c);
 
                         column++;
 
@@ -337,8 +337,6 @@ namespace GameboyCameraClient
                 // Draw the current bitmap
                 try
                 {
-                    pointer = 0;
-                    parent.Invalidate();
                     // parent.graph_live_parent.DrawImage(parent.bitmap_live_parent, 10, 10);
                     if (parent.view != null)
                         parent.view.graph_live_child.DrawImage(parent.view.bitmap_live_child, 0, 0);
