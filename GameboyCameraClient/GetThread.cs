@@ -24,8 +24,7 @@ namespace GameboyCameraClient
         byte[] outBuffer = new byte[33];
         int receivedlength = 0;
         Boolean is_saving = false;
-        const int scaling_factor_childview = 4; // 128x128 -> 512x512
-
+        
         public Boolean something_has_changed()
         {
             return parent.haschanged_gain || parent.haschanged_vh || parent.haschanged_n || parent.haschanged_c1 ||
@@ -199,7 +198,8 @@ namespace GameboyCameraClient
                     }
                     catch (TimeoutException e)
                     {
-                        logOutput("Timeout sending config");
+                        logOutput("Timeout sending config ");
+                        Console.WriteLine(e.ToString());
                         continue;
                     }
                 }
@@ -210,6 +210,7 @@ namespace GameboyCameraClient
                 catch(TimeoutException e)
                 {
                     logOutput("Timeout");
+                    Console.WriteLine(e.ToString());
                     continue;
                 }
 
@@ -236,8 +237,12 @@ namespace GameboyCameraClient
                     else if (inBuffer[i] == Helper.BYTE_PHOTO_END) // Check if the last byte arrived:
                     {
                         logOutput("Found the ending");
+                        if (is_saving) // Save it
+                            parent.saveBitmap();
                         is_receiving_photo = false;
                         parent.Invalidate();
+                        if (parent.view != null)
+                            parent.view.Invalidate();
                         continue;
                     }
 
@@ -256,17 +261,6 @@ namespace GameboyCameraClient
 
                             temp *= 85; // because of 2 bit 0-3 -> 0-255
 
-                            Color c = Color.FromArgb(temp, temp, temp);
-                            if (parent.view != null)
-                            {
-                                for (int r = 0; r < scaling_factor_childview; r++)
-                                    for (int s = 0; s < scaling_factor_childview; s++)
-                                        parent.view.bitmap_live_child.SetPixel(column * scaling_factor_childview + s, row * scaling_factor_childview + r, c);
-                            }
-
-                            // Store the original image too:
-                            //parent.bitmap_original.SetPixel(column, row, c); // TODO:anpassen
-
                             // New bitmap print:
                             parent.data[row * 128 + column] = temp;
                                                         
@@ -280,9 +274,6 @@ namespace GameboyCameraClient
 
                             if (row == 128)
                             {
-                                // Save it
-                                if (is_saving)
-                                    parent.saveBitmap();
                                 is_receiving_photo = false;
                                 continue;
                             }
@@ -333,15 +324,6 @@ namespace GameboyCameraClient
                         }
                     }
                 }
-
-                // Draw the current bitmap
-                try
-                {
-                    // parent.graph_live_parent.DrawImage(parent.bitmap_live_parent, 10, 10);
-                    if (parent.view != null)
-                        parent.view.graph_live_child.DrawImage(parent.view.bitmap_live_child, 0, 0);
-                }
-                catch (Exception ec) { Console.WriteLine("Already finished: " + ec.ToString()); }
             }
 
             try
@@ -359,7 +341,7 @@ namespace GameboyCameraClient
             }
             catch (Exception e)
             {
-
+                Console.Write(e.ToString());
             }
         }
     }
