@@ -21,6 +21,7 @@ namespace GameboyCameraClient
         public Bitmap[] bitmap_save = new Bitmap[3];
         public Graphics[] graph_save = new Graphics[3];
         public int[,] data_save = new int[3, 128 * 128];
+        public String[] label_save = new String[3];
 
         byte tempbyte;
         const int scaling_factor_childview = 4; // 128x128 -> 512x512
@@ -58,7 +59,7 @@ namespace GameboyCameraClient
             Marshal.Copy(rgbValues, 0, ptr, numBytes); // Copy the RGB values back to the bitmap
             bitmap_live_child.UnlockBits(bmpData); // Unlock the bits.
             e.Graphics.DrawImage(bitmap_live_child, 44, 44); // Draw it
-            
+
 
             // ------------------------------------------
             // Draw the last 3 images:
@@ -91,8 +92,13 @@ namespace GameboyCameraClient
                 else if (i == 2)
                     e.Graphics.DrawImage(bitmap_save[i], 852, 390); // Right bottom right
             }
+
+            // Draw the labels:
+            this.label_0.Text = label_save[0];
+            this.label_1.Text = label_save[1];
+            this.label_2.Text = label_save[2];
         }
-        
+                
         public Form_view(Form1 parent)
         {
             InitializeComponent();
@@ -107,7 +113,6 @@ namespace GameboyCameraClient
             graph_live_child = CreateGraphics();
             bitmap_live_child.SetResolution(24,24);
 
-
             bitmap_save[0] = new Bitmap(128, 128);
             bitmap_save[0].SetResolution(48, 48);
             graph_save[0] = CreateGraphics();
@@ -117,6 +122,9 @@ namespace GameboyCameraClient
                 bitmap_save[i] = new Bitmap(128, 128);
                 graph_save[i] = CreateGraphics();
             }
+
+            for (int i = 0; i < 3; i++)
+                label_save[i] = "-";
         }
 
         private void FormView_Clicked(object sender, EventArgs e)

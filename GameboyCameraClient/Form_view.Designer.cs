@@ -41,7 +41,7 @@
             this.label_0.Name = "label_0";
             this.label_0.Size = new System.Drawing.Size(256, 35);
             this.label_0.TabIndex = 0;
-            this.label_0.Text = "label1";
+            this.label_0.Text = "-";
             this.label_0.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label_1
@@ -52,7 +52,7 @@
             this.label_1.Name = "label_1";
             this.label_1.Size = new System.Drawing.Size(128, 35);
             this.label_1.TabIndex = 1;
-            this.label_1.Text = "label2";
+            this.label_1.Text = "-";
             this.label_1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label_2
@@ -63,7 +63,7 @@
             this.label_2.Name = "label_2";
             this.label_2.Size = new System.Drawing.Size(128, 35);
             this.label_2.TabIndex = 2;
-            this.label_2.Text = "label3";
+            this.label_2.Text = "-";
             this.label_2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Form_view

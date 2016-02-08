@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.IO.Ports;
 using System.Runtime.InteropServices;
 using System.Threading;
@@ -65,11 +66,36 @@ namespace GameboyCameraClient
         Thread get_thread;
         public Boolean update_config = false; // Send the settings to the module
 
+        // Saving
+        public String PATH_OF_EXE, PATH_OF_CONFIG;
+        public FileStream file_config;
+
         public Form1()
         {
             InitializeComponent();
             this.FormClosing += Form1_FormClosing;
             this.DoubleBuffered = true;
+
+            // Load Config
+            // PATH_OF_EXE = ;
+            PATH_OF_EXE = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
+            PATH_OF_CONFIG = PATH_OF_EXE + "\\config.txt";
+
+            if (File.Exists(PATH_OF_EXE + "config.txt"))
+            {
+                textBox1.AppendText("Found config.txt in " + PATH_OF_EXE + "\r\n");
+                string[] configlines = System.IO.File.ReadAllLines(System.IO.File.ReadAllText(PATH_OF_CONFIG));
+            }
+            else
+            {
+                PATH_OF_CONFIG = PATH_OF_EXE + "\\config.txt";
+                textBox1.AppendText("Creating " + PATH_OF_CONFIG + "\r\n");
+                file_config = File.Create(PATH_OF_CONFIG);
+                file_config.Close();
+
+                string[] lines = { "First line", "Second line", "Third line" };
+                System.IO.File.WriteAllLines(PATH_OF_CONFIG, lines);
+            }
 
             // Load default values:
             trackBar_c1.Value = set_c1;
@@ -84,8 +110,6 @@ namespace GameboyCameraClient
             trackBar_edge_Scroll(null, null);
             trackBar_gain.Value = set_gain;
             trackBar_gain_Scroll(null, null);
-
-            textBox1.AppendText("Initialized\r\n");
 
             bt_refresh_Click(null, null); // Get the comports
 
@@ -126,7 +150,7 @@ namespace GameboyCameraClient
             // Create image:
             bitmap_live_parent = new Bitmap(128, 128, PixelFormat.Format24bppRgb);
             graph_live_parent = CreateGraphics();
-            
+
             log = textBox1;
             bt_start = button_start;
             bt_stop = button_stop;
@@ -378,16 +402,23 @@ namespace GameboyCameraClient
 
         public void saveBitmap()
         {
+
+            // Get the destination folder and filename:
+
+
             if (view != null)
             {
                 // First shift the images to the right:
                 for (int image = 2; image > 0; image--)
                 {
-                    for (int s = 0; s < data.Length; s++)
+                    view.label_save[image] = view.label_save[image - 1]; // Shift the label
+
+                    for (int s = 0; s < data.Length; s++) // and the image
                         view.data_save[image, s] = view.data_save[image - 1, s];
                 }
-                
+
                 // Save the new one
+                view.label_save[0] = "flb";
                 for (int s = 0; s < data.Length; s++)
                     view.data_save[0, s] = data[s];
                 
