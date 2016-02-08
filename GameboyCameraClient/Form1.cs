@@ -381,17 +381,16 @@ namespace GameboyCameraClient
             if (view != null)
             {
                 // First shift the images to the right:
-                for (int i = 3; i > 0; i--)
+                for (int image = 3; image > 0; image--)
                 {
-                    view.bitmap_save[i] = (Bitmap)view.bitmap_save[i - 1];
-                    view.graph_save[i].DrawImage(view.bitmap_save[i], i * 128, 295);
+                    for (int s = 0; s < data.Length; s++)
+                        view.data_save[image, s] = view.data_save[image - 1, s];
                 }
-
-                view.bitmap_save[0] = (Bitmap)bitmap_live_parent.Clone();
-                // view.graph_save[0].DrawImage(view.bitmap_save[0], 0, 512);
-
-                // view.bitmap_last_child = (Bitmap)view.bitmap_live_child.Clone();
-                // view.graph_last_child.DrawImage(view.bitmap_last_child, 512, 0);
+                
+                // Save the new one
+                for (int s = 0; s < data.Length; s++)
+                    view.data_save[0, s] = data[s];
+                
                 if (view != null)
                     view.Invalidate();
             }

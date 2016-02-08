@@ -65,20 +65,17 @@ namespace GameboyCameraClient
             // ------------------------------------------
             rect = new Rectangle(0, 0, bitmap_save[0].Width, bitmap_save[0].Height);
             numBytes = bitmap_save[0].Width * bitmap_save[0].Height * 3; // RGB
+            byte[] rgbValues2 = new byte[numBytes];
 
             for (int i = 0; i < 4; i++)
             {
                 // Lock the bitmaps bits:
                 bmpData =
-                bitmap_save[0].LockBits(rect, ImageLockMode.ReadWrite,
+                bitmap_save[i].LockBits(rect, ImageLockMode.ReadWrite,
                              PixelFormat.Format24bppRgb);
                 ptr = bmpData.Scan0; // Get the address of the first line.
 
-                // Declare an array to hold the bytes of the bitmap. (3 Byte per Pixel)
-                
-                byte[] rgbValues2 = new byte[numBytes];
-
-                for (int counter = 0; counter < parent.data.Length; counter++)
+                for (int counter = 0; counter < 128*128; counter++)
                 {
                     tempbyte = Convert.ToByte(data_save[i, counter]);
                     rgbValues2[(counter * 3) + 0] = tempbyte;
@@ -86,8 +83,8 @@ namespace GameboyCameraClient
                     rgbValues2[(counter * 3) + 2] = tempbyte;
                 }
                 Marshal.Copy(rgbValues2, 0, ptr, numBytes); // Copy the RGB values back to the bitmap
-                bitmap_save[0].UnlockBits(bmpData); // Unlock the bits.
-                e.Graphics.DrawImage(bitmap_save[i], 128*i, 300); // Draw it
+                bitmap_save[i].UnlockBits(bmpData); // Unlock the bits.
+                e.Graphics.DrawImage(bitmap_save[i], 150*i, 300); // Draw it
             }
         }
         
@@ -112,11 +109,6 @@ namespace GameboyCameraClient
         private void FormView_FormClosing(object sender, FormClosingEventArgs e)
         {
             parent.view = null;
-        }
-
-        private void Form_view_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
