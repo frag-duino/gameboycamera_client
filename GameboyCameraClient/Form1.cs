@@ -417,7 +417,8 @@ namespace GameboyCameraClient
                 rgbValues[(counter * 3) + 1] = tempbyte;
                 rgbValues[(counter * 3) + 2] = tempbyte;
             }
-            
+
+
             Marshal.Copy(rgbValues, 0, ptr, numBytes); // Copy the RGB values back to the bitmap
             bitmap_live_parent.UnlockBits(bmpData); // Unlock the bits.
 

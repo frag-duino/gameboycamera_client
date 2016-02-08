@@ -238,8 +238,6 @@ namespace GameboyCameraClient
                         logOutput("Found the ending");
                         is_receiving_photo = false;
                         parent.Invalidate();
-                        if (parent.view != null)
-                            parent.view.Invalidate();
                         continue;
                     }
 
@@ -261,10 +259,9 @@ namespace GameboyCameraClient
                             Color c = Color.FromArgb(temp, temp, temp);
                             if (parent.view != null)
                             {
-                                // for (int r = 0; r < scaling_factor_childview; r++)
-                                //     for (int s = 0; s < scaling_factor_childview; s++)
-                                //         parent.view.bitmap_live_child.SetPixel(column * scaling_factor_childview + s, row * scaling_factor_childview + r, c);
-                                parent.view.data_live_child[row * 128 + column] = temp;
+                                for (int r = 0; r < scaling_factor_childview; r++)
+                                    for (int s = 0; s < scaling_factor_childview; s++)
+                                        parent.view.bitmap_live_child.SetPixel(column * scaling_factor_childview + s, row * scaling_factor_childview + r, c);
                             }
 
                             // Store the original image too:
@@ -341,8 +338,8 @@ namespace GameboyCameraClient
                 try
                 {
                     // parent.graph_live_parent.DrawImage(parent.bitmap_live_parent, 10, 10);
-                    // if (parent.view != null)
-                    //    parent.view.graph_live_child.DrawImage(parent.view.bitmap_live_child, 0, 0);
+                    if (parent.view != null)
+                        parent.view.graph_live_child.DrawImage(parent.view.bitmap_live_child, 0, 0);
                 }
                 catch (Exception ec) { Console.WriteLine("Already finished: " + ec.ToString()); }
             }
