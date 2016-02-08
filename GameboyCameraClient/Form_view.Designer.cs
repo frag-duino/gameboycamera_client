@@ -28,7 +28,43 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.label_0 = new System.Windows.Forms.Label();
+            this.label_1 = new System.Windows.Forms.Label();
+            this.label_2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
+            // 
+            // label_0
+            // 
+            this.label_0.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_0.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.label_0.Location = new System.Drawing.Point(682, 310);
+            this.label_0.Name = "label_0";
+            this.label_0.Size = new System.Drawing.Size(256, 35);
+            this.label_0.TabIndex = 0;
+            this.label_0.Text = "label1";
+            this.label_0.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label_1
+            // 
+            this.label_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_1.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.label_1.Location = new System.Drawing.Point(640, 528);
+            this.label_1.Name = "label_1";
+            this.label_1.Size = new System.Drawing.Size(128, 35);
+            this.label_1.TabIndex = 1;
+            this.label_1.Text = "label2";
+            this.label_1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label_2
+            // 
+            this.label_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_2.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.label_2.Location = new System.Drawing.Point(852, 528);
+            this.label_2.Name = "label_2";
+            this.label_2.Size = new System.Drawing.Size(128, 35);
+            this.label_2.TabIndex = 2;
+            this.label_2.Text = "label3";
+            this.label_2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Form_view
             // 
@@ -37,7 +73,11 @@
             this.BackColor = System.Drawing.SystemColors.MenuText;
             this.ClientSize = new System.Drawing.Size(1008, 601);
             this.ControlBox = false;
+            this.Controls.Add(this.label_2);
+            this.Controls.Add(this.label_1);
+            this.Controls.Add(this.label_0);
             this.Name = "Form_view";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = " ";
             this.TopMost = true;
             this.ResumeLayout(false);
@@ -45,5 +85,9 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.Label label_0;
+        private System.Windows.Forms.Label label_1;
+        private System.Windows.Forms.Label label_2;
     }
 }
