@@ -76,6 +76,13 @@
             this.button_clear = new System.Windows.Forms.Button();
             this.button_sendsettings = new System.Windows.Forms.Button();
             this.button_newview = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.textBox_folder = new System.Windows.Forms.TextBox();
+            this.textBox_number = new System.Windows.Forms.TextBox();
+            this.label_folder = new System.Windows.Forms.Label();
+            this.label_number = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_c0)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_c1)).BeginInit();
@@ -91,7 +98,7 @@
             // 
             // button_start
             // 
-            this.button_start.Location = new System.Drawing.Point(12, 153);
+            this.button_start.Location = new System.Drawing.Point(13, 153);
             this.button_start.Name = "button_start";
             this.button_start.Size = new System.Drawing.Size(128, 25);
             this.button_start.TabIndex = 1;
@@ -557,7 +564,7 @@
             // button_stop
             // 
             this.button_stop.Enabled = false;
-            this.button_stop.Location = new System.Drawing.Point(12, 181);
+            this.button_stop.Location = new System.Drawing.Point(13, 181);
             this.button_stop.Name = "button_stop";
             this.button_stop.Size = new System.Drawing.Size(128, 25);
             this.button_stop.TabIndex = 9;
@@ -567,17 +574,17 @@
             // 
             // button_clear
             // 
-            this.button_clear.Location = new System.Drawing.Point(12, 285);
+            this.button_clear.Location = new System.Drawing.Point(13, 285);
             this.button_clear.Name = "button_clear";
             this.button_clear.Size = new System.Drawing.Size(128, 23);
             this.button_clear.TabIndex = 10;
-            this.button_clear.Text = "Clear";
+            this.button_clear.Text = "Clear log";
             this.button_clear.UseVisualStyleBackColor = true;
             this.button_clear.Click += new System.EventHandler(this.button_clear_Click);
             // 
             // button_sendsettings
             // 
-            this.button_sendsettings.Location = new System.Drawing.Point(12, 209);
+            this.button_sendsettings.Location = new System.Drawing.Point(13, 209);
             this.button_sendsettings.Name = "button_sendsettings";
             this.button_sendsettings.Size = new System.Drawing.Size(128, 25);
             this.button_sendsettings.TabIndex = 11;
@@ -587,7 +594,7 @@
             // 
             // button_newview
             // 
-            this.button_newview.Location = new System.Drawing.Point(12, 238);
+            this.button_newview.Location = new System.Drawing.Point(13, 240);
             this.button_newview.Name = "button_newview";
             this.button_newview.Size = new System.Drawing.Size(128, 25);
             this.button_newview.TabIndex = 12;
@@ -595,11 +602,79 @@
             this.button_newview.UseVisualStyleBackColor = true;
             this.button_newview.Click += new System.EventHandler(this.button_newview_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(13, 314);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(128, 25);
+            this.button1.TabIndex = 13;
+            this.button1.Text = "Save config";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(13, 345);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(128, 25);
+            this.button2.TabIndex = 14;
+            this.button2.Text = "Reset config";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(250, 412);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(128, 25);
+            this.button3.TabIndex = 15;
+            this.button3.Text = "Reset config";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // textBox_folder
+            // 
+            this.textBox_folder.Location = new System.Drawing.Point(77, 376);
+            this.textBox_folder.Name = "textBox_folder";
+            this.textBox_folder.Size = new System.Drawing.Size(64, 20);
+            this.textBox_folder.TabIndex = 16;
+            this.textBox_folder.TextChanged += new System.EventHandler(this.textBox_folder_TextChanged);
+            // 
+            // textBox_number
+            // 
+            this.textBox_number.Location = new System.Drawing.Point(77, 402);
+            this.textBox_number.Name = "textBox_number";
+            this.textBox_number.Size = new System.Drawing.Size(64, 20);
+            this.textBox_number.TabIndex = 17;
+            this.textBox_number.TextChanged += new System.EventHandler(this.textBox_number_TextChanged);
+            // 
+            // label_folder
+            // 
+            this.label_folder.AutoSize = true;
+            this.label_folder.Location = new System.Drawing.Point(12, 379);
+            this.label_folder.Name = "label_folder";
+            this.label_folder.Size = new System.Drawing.Size(39, 13);
+            this.label_folder.TabIndex = 18;
+            this.label_folder.Text = "Folder:";
+            // 
+            // label_number
+            // 
+            this.label_number.AutoSize = true;
+            this.label_number.Location = new System.Drawing.Point(12, 405);
+            this.label_number.Name = "label_number";
+            this.label_number.Size = new System.Drawing.Size(47, 13);
+            this.label_number.TabIndex = 19;
+            this.label_number.Text = "Number:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(803, 395);
+            this.ClientSize = new System.Drawing.Size(803, 461);
+            this.Controls.Add(this.label_number);
+            this.Controls.Add(this.label_folder);
+            this.Controls.Add(this.textBox_number);
+            this.Controls.Add(this.textBox_folder);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.button_newview);
             this.Controls.Add(this.button_sendsettings);
             this.Controls.Add(this.button_clear);
@@ -683,6 +758,13 @@
         private System.Windows.Forms.CheckBox checkBox_testmode;
         private System.Windows.Forms.Button bt_refresh;
         private System.Windows.Forms.Button button_newview;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TextBox textBox_folder;
+        private System.Windows.Forms.TextBox textBox_number;
+        private System.Windows.Forms.Label label_folder;
+        private System.Windows.Forms.Label label_number;
     }
 }
 

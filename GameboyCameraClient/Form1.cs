@@ -49,7 +49,7 @@ namespace GameboyCameraClient
         public int set_mode = Helper.MODE_REGULAR;
 
         // Serial settings
-        public String comport = "COM3";
+        public String comport = "";
         public int baud = 115200;
 
         // UI:
@@ -58,6 +58,7 @@ namespace GameboyCameraClient
         public Graphics graph_live_parent;
         public TextBox log;
         public Button bt_start, bt_stop;
+        public TextBox tb_folder, tb_number;
         public int[] data = new int[128 * 128];
         byte tempbyte;
 
@@ -67,35 +68,19 @@ namespace GameboyCameraClient
         public Boolean update_config = false; // Send the settings to the module
 
         // Saving
-        public String PATH_OF_EXE, PATH_OF_CONFIG;
-        public FileStream file_config;
+        Configuration config;
+        public String PATH_OF_IMAGES;
+        public int currentFolder = 0;
+        public int currentImage = 0;
+        public String filename;
 
         public Form1()
         {
             InitializeComponent();
             this.FormClosing += Form1_FormClosing;
             this.DoubleBuffered = true;
-
-            // Load Config
-            // PATH_OF_EXE = ;
-            PATH_OF_EXE = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
-            PATH_OF_CONFIG = PATH_OF_EXE + "\\config.txt";
-
-            if (File.Exists(PATH_OF_EXE + "config.txt"))
-            {
-                textBox1.AppendText("Found config.txt in " + PATH_OF_EXE + "\r\n");
-                string[] configlines = System.IO.File.ReadAllLines(System.IO.File.ReadAllText(PATH_OF_CONFIG));
-            }
-            else
-            {
-                PATH_OF_CONFIG = PATH_OF_EXE + "\\config.txt";
-                textBox1.AppendText("Creating " + PATH_OF_CONFIG + "\r\n");
-                file_config = File.Create(PATH_OF_CONFIG);
-                file_config.Close();
-
-                string[] lines = { "First line", "Second line", "Third line" };
-                System.IO.File.WriteAllLines(PATH_OF_CONFIG, lines);
-            }
+            log = textBox1;
+            config = new Configuration(this);
 
             // Load default values:
             trackBar_c1.Value = set_c1;
@@ -147,19 +132,23 @@ namespace GameboyCameraClient
             checkBox_n_CheckedChanged(null, null);
             checkBox_testmode_CheckedChanged(null, null);
 
+            textBox_folder.Text = currentFolder + "";
+            textBox_number.Text = currentImage + "";
+
             // Create image:
             bitmap_live_parent = new Bitmap(128, 128, PixelFormat.Format24bppRgb);
             graph_live_parent = CreateGraphics();
-
-            log = textBox1;
             bt_start = button_start;
             bt_stop = button_stop;
+            tb_folder = textBox_folder;
+            tb_number = textBox_number;
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (get != null)
                 get.stopThread();
+            config.save_config();
         }
 
         private void bt_start_Click(object sender, EventArgs e)
@@ -169,6 +158,8 @@ namespace GameboyCameraClient
             get_thread.Start();
             bt_start.Enabled = false;
             bt_stop.Enabled = true;
+            textBox_folder.Enabled = false;
+            textBox_number.Enabled = false;
         }
 
         private void trackBar_c1_Scroll(object sender, EventArgs e)
@@ -400,33 +391,34 @@ namespace GameboyCameraClient
             haschanged_mode = value;
         }
 
-        public void saveBitmap()
+        private void textBox_folder_TextChanged(object sender, EventArgs e)
         {
-
-            // Get the destination folder and filename:
-
-
-            if (view != null)
-            {
-                // First shift the images to the right:
-                for (int image = 2; image > 0; image--)
+            if (get == null || !get.isRunning())
+                try
                 {
-                    view.label_save[image] = view.label_save[image - 1]; // Shift the label
-
-                    for (int s = 0; s < data.Length; s++) // and the image
-                        view.data_save[image, s] = view.data_save[image - 1, s];
+                    this.currentFolder = Int32.Parse(textBox_folder.Text);
+                    log.AppendText("Changed current folder to: " + textBox_folder.Text);
                 }
+                catch (Exception ex)
+                {
+                    log.AppendText("Error parsing " + textBox_folder.Text);
+                    Console.WriteLine(ex.ToString());
+                }
+        }
 
-                // Save the new one
-                view.label_save[0] = "flb";
-                for (int s = 0; s < data.Length; s++)
-                    view.data_save[0, s] = data[s];
-                
-                if (view != null)
-                    view.Invalidate();
-            }
-
-            bitmap_live_parent.Save("i:\\test.png", ImageFormat.Png);
+        private void textBox_number_TextChanged(object sender, EventArgs e)
+        {
+            if (get == null || !get.isRunning())
+                try
+                {
+                    this.currentImage = Int32.Parse(textBox_number.Text);
+                    log.AppendText("Changed current image to: " + textBox_number.Text);
+                }
+                catch (Exception ex)
+                {
+                    log.AppendText("Error parsing " + textBox_number.Text);
+                    Console.WriteLine(ex.ToString());
+                }
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -455,6 +447,9 @@ namespace GameboyCameraClient
             bitmap_live_parent.UnlockBits(bmpData); // Unlock the bits.
 
             e.Graphics.DrawImage(bitmap_live_parent, 10, 10); // Draw it
+
+            textBox_folder.Text = currentFolder + "";
+            textBox_number.Text = currentImage + "";
         }
     }
 }

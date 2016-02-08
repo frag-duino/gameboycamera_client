@@ -24,12 +24,12 @@ namespace GameboyCameraClient
         byte[] outBuffer = new byte[33];
         int receivedlength = 0;
         Boolean is_saving = false;
-        
+
         public Boolean something_has_changed()
         {
             return parent.haschanged_gain || parent.haschanged_vh || parent.haschanged_n || parent.haschanged_c1 ||
             parent.haschanged_c0 || parent.haschanged_p || parent.haschanged_m || parent.haschanged_x || parent.haschanged_vref ||
-            parent.haschanged_i || parent.haschanged_edge || parent.haschanged_offset || parent.haschanged_z || 
+            parent.haschanged_i || parent.haschanged_edge || parent.haschanged_offset || parent.haschanged_z ||
             parent.haschanged_colordepth || parent.haschanged_resolution || parent.haschanged_mode;
         }
 
@@ -61,6 +61,13 @@ namespace GameboyCameraClient
 
         public void getPhoto()
         {
+            if (parent.comport.Equals(""))
+            {
+                logOutput("No COM-Port selected");
+                reenableButtons();
+                return;
+            }
+
             // Initialize Serial communication:
             mySerialport = new SerialPort(parent.comport, parent.baud);
             mySerialport.Parity = Parity.None;
@@ -68,7 +75,16 @@ namespace GameboyCameraClient
 
             inBuffer = new byte[mySerialport.ReadBufferSize];
             mySerialport.ReadTimeout = 5000; // Set the timeout
-            mySerialport.Open();
+            try
+            {
+                mySerialport.Open();
+            }
+            catch (IOException e)
+            {
+                logOutput("IO-Error. COM-Port in use?");
+                Console.WriteLine(e.ToString());
+                running = false;
+            }
 
             while (running)
             {
@@ -178,7 +194,7 @@ namespace GameboyCameraClient
                     }
 
                     outBuffer[temp] = (byte)'\n'; // Dec: 10
-                    
+
                     // Remove /n (Decimal 10) from the stream :( stupid, but works
                     for (int i = 0; i < temp; i++)
                         if (outBuffer[i] == 10)
@@ -204,21 +220,29 @@ namespace GameboyCameraClient
                     }
                 }
 
-                try {
+                try
+                {
                     receivedlength = mySerialport.Read(inBuffer, 0, inBuffer.Length); // Receive bytes
                 }
-                catch(TimeoutException e)
+                catch (TimeoutException e)
                 {
                     logOutput("Timeout");
                     Console.WriteLine(e.ToString());
                     continue;
+                }
+                catch (IOException e)
+                {
+                    logOutput("No COM-Port selected");
+                    Console.WriteLine(e.ToString());
+                    reenableButtons();
+                    return;
                 }
 
                 for (int i = 0; i < receivedlength; i++)
                 {
                     if (inBuffer[i] == Helper.BYTE_PHOTO_BEGIN_SHOW)  // Check if the begin-byte arrived:
                     {
-                        logOutput("Found the beginning SHOWING");
+                        // logOutput("Found the beginning SHOWING");
                         is_receiving_photo = true;
                         is_saving = false;
                         row = 0;
@@ -227,7 +251,7 @@ namespace GameboyCameraClient
                     }
                     else if (inBuffer[i] == Helper.BYTE_PHOTO_BEGIN_SAVE)  // Check if the begin-byte arrived:
                     {
-                        logOutput("Found the beginning SAVING");
+                        // logOutput("Found the beginning SAVING");
                         is_receiving_photo = true;
                         is_saving = true;
                         row = 0;
@@ -236,9 +260,9 @@ namespace GameboyCameraClient
                     }
                     else if (inBuffer[i] == Helper.BYTE_PHOTO_END) // Check if the last byte arrived:
                     {
-                        logOutput("Found the ending");
+                        // logOutput("Found the ending");
                         if (is_saving) // Save it
-                            parent.saveBitmap();
+                            saveBitmap();
                         is_receiving_photo = false;
                         parent.Invalidate();
                         if (parent.view != null)
@@ -263,13 +287,13 @@ namespace GameboyCameraClient
 
                             // New bitmap print:
                             parent.data[row * 128 + column] = temp;
-                                                        
+
                             column++;
-                            
+
                             if (column == 128)
                             {
                                 column = 0;
-                                row ++;
+                                row++;
                             }
 
                             if (row == 128)
@@ -284,7 +308,7 @@ namespace GameboyCameraClient
                         temp = inBuffer[i];
                         Color c = Color.FromArgb(temp, temp, temp);
 
-                       // parent.bitmap_original.SetPixel(column, row, c);
+                        // parent.bitmap_original.SetPixel(column, row, c);
 
                         column++;
 
@@ -330,18 +354,87 @@ namespace GameboyCameraClient
             {
                 mySerialport.Close();
                 logOutput("Serial Port closed\r\n");
-
-                // Reenable the button
-                parent.log.Invoke((MethodInvoker)delegate ()
-                {
-                    parent.bt_start.Enabled = true;
-                    parent.bt_stop.Enabled = false;
-                });
+                reenableButtons();
                 logOutput("Thread Finished");
             }
             catch (Exception e)
             {
                 Console.Write(e.ToString());
+            }
+        }
+
+        public void reenableButtons()
+        {
+            // Reenable the button
+            parent.log.Invoke((MethodInvoker)delegate ()
+            {
+                parent.bt_start.Enabled = true;
+                parent.bt_stop.Enabled = false;
+                parent.tb_folder.Enabled = true;
+                parent.tb_number.Enabled = true;
+            });
+        }
+
+        public Boolean isRunning()
+        {
+            return running;
+        }
+        public void saveBitmap()
+        {
+            if (parent.view != null)
+            {
+                // First shift the images to the right:
+                for (int image = 2; image > 0; image--)
+                {
+                    parent.view.label_save[image] = parent.view.label_save[image - 1]; // Shift the label
+
+                    for (int s = 0; s < parent.data.Length; s++) // and the image
+                        parent.view.data_save[image, s] = parent.view.data_save[image - 1, s];
+                }
+
+                // Save the new one
+                parent.view.label_save[0] = parent.currentFolder + "-" + parent.currentImage;
+                for (int s = 0; s < parent.data.Length; s++)
+                    parent.view.data_save[0, s] = parent.data[s];
+
+                if (parent.view != null)
+                    parent.view.Invalidate();
+            }
+
+            // Check the folders
+            if (!System.IO.Directory.Exists(parent.PATH_OF_IMAGES))
+            {
+                try
+                {
+                    System.IO.Directory.CreateDirectory(parent.PATH_OF_IMAGES);
+                    logOutput("Path for images does not exist, creating it: " + parent.PATH_OF_IMAGES);
+                }
+                catch (IOException e)
+                {
+                    logOutput("ERROR: PATH FOR IMAGES DOES NOT EXIST: " + parent.PATH_OF_IMAGES);
+                    Console.WriteLine(e.ToString());
+                }
+            }
+
+            if (!System.IO.Directory.Exists(parent.PATH_OF_IMAGES + "\\" + parent.currentFolder))
+            {
+                logOutput("Image-Path for " + parent.currentFolder + " does not exist, creating it: ");
+                System.IO.Directory.CreateDirectory(parent.PATH_OF_IMAGES + "\\" + parent.currentFolder);
+            }
+
+            if (System.IO.File.Exists(parent.PATH_OF_IMAGES + "\\" + parent.currentFolder + "\\" + parent.filename))
+                logOutput("WARNING: Overwriting old photos!!!");
+
+            parent.filename = "gb_" + parent.currentFolder + "_" + parent.currentImage + ".png";
+            parent.bitmap_live_parent.Save(parent.PATH_OF_IMAGES + "\\" + parent.currentFolder + "\\" + parent.filename, ImageFormat.Png);
+
+            // Increment the counter:
+            parent.currentImage++;
+            if (parent.currentImage == 10)
+            {
+                parent.currentFolder++;
+                parent.currentImage = 0;
+                logOutput("Next folder: " + parent.currentFolder);
             }
         }
     }
