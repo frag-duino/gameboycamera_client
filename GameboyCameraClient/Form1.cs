@@ -381,7 +381,7 @@ namespace GameboyCameraClient
             if (view != null)
             {
                 // First shift the images to the right:
-                for (int image = 3; image > 0; image--)
+                for (int image = 2; image > 0; image--)
                 {
                     for (int s = 0; s < data.Length; s++)
                         view.data_save[image, s] = view.data_save[image - 1, s];
