@@ -24,13 +24,12 @@ namespace GameboyCameraClient
         public String[] label_save = new String[3];
 
         byte tempbyte;
-        const int scaling_factor_childview = 4; // 128x128 -> 512x512
-
+        
         protected override void OnPaint(PaintEventArgs e)
         {
 
             // ------------------------------------------
-            // Draw the live image:
+            // Draw the live image (512*512):
             // ------------------------------------------
 
             // Lock the bitmaps bits:
@@ -44,31 +43,57 @@ namespace GameboyCameraClient
             int numBytes = bitmap_live_child.Width * bitmap_live_child.Height * 3; // RGB
             byte[] rgbValues = new byte[numBytes];
 
+            // Scale the image by factor 4!
+            for (int row = 0; row < 128; row++) // 128 rows
+                for (int scaler_row = 0; scaler_row < 4; scaler_row++) // 4 times
+                    for (int column = 0; column < 128; column++) // 128 pixels in a row
+                    {
+                        tempbyte = Convert.ToByte(parent.data[(row * 128) + column]);
+                        for (int scaler_column = 0; scaler_column < 12; scaler_column++) // 12 Times (4columm * 3RGB)
+                            rgbValues[((row * 4 + scaler_row) * 512 * 3) + (column * 12) + scaler_column] = tempbyte;
+                    }
 
-            //for (int r = 0; r < scaling_factor_childview; r++)
-            //for (int s = 0; s < scaling_factor_childview; s++)
-            //parent.view.bitmap_live_child.SetPixel(column * scaling_factor_childview + s, row * scaling_factor_childview + r, c);
 
-            for (int counter = 0; counter < parent.data.Length; counter++)
-            {
-                tempbyte = Convert.ToByte(parent.data[counter]);
-                rgbValues[(counter * 3) + 0] = tempbyte;
-                rgbValues[(counter * 3) + 1] = tempbyte;
-                rgbValues[(counter * 3) + 2] = tempbyte;
-            }
             Marshal.Copy(rgbValues, 0, ptr, numBytes); // Copy the RGB values back to the bitmap
             bitmap_live_child.UnlockBits(bmpData); // Unlock the bits.
             e.Graphics.DrawImage(bitmap_live_child, 44, 44); // Draw it
 
 
             // ------------------------------------------
-            // Draw the last 3 images:
+            // Draw the first save image (256*256):
             // ------------------------------------------
             rect = new Rectangle(0, 0, bitmap_save[0].Width, bitmap_save[0].Height);
             numBytes = bitmap_save[0].Width * bitmap_save[0].Height * 3; // RGB
-            byte[] rgbValues2 = new byte[numBytes];
+            rgbValues = new byte[numBytes];
 
-            for (int i = 0; i < 3; i++)
+            // Lock the bitmaps bits:
+            bmpData =
+            bitmap_save[0].LockBits(rect, ImageLockMode.ReadWrite,
+                         PixelFormat.Format24bppRgb);
+            ptr = bmpData.Scan0; // Get the address of the first line.
+
+            // Scale the image by factor 2!
+            for (int row = 0; row < 128; row++) // 128 rows
+                for (int scaler_row = 0; scaler_row < 2; scaler_row++) // 4 times
+                    for (int column = 0; column < 128; column++) // 128 pixels in a row
+                    {
+                        tempbyte = Convert.ToByte(data_save[0, (row * 128) + column]);
+                        for (int scaler_column = 0; scaler_column < 6; scaler_column++) // 12 Times (2columm * 3RGB)
+                            rgbValues[((row * 2 + scaler_row) * 256 * 3) + (column * 6) + scaler_column] = tempbyte;
+                    }
+            Marshal.Copy(rgbValues, 0, ptr, numBytes); // Copy the RGB values back to the bitmap
+            bitmap_save[0].UnlockBits(bmpData); // Unlock the bits.
+            e.Graphics.DrawImage(bitmap_save[0], 682, 44); // Right top    
+
+
+            // ------------------------------------------
+            // Draw the last 2 saved images (128*128):
+            // ------------------------------------------
+            rect = new Rectangle(0, 0, bitmap_save[1].Width, bitmap_save[1].Height);
+            numBytes = bitmap_save[1].Width * bitmap_save[1].Height * 3; // RGB
+            rgbValues = new byte[numBytes];
+
+            for (int i = 1; i <= 2; i++) // 1+2
             {
                 // Lock the bitmaps bits:
                 bmpData =
@@ -76,18 +101,17 @@ namespace GameboyCameraClient
                              PixelFormat.Format24bppRgb);
                 ptr = bmpData.Scan0; // Get the address of the first line.
 
-                for (int counter = 0; counter < 128 * 128; counter++)
-                {
-                    tempbyte = Convert.ToByte(data_save[i, counter]);
-                    rgbValues2[(counter * 3) + 0] = tempbyte;
-                    rgbValues2[(counter * 3) + 1] = tempbyte;
-                    rgbValues2[(counter * 3) + 2] = tempbyte;
-                }
-                Marshal.Copy(rgbValues2, 0, ptr, numBytes); // Copy the RGB values back to the bitmap
+                // Scale the image by factor 1
+                for (int row = 0; row < 128; row++) // 128 rows
+                        for (int column = 0; column < 128; column++) // 128 pixels in a row
+                        {
+                            tempbyte = Convert.ToByte(data_save[i, (row * 128) + column]);
+                            for (int scaler_column = 0; scaler_column < 3; scaler_column++) // 12 Times (2columm * 3RGB)
+                                rgbValues[(row * 128 * 3) + (column * 3) + scaler_column] = tempbyte;
+                        }
+                Marshal.Copy(rgbValues, 0, ptr, numBytes); // Copy the RGB values back to the bitmap
                 bitmap_save[i].UnlockBits(bmpData); // Unlock the bits.
-                if (i == 0) // Big one
-                    e.Graphics.DrawImage(bitmap_save[i], 682, 44); // Right top
-                else if (i == 1)
+                if (i == 1)
                     e.Graphics.DrawImage(bitmap_save[i], 640, 390); // Right bottom left
                 else if (i == 2)
                     e.Graphics.DrawImage(bitmap_save[i], 852, 390); // Right bottom right
@@ -98,7 +122,7 @@ namespace GameboyCameraClient
             this.label_1.Text = label_save[1];
             this.label_2.Text = label_save[2];
         }
-                
+
         public Form_view(Form1 parent)
         {
             InitializeComponent();
@@ -109,19 +133,14 @@ namespace GameboyCameraClient
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 
             // Create image:
-            bitmap_live_child = new Bitmap(128, 128);
+            bitmap_live_child = new Bitmap(512, 512);
             graph_live_child = CreateGraphics();
-            bitmap_live_child.SetResolution(24,24);
-
-            bitmap_save[0] = new Bitmap(128, 128);
-            bitmap_save[0].SetResolution(48, 48);
+            bitmap_save[0] = new Bitmap(256, 256);
             graph_save[0] = CreateGraphics();
-
-            for (int i = 1; i < bitmap_save.Length; i++)
-            {
-                bitmap_save[i] = new Bitmap(128, 128);
-                graph_save[i] = CreateGraphics();
-            }
+            bitmap_save[1] = new Bitmap(128, 128);
+            graph_save[1] = CreateGraphics();
+            bitmap_save[2] = new Bitmap(128, 128);
+            graph_save[2] = CreateGraphics();
 
             for (int i = 0; i < 3; i++)
                 label_save[i] = "-";
