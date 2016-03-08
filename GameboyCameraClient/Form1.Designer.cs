@@ -76,7 +76,7 @@
             this.button_clear = new System.Windows.Forms.Button();
             this.button_sendsettings = new System.Windows.Forms.Button();
             this.button_newview = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.bt_save = new System.Windows.Forms.Button();
             this.bt_reset = new System.Windows.Forms.Button();
             this.textBox_folder = new System.Windows.Forms.TextBox();
             this.textBox_number = new System.Windows.Forms.TextBox();
@@ -602,15 +602,15 @@
             this.button_newview.UseVisualStyleBackColor = true;
             this.button_newview.Click += new System.EventHandler(this.button_newview_Click);
             // 
-            // button1
+            // bt_save
             // 
-            this.button1.Location = new System.Drawing.Point(13, 314);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(128, 25);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "Save config";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.bt_save.Location = new System.Drawing.Point(13, 314);
+            this.bt_save.Name = "bt_save";
+            this.bt_save.Size = new System.Drawing.Size(128, 25);
+            this.bt_save.TabIndex = 13;
+            this.bt_save.Text = "Save config";
+            this.bt_save.UseVisualStyleBackColor = true;
+            this.bt_save.Click += new System.EventHandler(this.bt_save_Click);
             // 
             // bt_reset
             // 
@@ -676,7 +676,7 @@
             this.Controls.Add(this.textBox_number);
             this.Controls.Add(this.textBox_folder);
             this.Controls.Add(this.bt_reset);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.bt_save);
             this.Controls.Add(this.button_newview);
             this.Controls.Add(this.button_sendsettings);
             this.Controls.Add(this.button_clear);
@@ -760,7 +760,7 @@
         private System.Windows.Forms.CheckBox checkBox_testmode;
         private System.Windows.Forms.Button bt_refresh;
         private System.Windows.Forms.Button button_newview;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button bt_save;
         private System.Windows.Forms.Button bt_reset;
         private System.Windows.Forms.TextBox textBox_folder;
         private System.Windows.Forms.TextBox textBox_number;

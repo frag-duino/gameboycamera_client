@@ -450,7 +450,7 @@ namespace GameboyCameraClient
             loadValues();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void bt_save_Click(object sender, EventArgs e)
         {
             config.save_config();
         }
