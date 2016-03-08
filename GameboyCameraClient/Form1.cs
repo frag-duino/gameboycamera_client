@@ -11,20 +11,34 @@ namespace GameboyCameraClient
 {
     public partial class Form1 : Form
     {
+        static int default_gain = 0;
+        static int default_vh = 3;
+        static int default_n = 0;
+        static int default_c1 = 8;
+        static int default_c0 = 0;
+        static int default_p = 1;
+        static int default_m = 0;
+        static int default_x = 1;
+        static int default_vref = 3;
+        static int default_i = 0;
+        static int default_edge = 0;
+        static byte default_offset = 0;
+        static int default_z = 2;
+
         // Variables
-        public int set_gain = 0;
-        public int set_vh = 3;
-        public int set_n = 0;
-        public int set_c1 = 8;
-        public int set_c0 = 0;
-        public int set_p = 1;
-        public int set_m = 0;
-        public int set_x = 1;
-        public int set_vref = 3;
-        public int set_i = 0;
-        public int set_edge = 0;
-        public byte set_offset = 0;
-        public int set_z = 2;
+        public int set_gain = default_gain;
+        public int set_vh = default_vh;
+        public int set_n = default_n;
+        public int set_c1 = default_c1;
+        public int set_c0 = default_c0;
+        public int set_p = default_p;
+        public int set_m = default_m;
+        public int set_x = default_x;
+        public int set_vref = default_vref;
+        public int set_i = default_i;
+        public int set_edge = default_edge;
+        public byte set_offset = default_offset;
+        public int set_z = default_z;
 
         public Boolean haschanged_gain = true;
         public Boolean haschanged_vh = true;
@@ -44,9 +58,12 @@ namespace GameboyCameraClient
         public Boolean haschanged_mode = true;
 
         // Image variables
-        public int set_colordepth = Helper.COLORDEPTH_2BIT;
-        public int set_resolution = Helper.RESOLUTION_128PX;
-        public int set_mode = Helper.MODE_REGULAR;
+        static int default_colordepth = Helper.COLORDEPTH_2BIT;
+        static int default_resolution = Helper.RESOLUTION_128PX;
+        static int default_mode = Helper.MODE_REGULAR;
+        public int set_colordepth = default_colordepth;
+        public int set_resolution = default_resolution;
+        public int set_mode = default_mode;
 
         // Serial settings
         public String comport = "";
@@ -81,7 +98,30 @@ namespace GameboyCameraClient
             this.DoubleBuffered = true;
             log = textBox1;
             config = new Configuration(this);
+            loadValues();
+            
+            bt_refresh_Click(null, null); // Get the comports
 
+            comboBox_baud.Items.Add(9600);
+            comboBox_baud.Items.Add(115200);
+            comboBox_baud.Items.Add(250000);
+            comboBox_baud.SelectedIndex = 1; // 115200
+            comboBox_baud_SelectedIndexChanged(null, null);
+
+            textBox_folder.Text = currentFolder + "";
+            textBox_number.Text = currentImage + "";
+
+            // Create image:
+            bitmap_live_parent = new Bitmap(128, 128, PixelFormat.Format24bppRgb);
+            graph_live_parent = CreateGraphics();
+            bt_start = button_start;
+            bt_stop = button_stop;
+            tb_folder = textBox_folder;
+            tb_number = textBox_number;
+        }
+
+        private void loadValues()
+        {
             // Load default values:
             trackBar_c1.Value = set_c1;
             trackBar_c1_Scroll(null, null);
@@ -95,15 +135,6 @@ namespace GameboyCameraClient
             trackBar_edge_Scroll(null, null);
             trackBar_gain.Value = set_gain;
             trackBar_gain_Scroll(null, null);
-
-            bt_refresh_Click(null, null); // Get the comports
-
-            comboBox_baud.Items.Add(9600);
-            comboBox_baud.Items.Add(115200);
-            comboBox_baud.Items.Add(250000);
-            comboBox_baud.SelectedIndex = 1; // 115200
-            comboBox_baud_SelectedIndexChanged(null, null);
-
             comboBox_calibration.Items.Add(Helper.VALUERANGE_CALIBRATION[0]); // No calibration
             comboBox_calibration.Items.Add(Helper.VALUERANGE_CALIBRATION[1]); // Positive
             comboBox_calibration.Items.Add(Helper.VALUERANGE_CALIBRATION[2]); // Negative
@@ -132,23 +163,12 @@ namespace GameboyCameraClient
             checkBox_n_CheckedChanged(null, null);
             checkBox_testmode_CheckedChanged(null, null);
 
-            textBox_folder.Text = currentFolder + "";
-            textBox_number.Text = currentImage + "";
-
-            // Create image:
-            bitmap_live_parent = new Bitmap(128, 128, PixelFormat.Format24bppRgb);
-            graph_live_parent = CreateGraphics();
-            bt_start = button_start;
-            bt_stop = button_stop;
-            tb_folder = textBox_folder;
-            tb_number = textBox_number;
         }
-
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (get != null)
                 get.stopThread();
-            config.save_config();
+            // config.save_config();
         }
 
         private void bt_start_Click(object sender, EventArgs e)
@@ -404,6 +424,35 @@ namespace GameboyCameraClient
                     log.AppendText("Error parsing " + textBox_folder.Text);
                     Console.WriteLine(ex.ToString());
                 }
+        }
+
+        private void bt_reset_Click_1(object sender, EventArgs e)
+        {
+            // Variables
+            set_gain = default_gain;
+            set_vh = default_vh;
+            set_n = default_n;
+            set_c1 = default_c1;
+            set_c0 = default_c0;
+            set_p = default_p;
+            set_m = default_m;
+            set_x = default_x;
+            set_vref = default_vref;
+            set_i = default_i;
+            set_edge = default_edge;
+            set_offset = default_offset;
+            set_z = default_z;
+
+            // Image variables
+            set_colordepth = default_colordepth;
+            set_resolution = default_resolution;
+            set_mode = default_mode;
+            loadValues();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            config.save_config();
         }
 
         private void textBox_number_TextChanged(object sender, EventArgs e)

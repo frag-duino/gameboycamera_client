@@ -77,12 +77,12 @@
             this.button_sendsettings = new System.Windows.Forms.Button();
             this.button_newview = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.bt_reset = new System.Windows.Forms.Button();
             this.textBox_folder = new System.Windows.Forms.TextBox();
             this.textBox_number = new System.Windows.Forms.TextBox();
             this.label_folder = new System.Windows.Forms.Label();
             this.label_number = new System.Windows.Forms.Label();
+            this.bt_imagepath = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_c0)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_c1)).BeginInit();
@@ -240,7 +240,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(650, 106);
+            this.textBox1.Size = new System.Drawing.Size(650, 168);
             this.textBox1.TabIndex = 3;
             // 
             // comboBox_comport
@@ -610,28 +610,21 @@
             this.button1.TabIndex = 13;
             this.button1.Text = "Save config";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
+            // bt_reset
             // 
-            this.button2.Location = new System.Drawing.Point(13, 345);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(128, 25);
-            this.button2.TabIndex = 14;
-            this.button2.Text = "Reset config";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(250, 412);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(128, 25);
-            this.button3.TabIndex = 15;
-            this.button3.Text = "Reset config";
-            this.button3.UseVisualStyleBackColor = true;
+            this.bt_reset.Location = new System.Drawing.Point(13, 345);
+            this.bt_reset.Name = "bt_reset";
+            this.bt_reset.Size = new System.Drawing.Size(128, 25);
+            this.bt_reset.TabIndex = 14;
+            this.bt_reset.Text = "Reset config";
+            this.bt_reset.UseVisualStyleBackColor = true;
+            this.bt_reset.Click += new System.EventHandler(this.bt_reset_Click_1);
             // 
             // textBox_folder
             // 
-            this.textBox_folder.Location = new System.Drawing.Point(77, 376);
+            this.textBox_folder.Location = new System.Drawing.Point(77, 407);
             this.textBox_folder.Name = "textBox_folder";
             this.textBox_folder.Size = new System.Drawing.Size(64, 20);
             this.textBox_folder.TabIndex = 16;
@@ -639,7 +632,7 @@
             // 
             // textBox_number
             // 
-            this.textBox_number.Location = new System.Drawing.Point(77, 402);
+            this.textBox_number.Location = new System.Drawing.Point(77, 433);
             this.textBox_number.Name = "textBox_number";
             this.textBox_number.Size = new System.Drawing.Size(64, 20);
             this.textBox_number.TabIndex = 17;
@@ -648,7 +641,7 @@
             // label_folder
             // 
             this.label_folder.AutoSize = true;
-            this.label_folder.Location = new System.Drawing.Point(12, 379);
+            this.label_folder.Location = new System.Drawing.Point(12, 410);
             this.label_folder.Name = "label_folder";
             this.label_folder.Size = new System.Drawing.Size(39, 13);
             this.label_folder.TabIndex = 18;
@@ -657,23 +650,32 @@
             // label_number
             // 
             this.label_number.AutoSize = true;
-            this.label_number.Location = new System.Drawing.Point(12, 405);
+            this.label_number.Location = new System.Drawing.Point(12, 436);
             this.label_number.Name = "label_number";
             this.label_number.Size = new System.Drawing.Size(47, 13);
             this.label_number.TabIndex = 19;
             this.label_number.Text = "Number:";
+            // 
+            // bt_imagepath
+            // 
+            this.bt_imagepath.Location = new System.Drawing.Point(13, 376);
+            this.bt_imagepath.Name = "bt_imagepath";
+            this.bt_imagepath.Size = new System.Drawing.Size(128, 25);
+            this.bt_imagepath.TabIndex = 20;
+            this.bt_imagepath.Text = "Set Imagepath";
+            this.bt_imagepath.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(803, 461);
+            this.Controls.Add(this.bt_imagepath);
             this.Controls.Add(this.label_number);
             this.Controls.Add(this.label_folder);
             this.Controls.Add(this.textBox_number);
             this.Controls.Add(this.textBox_folder);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.bt_reset);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.button_newview);
             this.Controls.Add(this.button_sendsettings);
@@ -759,12 +761,12 @@
         private System.Windows.Forms.Button bt_refresh;
         private System.Windows.Forms.Button button_newview;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button bt_reset;
         private System.Windows.Forms.TextBox textBox_folder;
         private System.Windows.Forms.TextBox textBox_number;
         private System.Windows.Forms.Label label_folder;
         private System.Windows.Forms.Label label_number;
+        private System.Windows.Forms.Button bt_imagepath;
     }
 }
 
