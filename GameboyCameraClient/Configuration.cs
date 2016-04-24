@@ -136,6 +136,16 @@ namespace GameboyCameraClient
                                 }
                                 reader.Read();
                             }
+                            else if (reader.Name == "Mirrored")
+                            {
+                                while (reader.NodeType != XmlNodeType.EndElement)
+                                {
+                                    reader.Read();
+                                    if (reader.NodeType == XmlNodeType.Text)
+                                        parent.set_mirrored = Int32.Parse(reader.Value);
+                                }
+                                reader.Read();
+                            }
                             else if (reader.Name == "EDGE")
                             {
                                 while (reader.NodeType != XmlNodeType.EndElement)
@@ -271,6 +281,7 @@ namespace GameboyCameraClient
                 writer.WriteElementString("X", parent.set_x + "");
                 writer.WriteElementString("Vref", parent.set_vref + "");
                 writer.WriteElementString("I", parent.set_i + "");
+                writer.WriteElementString("Mirrored", parent.set_mirrored + "");
                 writer.WriteElementString("EDGE", parent.set_edge + "");
                 writer.WriteElementString("OFFSET", parent.set_offset + "");
                 writer.WriteElementString("Z", parent.set_z + "");

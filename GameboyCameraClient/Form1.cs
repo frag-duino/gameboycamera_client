@@ -24,6 +24,7 @@ namespace GameboyCameraClient
         static int default_edge = 0;
         static byte default_offset = 0;
         static int default_z = 2;
+        static int default_mirrored = 1;
 
         // Variables
         public int set_gain = default_gain;
@@ -50,6 +51,7 @@ namespace GameboyCameraClient
         public Boolean haschanged_x = true;
         public Boolean haschanged_vref = true;
         public Boolean haschanged_i = true;
+        public int set_mirrored = default_mirrored;
         public Boolean haschanged_edge = true;
         public Boolean haschanged_offset = true;
         public Boolean haschanged_z = true;
@@ -64,7 +66,7 @@ namespace GameboyCameraClient
         public int set_colordepth = default_colordepth;
         public int set_resolution = default_resolution;
         public int set_mode = default_mode;
-
+        
         // Serial settings
         public String comport = "";
         public int baud = 115200;
@@ -160,6 +162,7 @@ namespace GameboyCameraClient
             comboBox_resolution_SelectedIndexChanged(null, null);
 
             checkBox_inverted_CheckedChanged(null, null);
+            chk_mirrored_CheckedChanged(null, null);
             checkBox_n_CheckedChanged(null, null);
             checkBox_testmode_CheckedChanged(null, null);
 
@@ -453,6 +456,14 @@ namespace GameboyCameraClient
         private void bt_save_Click(object sender, EventArgs e)
         {
             config.save_config();
+        }
+
+        private void chk_mirrored_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chk_mirrored.Checked)
+                this.set_mirrored = 1;
+            else
+                this.set_mirrored = 0;
         }
 
         private void textBox_number_TextChanged(object sender, EventArgs e)

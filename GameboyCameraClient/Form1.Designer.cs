@@ -83,6 +83,7 @@
             this.label_folder = new System.Windows.Forms.Label();
             this.label_number = new System.Windows.Forms.Label();
             this.bt_imagepath = new System.Windows.Forms.Button();
+            this.chk_mirrored = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_c0)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_c1)).BeginInit();
@@ -484,6 +485,7 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.chk_mirrored);
             this.groupBox5.Controls.Add(this.label_gain_value);
             this.groupBox5.Controls.Add(this.label_calibration_value);
             this.groupBox5.Controls.Add(this.label_gain);
@@ -665,6 +667,19 @@
             this.bt_imagepath.Text = "Set Imagepath";
             this.bt_imagepath.UseVisualStyleBackColor = true;
             // 
+            // chk_mirrored
+            // 
+            this.chk_mirrored.AutoSize = true;
+            this.chk_mirrored.Checked = true;
+            this.chk_mirrored.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chk_mirrored.Location = new System.Drawing.Point(103, 135);
+            this.chk_mirrored.Name = "chk_mirrored";
+            this.chk_mirrored.Size = new System.Drawing.Size(64, 17);
+            this.chk_mirrored.TabIndex = 18;
+            this.chk_mirrored.Text = "Mirrored";
+            this.chk_mirrored.UseVisualStyleBackColor = true;
+            this.chk_mirrored.CheckedChanged += new System.EventHandler(this.chk_mirrored_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -767,6 +782,7 @@
         private System.Windows.Forms.Label label_folder;
         private System.Windows.Forms.Label label_number;
         private System.Windows.Forms.Button bt_imagepath;
+        private System.Windows.Forms.CheckBox chk_mirrored;
     }
 }
 

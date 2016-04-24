@@ -261,6 +261,20 @@ namespace GameboyCameraClient
                     else if (inBuffer[i] == Helper.BYTE_PHOTO_END) // Check if the last byte arrived:
                     {
                         // logOutput("Found the ending");
+
+                        // Mirror image vertically
+                        if (parent.set_mirrored == 1)
+                            for (int row = 0; row < 128; row++)
+                            {
+                                for (int column = 0; column < 128/2; column++)
+                                {
+                                    temp = parent.data[row * 128 + column];
+                                    parent.data[row * 128 + column] = parent.data[row * 128 + 127 - column];
+                                    parent.data[row * 128 + 127 - column] = temp;
+                                }
+                            }
+                        
+
                         if (is_saving) // Save it
                             saveBitmap();
                         is_receiving_photo = false;
