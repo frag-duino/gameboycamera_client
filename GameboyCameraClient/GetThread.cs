@@ -252,7 +252,7 @@ namespace GameboyCameraClient
 
                         // Mirror image vertically
                         if (parent.set_mirrored == 1)
-                            for (int row = 0; row < 128; row++)
+                            for (int row = 0; row < 112; row++)
                             {
                                 for (int column = 0; column < 128 / 2; column++)
                                 {

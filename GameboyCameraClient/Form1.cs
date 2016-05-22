@@ -74,7 +74,7 @@ namespace GameboyCameraClient
         public TextBox log;
         public Button bt_start, bt_stop;
         public TextBox tb_folder, tb_number;
-        public int[] data = new int[128 * 128];
+        public int[] data = new int[128 * 112];
         byte tempbyte;
 
         // Threads
@@ -110,7 +110,7 @@ namespace GameboyCameraClient
             textBox_number.Text = currentImage + "";
 
             // Create image:
-            bitmap_live_parent = new Bitmap(128, 128, PixelFormat.Format24bppRgb);
+            bitmap_live_parent = new Bitmap(128, 112, PixelFormat.Format24bppRgb);
             graph_live_parent = CreateGraphics();
             bt_start = button_start;
             bt_stop = button_stop;

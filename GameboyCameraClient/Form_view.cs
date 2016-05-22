@@ -20,7 +20,7 @@ namespace GameboyCameraClient
         public Graphics graph_live_child;
         public Bitmap[] bitmap_save = new Bitmap[3];
         public Graphics[] graph_save = new Graphics[3];
-        public int[,] data_save = new int[3, 128 * 128];
+        public int[,] data_save = new int[3, 128 * 112];
         public String[] label_save = new String[3];
 
         byte tempbyte;
@@ -29,7 +29,7 @@ namespace GameboyCameraClient
         {
 
             // ------------------------------------------
-            // Draw the live image (512*512):
+            // Draw the live image (512*448):
             // ------------------------------------------
 
             // Lock the bitmaps bits:
@@ -44,7 +44,7 @@ namespace GameboyCameraClient
             byte[] rgbValues = new byte[numBytes];
 
             // Scale the image by factor 4!
-            for (int row = 0; row < 128; row++) // 128 rows
+            for (int row = 0; row < 112; row++) // 112 rows
                 for (int scaler_row = 0; scaler_row < 4; scaler_row++) // 4 times
                     for (int column = 0; column < 128; column++) // 128 pixels in a row
                     {
@@ -60,7 +60,7 @@ namespace GameboyCameraClient
 
 
             // ------------------------------------------
-            // Draw the first save image (256*256):
+            // Draw the first save image (256*224):
             // ------------------------------------------
             rect = new Rectangle(0, 0, bitmap_save[0].Width, bitmap_save[0].Height);
             numBytes = bitmap_save[0].Width * bitmap_save[0].Height * 3; // RGB
@@ -73,7 +73,7 @@ namespace GameboyCameraClient
             ptr = bmpData.Scan0; // Get the address of the first line.
 
             // Scale the image by factor 2!
-            for (int row = 0; row < 128; row++) // 128 rows
+            for (int row = 0; row < 112; row++) // 112 rows
                 for (int scaler_row = 0; scaler_row < 2; scaler_row++) // 4 times
                     for (int column = 0; column < 128; column++) // 128 pixels in a row
                     {
@@ -87,7 +87,7 @@ namespace GameboyCameraClient
 
 
             // ------------------------------------------
-            // Draw the last 2 saved images (128*128):
+            // Draw the last 2 saved images (128*112):
             // ------------------------------------------
             rect = new Rectangle(0, 0, bitmap_save[1].Width, bitmap_save[1].Height);
             numBytes = bitmap_save[1].Width * bitmap_save[1].Height * 3; // RGB
@@ -102,7 +102,7 @@ namespace GameboyCameraClient
                 ptr = bmpData.Scan0; // Get the address of the first line.
 
                 // Scale the image by factor 1
-                for (int row = 0; row < 128; row++) // 128 rows
+                for (int row = 0; row < 112; row++) // 112 rows
                         for (int column = 0; column < 128; column++) // 128 pixels in a row
                         {
                             tempbyte = Convert.ToByte(data_save[i, (row * 128) + column]);
@@ -133,13 +133,13 @@ namespace GameboyCameraClient
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 
             // Create image:
-            bitmap_live_child = new Bitmap(512, 512);
+            bitmap_live_child = new Bitmap(512, 448);
             graph_live_child = CreateGraphics();
-            bitmap_save[0] = new Bitmap(256, 256);
+            bitmap_save[0] = new Bitmap(256, 224);
             graph_save[0] = CreateGraphics();
-            bitmap_save[1] = new Bitmap(128, 128);
+            bitmap_save[1] = new Bitmap(128, 112);
             graph_save[1] = CreateGraphics();
-            bitmap_save[2] = new Bitmap(128, 128);
+            bitmap_save[2] = new Bitmap(128, 112);
             graph_save[2] = CreateGraphics();
 
             for (int i = 0; i < 3; i++)
