@@ -155,5 +155,10 @@ namespace GameboyCameraClient
         {
             parent.view = null;
         }
+
+        private void Form_view_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

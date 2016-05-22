@@ -62,7 +62,7 @@ namespace GameboyCameraClient
         // Image variables
         static int default_mode = Helper.MODE_REGULAR;
         public int set_mode = default_mode;
-        
+
         // Serial settings
         public String comport = "";
         public int baud = 115200;
@@ -94,10 +94,11 @@ namespace GameboyCameraClient
             InitializeComponent();
             this.FormClosing += Form1_FormClosing;
             this.DoubleBuffered = true;
+            this.Click += Form_Clicked;
             log = textBox1;
             config = new Configuration(this);
             loadValues();
-            
+
             bt_refresh_Click(null, null); // Get the comports
 
             comboBox_baud.Items.Add(9600);
@@ -110,7 +111,7 @@ namespace GameboyCameraClient
             textBox_number.Text = currentImage + "";
 
             // Create image:
-            bitmap_live_parent = new Bitmap(128, 112, PixelFormat.Format24bppRgb);
+            bitmap_live_parent = new Bitmap(256, 224, PixelFormat.Format24bppRgb);
             graph_live_parent = CreateGraphics();
             bt_start = button_start;
             bt_stop = button_stop;
@@ -313,7 +314,7 @@ namespace GameboyCameraClient
             get.stopThread();
             hasChangedALL(true);
         }
-        
+
         private void button_clear_Click(object sender, EventArgs e)
         {
             log.Clear();
@@ -523,22 +524,39 @@ namespace GameboyCameraClient
             int numBytes = bitmap_live_parent.Width * bitmap_live_parent.Height * 3; // RGB
             byte[] rgbValues = new byte[numBytes];
 
-            for (int counter = 0; counter < data.Length; counter++)
-            {
-                tempbyte = Convert.ToByte(data[counter]);
-                rgbValues[(counter * 3) + 0] = tempbyte;
-                rgbValues[(counter * 3) + 1] = tempbyte;
-                rgbValues[(counter * 3) + 2] = tempbyte;
-            }
-
-
+            // Scale the image by factor 2!
+            for (int row = 0; row < 112; row++) // 112 rows
+                for (int scaler_row = 0; scaler_row < 2; scaler_row++) // 4 times
+                    for (int column = 0; column < 128; column++) // 128 pixels in a row
+                    {
+                        tempbyte = Convert.ToByte(data[(row * 128) + column]);
+                        for (int scaler_column = 0; scaler_column < 6; scaler_column++) // 12 Times (2columm * 3RGB)
+                            rgbValues[((row * 2 + scaler_row) * 256 * 3) + (column * 6) + scaler_column] = tempbyte;
+                    }
             Marshal.Copy(rgbValues, 0, ptr, numBytes); // Copy the RGB values back to the bitmap
-            bitmap_live_parent.UnlockBits(bmpData); // Unlock the bits.
 
-            e.Graphics.DrawImage(bitmap_live_parent, 10, 10); // Draw it
+            bitmap_live_parent.UnlockBits(bmpData); // Unlock the bits.
+            e.Graphics.DrawImage(bitmap_live_parent, 10, 10); // Left top
+
+            // for (int counter = 0; counter < data.Length; counter++)
+            //{
+            //   tempbyte = Convert.ToByte(data[counter]);
+            //   rgbValues[(counter * 3) + 0] = tempbyte;
+            //  rgbValues[(counter * 3) + 1] = tempbyte;
+            //  rgbValues[(counter * 3) + 2] = tempbyte;
+            // }
+
+            //Marshal.Copy(rgbValues, 0, ptr, numBytes); // Copy the RGB values back to the bitmap
+            // bitmap_live_parent.UnlockBits(bmpData); // Unlock the bits.
+
+            // e.Graphics.DrawImage(bitmap_live_parent, 10, 10); // Draw it
 
             textBox_folder.Text = currentFolder + "";
             textBox_number.Text = currentImage + "";
+        }
+        private void Form_Clicked(object sender, EventArgs e)
+        {
+            button_newview_Click(null, null);
         }
     }
 }
