@@ -30,6 +30,10 @@
         {
             this.button_start = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.bt_c0minus = new System.Windows.Forms.Button();
+            this.bt_c0plus = new System.Windows.Forms.Button();
+            this.bt_c1minus = new System.Windows.Forms.Button();
+            this.bt_c1plus = new System.Windows.Forms.Button();
             this.label_c0_value = new System.Windows.Forms.Label();
             this.label_c1_value = new System.Windows.Forms.Label();
             this.label_c1 = new System.Windows.Forms.Label();
@@ -47,9 +51,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.bt_refresh = new System.Windows.Forms.Button();
             this.checkBox_testmode = new System.Windows.Forms.CheckBox();
-            this.label_resolution = new System.Windows.Forms.Label();
             this.comboBox_baud = new System.Windows.Forms.ComboBox();
-            this.comboBox_resolution = new System.Windows.Forms.ComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label_edge_enhancement_mode = new System.Windows.Forms.Label();
             this.comboBox_edge_enhancement_mode = new System.Windows.Forms.ComboBox();
@@ -66,6 +68,7 @@
             this.checkBox_p = new System.Windows.Forms.CheckBox();
             this.checkBox_inverted = new System.Windows.Forms.CheckBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.chk_mirrored = new System.Windows.Forms.CheckBox();
             this.label_vref_value = new System.Windows.Forms.Label();
             this.trackBar_vref = new System.Windows.Forms.TrackBar();
             this.label_vref = new System.Windows.Forms.Label();
@@ -83,7 +86,13 @@
             this.label_folder = new System.Windows.Forms.Label();
             this.label_number = new System.Windows.Forms.Label();
             this.bt_imagepath = new System.Windows.Forms.Button();
-            this.chk_mirrored = new System.Windows.Forms.CheckBox();
+            this.bt_gainplus = new System.Windows.Forms.Button();
+            this.bt_gainminus = new System.Windows.Forms.Button();
+            this.bt_offsetminus = new System.Windows.Forms.Button();
+            this.bt_offsetplus = new System.Windows.Forms.Button();
+            this.bt_vrefminus = new System.Windows.Forms.Button();
+            this.bt_vrefplus = new System.Windows.Forms.Button();
+            this.label_baud = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_c0)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_c1)).BeginInit();
@@ -99,7 +108,7 @@
             // 
             // button_start
             // 
-            this.button_start.Location = new System.Drawing.Point(13, 153);
+            this.button_start.Location = new System.Drawing.Point(269, 114);
             this.button_start.Name = "button_start";
             this.button_start.Size = new System.Drawing.Size(128, 25);
             this.button_start.TabIndex = 1;
@@ -109,18 +118,62 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.bt_c0minus);
+            this.groupBox1.Controls.Add(this.bt_c0plus);
+            this.groupBox1.Controls.Add(this.bt_c1minus);
+            this.groupBox1.Controls.Add(this.bt_c1plus);
             this.groupBox1.Controls.Add(this.label_c0_value);
             this.groupBox1.Controls.Add(this.label_c1_value);
             this.groupBox1.Controls.Add(this.label_c1);
             this.groupBox1.Controls.Add(this.trackBar_c0);
             this.groupBox1.Controls.Add(this.label_c0);
             this.groupBox1.Controls.Add(this.trackBar_c1);
-            this.groupBox1.Location = new System.Drawing.Point(147, 143);
+            this.groupBox1.Location = new System.Drawing.Point(147, 337);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(250, 136);
+            this.groupBox1.Size = new System.Drawing.Size(250, 116);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Light";
+            // 
+            // bt_c0minus
+            // 
+            this.bt_c0minus.Location = new System.Drawing.Point(10, 80);
+            this.bt_c0minus.Name = "bt_c0minus";
+            this.bt_c0minus.Size = new System.Drawing.Size(20, 27);
+            this.bt_c0minus.TabIndex = 24;
+            this.bt_c0minus.Text = "-";
+            this.bt_c0minus.UseVisualStyleBackColor = true;
+            this.bt_c0minus.Click += new System.EventHandler(this.bt_c0minus_Click);
+            // 
+            // bt_c0plus
+            // 
+            this.bt_c0plus.Location = new System.Drawing.Point(221, 80);
+            this.bt_c0plus.Name = "bt_c0plus";
+            this.bt_c0plus.Size = new System.Drawing.Size(20, 27);
+            this.bt_c0plus.TabIndex = 23;
+            this.bt_c0plus.Text = "+";
+            this.bt_c0plus.UseVisualStyleBackColor = true;
+            this.bt_c0plus.Click += new System.EventHandler(this.bt_c0plus_Click);
+            // 
+            // bt_c1minus
+            // 
+            this.bt_c1minus.Location = new System.Drawing.Point(10, 32);
+            this.bt_c1minus.Name = "bt_c1minus";
+            this.bt_c1minus.Size = new System.Drawing.Size(20, 27);
+            this.bt_c1minus.TabIndex = 22;
+            this.bt_c1minus.Text = "-";
+            this.bt_c1minus.UseVisualStyleBackColor = true;
+            this.bt_c1minus.Click += new System.EventHandler(this.bt_c1minus_Click);
+            // 
+            // bt_c1plus
+            // 
+            this.bt_c1plus.Location = new System.Drawing.Point(221, 32);
+            this.bt_c1plus.Name = "bt_c1plus";
+            this.bt_c1plus.Size = new System.Drawing.Size(20, 27);
+            this.bt_c1plus.TabIndex = 21;
+            this.bt_c1plus.Text = "+";
+            this.bt_c1plus.UseVisualStyleBackColor = true;
+            this.bt_c1plus.Click += new System.EventHandler(this.bt_c1plus_Click);
             // 
             // label_c0_value
             // 
@@ -152,10 +205,10 @@
             // trackBar_c0
             // 
             this.trackBar_c0.LargeChange = 1;
-            this.trackBar_c0.Location = new System.Drawing.Point(10, 80);
+            this.trackBar_c0.Location = new System.Drawing.Point(29, 80);
             this.trackBar_c0.Maximum = 255;
             this.trackBar_c0.Name = "trackBar_c0";
-            this.trackBar_c0.Size = new System.Drawing.Size(231, 45);
+            this.trackBar_c0.Size = new System.Drawing.Size(194, 45);
             this.trackBar_c0.TabIndex = 2;
             this.trackBar_c0.Scroll += new System.EventHandler(this.trackBar_c0_Scroll);
             // 
@@ -171,10 +224,10 @@
             // trackBar_c1
             // 
             this.trackBar_c1.LargeChange = 1;
-            this.trackBar_c1.Location = new System.Drawing.Point(12, 32);
+            this.trackBar_c1.Location = new System.Drawing.Point(29, 32);
             this.trackBar_c1.Maximum = 255;
             this.trackBar_c1.Name = "trackBar_c1";
-            this.trackBar_c1.Size = new System.Drawing.Size(231, 45);
+            this.trackBar_c1.Size = new System.Drawing.Size(194, 45);
             this.trackBar_c1.TabIndex = 0;
             this.trackBar_c1.Scroll += new System.EventHandler(this.trackBar_c1_Scroll);
             // 
@@ -199,10 +252,10 @@
             // trackBar_gain
             // 
             this.trackBar_gain.LargeChange = 1;
-            this.trackBar_gain.Location = new System.Drawing.Point(9, 229);
+            this.trackBar_gain.Location = new System.Drawing.Point(32, 229);
             this.trackBar_gain.Maximum = 31;
             this.trackBar_gain.Name = "trackBar_gain";
-            this.trackBar_gain.Size = new System.Drawing.Size(168, 45);
+            this.trackBar_gain.Size = new System.Drawing.Size(119, 45);
             this.trackBar_gain.TabIndex = 6;
             this.trackBar_gain.Scroll += new System.EventHandler(this.trackBar_gain_Scroll);
             // 
@@ -236,12 +289,12 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(147, 285);
+            this.textBox1.Location = new System.Drawing.Point(403, 285);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(650, 168);
+            this.textBox1.Size = new System.Drawing.Size(394, 168);
             this.textBox1.TabIndex = 3;
             // 
             // comboBox_comport
@@ -256,15 +309,14 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label_baud);
             this.groupBox2.Controls.Add(this.bt_refresh);
             this.groupBox2.Controls.Add(this.checkBox_testmode);
-            this.groupBox2.Controls.Add(this.label_resolution);
             this.groupBox2.Controls.Add(this.comboBox_baud);
             this.groupBox2.Controls.Add(this.comboBox_comport);
-            this.groupBox2.Controls.Add(this.comboBox_resolution);
-            this.groupBox2.Location = new System.Drawing.Point(147, 2);
+            this.groupBox2.Location = new System.Drawing.Point(230, 232);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(250, 135);
+            this.groupBox2.Size = new System.Drawing.Size(167, 99);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Serial";
@@ -282,42 +334,23 @@
             // checkBox_testmode
             // 
             this.checkBox_testmode.AutoSize = true;
-            this.checkBox_testmode.Location = new System.Drawing.Point(6, 108);
+            this.checkBox_testmode.Location = new System.Drawing.Point(6, 73);
             this.checkBox_testmode.Name = "checkBox_testmode";
-            this.checkBox_testmode.Size = new System.Drawing.Size(77, 17);
+            this.checkBox_testmode.Size = new System.Drawing.Size(113, 17);
             this.checkBox_testmode.TabIndex = 20;
-            this.checkBox_testmode.Text = "Test-Mode";
+            this.checkBox_testmode.Text = "Enable Test-Mode";
             this.checkBox_testmode.UseVisualStyleBackColor = true;
             this.checkBox_testmode.CheckedChanged += new System.EventHandler(this.checkBox_testmode_CheckedChanged);
-            // 
-            // label_resolution
-            // 
-            this.label_resolution.AutoSize = true;
-            this.label_resolution.Location = new System.Drawing.Point(3, 48);
-            this.label_resolution.Name = "label_resolution";
-            this.label_resolution.Size = new System.Drawing.Size(60, 13);
-            this.label_resolution.TabIndex = 19;
-            this.label_resolution.Text = "Resolution:";
             // 
             // comboBox_baud
             // 
             this.comboBox_baud.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_baud.FormattingEnabled = true;
-            this.comboBox_baud.Location = new System.Drawing.Point(169, 18);
+            this.comboBox_baud.Location = new System.Drawing.Point(86, 45);
             this.comboBox_baud.Name = "comboBox_baud";
             this.comboBox_baud.Size = new System.Drawing.Size(74, 21);
             this.comboBox_baud.TabIndex = 5;
             this.comboBox_baud.SelectedIndexChanged += new System.EventHandler(this.comboBox_baud_SelectedIndexChanged);
-            // 
-            // comboBox_resolution
-            // 
-            this.comboBox_resolution.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_resolution.FormattingEnabled = true;
-            this.comboBox_resolution.Location = new System.Drawing.Point(6, 70);
-            this.comboBox_resolution.Name = "comboBox_resolution";
-            this.comboBox_resolution.Size = new System.Drawing.Size(238, 21);
-            this.comboBox_resolution.TabIndex = 18;
-            this.comboBox_resolution.SelectedIndexChanged += new System.EventHandler(this.comboBox_resolution_SelectedIndexChanged);
             // 
             // groupBox3
             // 
@@ -485,6 +518,12 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.bt_vrefminus);
+            this.groupBox5.Controls.Add(this.bt_vrefplus);
+            this.groupBox5.Controls.Add(this.bt_offsetminus);
+            this.groupBox5.Controls.Add(this.bt_offsetplus);
+            this.groupBox5.Controls.Add(this.bt_gainminus);
+            this.groupBox5.Controls.Add(this.bt_gainplus);
             this.groupBox5.Controls.Add(this.chk_mirrored);
             this.groupBox5.Controls.Add(this.label_gain_value);
             this.groupBox5.Controls.Add(this.label_calibration_value);
@@ -506,6 +545,19 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Image settings";
             // 
+            // chk_mirrored
+            // 
+            this.chk_mirrored.AutoSize = true;
+            this.chk_mirrored.Checked = true;
+            this.chk_mirrored.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chk_mirrored.Location = new System.Drawing.Point(103, 135);
+            this.chk_mirrored.Name = "chk_mirrored";
+            this.chk_mirrored.Size = new System.Drawing.Size(64, 17);
+            this.chk_mirrored.TabIndex = 18;
+            this.chk_mirrored.Text = "Mirrored";
+            this.chk_mirrored.UseVisualStyleBackColor = true;
+            this.chk_mirrored.CheckedChanged += new System.EventHandler(this.chk_mirrored_CheckedChanged);
+            // 
             // label_vref_value
             // 
             this.label_vref_value.AutoSize = true;
@@ -518,10 +570,10 @@
             // trackBar_vref
             // 
             this.trackBar_vref.LargeChange = 1;
-            this.trackBar_vref.Location = new System.Drawing.Point(6, 88);
+            this.trackBar_vref.Location = new System.Drawing.Point(32, 88);
             this.trackBar_vref.Maximum = 7;
             this.trackBar_vref.Name = "trackBar_vref";
-            this.trackBar_vref.Size = new System.Drawing.Size(171, 45);
+            this.trackBar_vref.Size = new System.Drawing.Size(119, 45);
             this.trackBar_vref.TabIndex = 15;
             this.trackBar_vref.Scroll += new System.EventHandler(this.trackBar_vref_Scroll);
             // 
@@ -546,11 +598,11 @@
             // trackBar_offset
             // 
             this.trackBar_offset.LargeChange = 1;
-            this.trackBar_offset.Location = new System.Drawing.Point(6, 37);
+            this.trackBar_offset.Location = new System.Drawing.Point(32, 37);
             this.trackBar_offset.Maximum = 31;
             this.trackBar_offset.Minimum = -31;
             this.trackBar_offset.Name = "trackBar_offset";
-            this.trackBar_offset.Size = new System.Drawing.Size(171, 45);
+            this.trackBar_offset.Size = new System.Drawing.Size(119, 45);
             this.trackBar_offset.TabIndex = 13;
             this.trackBar_offset.Scroll += new System.EventHandler(this.trackBar_offset_Scroll);
             // 
@@ -566,7 +618,7 @@
             // button_stop
             // 
             this.button_stop.Enabled = false;
-            this.button_stop.Location = new System.Drawing.Point(13, 181);
+            this.button_stop.Location = new System.Drawing.Point(269, 142);
             this.button_stop.Name = "button_stop";
             this.button_stop.Size = new System.Drawing.Size(128, 25);
             this.button_stop.TabIndex = 9;
@@ -586,7 +638,7 @@
             // 
             // button_sendsettings
             // 
-            this.button_sendsettings.Location = new System.Drawing.Point(13, 209);
+            this.button_sendsettings.Location = new System.Drawing.Point(269, 170);
             this.button_sendsettings.Name = "button_sendsettings";
             this.button_sendsettings.Size = new System.Drawing.Size(128, 25);
             this.button_sendsettings.TabIndex = 11;
@@ -596,7 +648,7 @@
             // 
             // button_newview
             // 
-            this.button_newview.Location = new System.Drawing.Point(13, 240);
+            this.button_newview.Location = new System.Drawing.Point(269, 201);
             this.button_newview.Name = "button_newview";
             this.button_newview.Size = new System.Drawing.Size(128, 25);
             this.button_newview.TabIndex = 12;
@@ -667,18 +719,74 @@
             this.bt_imagepath.Text = "Set Imagepath";
             this.bt_imagepath.UseVisualStyleBackColor = true;
             // 
-            // chk_mirrored
+            // bt_gainplus
             // 
-            this.chk_mirrored.AutoSize = true;
-            this.chk_mirrored.Checked = true;
-            this.chk_mirrored.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chk_mirrored.Location = new System.Drawing.Point(103, 135);
-            this.chk_mirrored.Name = "chk_mirrored";
-            this.chk_mirrored.Size = new System.Drawing.Size(64, 17);
-            this.chk_mirrored.TabIndex = 18;
-            this.chk_mirrored.Text = "Mirrored";
-            this.chk_mirrored.UseVisualStyleBackColor = true;
-            this.chk_mirrored.CheckedChanged += new System.EventHandler(this.chk_mirrored_CheckedChanged);
+            this.bt_gainplus.Location = new System.Drawing.Point(157, 229);
+            this.bt_gainplus.Name = "bt_gainplus";
+            this.bt_gainplus.Size = new System.Drawing.Size(20, 27);
+            this.bt_gainplus.TabIndex = 25;
+            this.bt_gainplus.Text = "+";
+            this.bt_gainplus.UseVisualStyleBackColor = true;
+            this.bt_gainplus.Click += new System.EventHandler(this.bt_gainplus_Click);
+            // 
+            // bt_gainminus
+            // 
+            this.bt_gainminus.Location = new System.Drawing.Point(6, 229);
+            this.bt_gainminus.Name = "bt_gainminus";
+            this.bt_gainminus.Size = new System.Drawing.Size(20, 27);
+            this.bt_gainminus.TabIndex = 25;
+            this.bt_gainminus.Text = "-";
+            this.bt_gainminus.UseVisualStyleBackColor = true;
+            this.bt_gainminus.Click += new System.EventHandler(this.bt_gainminus_Click);
+            // 
+            // bt_offsetminus
+            // 
+            this.bt_offsetminus.Location = new System.Drawing.Point(6, 37);
+            this.bt_offsetminus.Name = "bt_offsetminus";
+            this.bt_offsetminus.Size = new System.Drawing.Size(20, 27);
+            this.bt_offsetminus.TabIndex = 26;
+            this.bt_offsetminus.Text = "-";
+            this.bt_offsetminus.UseVisualStyleBackColor = true;
+            this.bt_offsetminus.Click += new System.EventHandler(this.bt_offsetminus_Click);
+            // 
+            // bt_offsetplus
+            // 
+            this.bt_offsetplus.Location = new System.Drawing.Point(157, 37);
+            this.bt_offsetplus.Name = "bt_offsetplus";
+            this.bt_offsetplus.Size = new System.Drawing.Size(20, 27);
+            this.bt_offsetplus.TabIndex = 27;
+            this.bt_offsetplus.Text = "+";
+            this.bt_offsetplus.UseVisualStyleBackColor = true;
+            this.bt_offsetplus.Click += new System.EventHandler(this.bt_offsetplus_Click);
+            // 
+            // bt_vrefminus
+            // 
+            this.bt_vrefminus.Location = new System.Drawing.Point(7, 88);
+            this.bt_vrefminus.Name = "bt_vrefminus";
+            this.bt_vrefminus.Size = new System.Drawing.Size(20, 27);
+            this.bt_vrefminus.TabIndex = 28;
+            this.bt_vrefminus.Text = "-";
+            this.bt_vrefminus.UseVisualStyleBackColor = true;
+            this.bt_vrefminus.Click += new System.EventHandler(this.bt_vrefminus_Click);
+            // 
+            // bt_vrefplus
+            // 
+            this.bt_vrefplus.Location = new System.Drawing.Point(158, 88);
+            this.bt_vrefplus.Name = "bt_vrefplus";
+            this.bt_vrefplus.Size = new System.Drawing.Size(20, 27);
+            this.bt_vrefplus.TabIndex = 29;
+            this.bt_vrefplus.Text = "+";
+            this.bt_vrefplus.UseVisualStyleBackColor = true;
+            this.bt_vrefplus.Click += new System.EventHandler(this.bt_vrefplus_Click);
+            // 
+            // label_baud
+            // 
+            this.label_baud.AutoSize = true;
+            this.label_baud.Location = new System.Drawing.Point(19, 48);
+            this.label_baud.Name = "label_baud";
+            this.label_baud.Size = new System.Drawing.Size(61, 13);
+            this.label_baud.TabIndex = 30;
+            this.label_baud.Text = "Baud-Rate:";
             // 
             // Form1
             // 
@@ -768,8 +876,6 @@
         private System.Windows.Forms.Label label_edge_enhancement_mode;
         private System.Windows.Forms.ComboBox comboBox_edge_enhancement_mode;
         private System.Windows.Forms.Button button_stop;
-        private System.Windows.Forms.Label label_resolution;
-        private System.Windows.Forms.ComboBox comboBox_resolution;
         private System.Windows.Forms.Button button_clear;
         private System.Windows.Forms.Button button_sendsettings;
         private System.Windows.Forms.CheckBox checkBox_testmode;
@@ -783,6 +889,17 @@
         private System.Windows.Forms.Label label_number;
         private System.Windows.Forms.Button bt_imagepath;
         private System.Windows.Forms.CheckBox chk_mirrored;
+        private System.Windows.Forms.Button bt_c0minus;
+        private System.Windows.Forms.Button bt_c0plus;
+        private System.Windows.Forms.Button bt_c1minus;
+        private System.Windows.Forms.Button bt_c1plus;
+        private System.Windows.Forms.Button bt_gainminus;
+        private System.Windows.Forms.Button bt_gainplus;
+        private System.Windows.Forms.Button bt_offsetminus;
+        private System.Windows.Forms.Button bt_offsetplus;
+        private System.Windows.Forms.Button bt_vrefminus;
+        private System.Windows.Forms.Button bt_vrefplus;
+        private System.Windows.Forms.Label label_baud;
     }
 }
 

@@ -60,11 +60,7 @@ namespace GameboyCameraClient
         public Boolean haschanged_mode = true;
 
         // Image variables
-        static int default_colordepth = Helper.COLORDEPTH_2BIT;
-        static int default_resolution = Helper.RESOLUTION_128PX;
         static int default_mode = Helper.MODE_REGULAR;
-        public int set_colordepth = default_colordepth;
-        public int set_resolution = default_resolution;
         public int set_mode = default_mode;
         
         // Serial settings
@@ -154,12 +150,6 @@ namespace GameboyCameraClient
             comboBox_edge_enhancement_mode.Items.Add(Helper.VALUERANGE_EDGE_ENHANCEMENT_MODE[1]);
             comboBox_edge_enhancement_mode.SelectedIndex = 0;
             comboBox_edge_enhancement_mode_SelectedIndexChanged(null, null);
-
-            comboBox_resolution.Items.Add(Helper.VALUERANGE_RESOLUTION[0]); // 2Bit, 128x128
-            comboBox_resolution.Items.Add(Helper.VALUERANGE_RESOLUTION[1]); // 8Bit, 32x32
-            comboBox_resolution.Items.Add(Helper.VALUERANGE_RESOLUTION[2]); // 8Bit, 128x128
-            comboBox_resolution.SelectedIndex = 0;
-            comboBox_resolution_SelectedIndexChanged(null, null);
 
             checkBox_inverted_CheckedChanged(null, null);
             chk_mirrored_CheckedChanged(null, null);
@@ -323,27 +313,7 @@ namespace GameboyCameraClient
             get.stopThread();
             hasChangedALL(true);
         }
-
-        private void comboBox_resolution_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (comboBox_resolution.SelectedIndex == 0) // 2Bit, 128x128
-            {
-                set_colordepth = Helper.COLORDEPTH_2BIT;
-                set_resolution = Helper.RESOLUTION_128PX;
-            }
-            else if (comboBox_resolution.SelectedIndex == 1) // 8Bit,  32x32
-            {
-                set_colordepth = Helper.COLORDEPTH_8BIT;
-                set_resolution = Helper.RESOLUTION_32PX;
-            }
-            else if (comboBox_resolution.SelectedIndex == 2) // 8Bit, 128x128
-            {
-                set_colordepth = Helper.COLORDEPTH_8BIT;
-                set_resolution = Helper.RESOLUTION_128PX;
-            }
-            haschanged_resolution = true;
-        }
-
+        
         private void button_clear_Click(object sender, EventArgs e)
         {
             log.Clear();
@@ -447,8 +417,6 @@ namespace GameboyCameraClient
             set_z = default_z;
 
             // Image variables
-            set_colordepth = default_colordepth;
-            set_resolution = default_resolution;
             set_mode = default_mode;
             loadValues();
         }
@@ -456,6 +424,7 @@ namespace GameboyCameraClient
         private void bt_save_Click(object sender, EventArgs e)
         {
             config.save_config();
+            log.AppendText("Saved config");
         }
 
         private void chk_mirrored_CheckedChanged(object sender, EventArgs e)
@@ -464,6 +433,66 @@ namespace GameboyCameraClient
                 this.set_mirrored = 1;
             else
                 this.set_mirrored = 0;
+        }
+
+        private void bt_c1plus_Click(object sender, EventArgs e)
+        {
+            trackBar_c1.Value++;
+            trackBar_c1_Scroll(null, null);
+        }
+
+        private void bt_c1minus_Click(object sender, EventArgs e)
+        {
+            trackBar_c1.Value--;
+            trackBar_c1_Scroll(null, null);
+        }
+
+        private void bt_c0plus_Click(object sender, EventArgs e)
+        {
+            trackBar_c0.Value++;
+            trackBar_c0_Scroll(null, null);
+        }
+
+        private void bt_c0minus_Click(object sender, EventArgs e)
+        {
+            trackBar_c0.Value--;
+            trackBar_c0_Scroll(null, null);
+        }
+
+        private void bt_gainplus_Click(object sender, EventArgs e)
+        {
+            trackBar_gain.Value++;
+            trackBar_gain_Scroll(null, null);
+        }
+
+        private void bt_gainminus_Click(object sender, EventArgs e)
+        {
+            trackBar_gain.Value--;
+            trackBar_gain_Scroll(null, null);
+        }
+
+        private void bt_offsetplus_Click(object sender, EventArgs e)
+        {
+            trackBar_offset.Value++;
+            trackBar_offset_Scroll(null, null);
+        }
+
+        private void bt_offsetminus_Click(object sender, EventArgs e)
+        {
+            trackBar_offset.Value--;
+            trackBar_offset_Scroll(null, null);
+        }
+
+        private void bt_vrefplus_Click(object sender, EventArgs e)
+        {
+            trackBar_vref.Value++;
+            trackBar_vref_Scroll(null, null);
+        }
+
+        private void bt_vrefminus_Click(object sender, EventArgs e)
+        {
+            trackBar_vref.Value--;
+            trackBar_vref_Scroll(null, null);
         }
 
         private void textBox_number_TextChanged(object sender, EventArgs e)

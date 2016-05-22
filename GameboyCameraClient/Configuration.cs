@@ -136,16 +136,6 @@ namespace GameboyCameraClient
                                 }
                                 reader.Read();
                             }
-                            else if (reader.Name == "Mirrored")
-                            {
-                                while (reader.NodeType != XmlNodeType.EndElement)
-                                {
-                                    reader.Read();
-                                    if (reader.NodeType == XmlNodeType.Text)
-                                        parent.set_mirrored = Int32.Parse(reader.Value);
-                                }
-                                reader.Read();
-                            }
                             else if (reader.Name == "EDGE")
                             {
                                 while (reader.NodeType != XmlNodeType.EndElement)
@@ -180,26 +170,6 @@ namespace GameboyCameraClient
                                 }
                                 reader.Read();
                             }
-                            else if (reader.Name == "Colordepth")
-                            {
-                                while (reader.NodeType != XmlNodeType.EndElement)
-                                {
-                                    reader.Read();
-                                    if (reader.NodeType == XmlNodeType.Text)
-                                        parent.set_colordepth = Int32.Parse(reader.Value);
-                                }
-                                reader.Read();
-                            }
-                            else if (reader.Name == "Resolution")
-                            {
-                                while (reader.NodeType != XmlNodeType.EndElement)
-                                {
-                                    reader.Read();
-                                    if (reader.NodeType == XmlNodeType.Text)
-                                        parent.set_resolution = Int32.Parse(reader.Value);
-                                }
-                                reader.Read();
-                            }
                             else if (reader.Name == "Mode")
                             {
                                 while (reader.NodeType != XmlNodeType.EndElement)
@@ -207,6 +177,16 @@ namespace GameboyCameraClient
                                     reader.Read();
                                     if (reader.NodeType == XmlNodeType.Text)
                                         parent.set_mode = Int32.Parse(reader.Value);
+                                }
+                                reader.Read();
+                            }
+                            else if (reader.Name == "Mirrored")
+                            {
+                                while (reader.NodeType != XmlNodeType.EndElement)
+                                {
+                                    reader.Read();
+                                    if (reader.NodeType == XmlNodeType.Text)
+                                        parent.set_mirrored = Int32.Parse(reader.Value);
                                 }
                                 reader.Read();
                             }
@@ -281,14 +261,12 @@ namespace GameboyCameraClient
                 writer.WriteElementString("X", parent.set_x + "");
                 writer.WriteElementString("Vref", parent.set_vref + "");
                 writer.WriteElementString("I", parent.set_i + "");
-                writer.WriteElementString("Mirrored", parent.set_mirrored + "");
                 writer.WriteElementString("EDGE", parent.set_edge + "");
                 writer.WriteElementString("OFFSET", parent.set_offset + "");
                 writer.WriteElementString("Z", parent.set_z + "");
 
-                writer.WriteElementString("Colordepth", parent.set_colordepth + "");
-                writer.WriteElementString("Resolution", parent.set_resolution + "");
                 writer.WriteElementString("Mode", parent.set_mode + "");
+                writer.WriteElementString("Mirrored", parent.set_mirrored + "");
                 writer.WriteElementString("Baud", parent.baud + "");
                 // TODO: Comport?
                 parent.PATH_OF_IMAGES = PATH_OF_EXE + "\\Images";

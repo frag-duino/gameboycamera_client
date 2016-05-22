@@ -174,18 +174,6 @@ namespace GameboyCameraClient
                         outBuffer[temp + 1] = (byte)parent.set_z;
                         temp += 2;
                     }
-                    if (parent.haschanged_resolution)
-                    {
-                        outBuffer[temp] = (byte)Helper.COMMAND_RESOLUTION;
-                        outBuffer[temp + 1] = (byte)parent.set_resolution;
-                        temp += 2;
-                    }
-                    if (parent.haschanged_colordepth)
-                    {
-                        outBuffer[temp] = (byte)Helper.COMMAND_COLORDEPTH;
-                        outBuffer[temp + 1] = (byte)parent.set_colordepth;
-                        temp += 2;
-                    }
                     if (parent.haschanged_mode)
                     {
                         outBuffer[temp] = (byte)Helper.COMMAND_MODE;
@@ -266,14 +254,14 @@ namespace GameboyCameraClient
                         if (parent.set_mirrored == 1)
                             for (int row = 0; row < 128; row++)
                             {
-                                for (int column = 0; column < 128/2; column++)
+                                for (int column = 0; column < 128 / 2; column++)
                                 {
                                     temp = parent.data[row * 128 + column];
                                     parent.data[row * 128 + column] = parent.data[row * 128 + 127 - column];
                                     parent.data[row * 128 + 127 - column] = temp;
                                 }
                             }
-                        
+
 
                         if (is_saving) // Save it
                             saveBitmap();
@@ -284,12 +272,7 @@ namespace GameboyCameraClient
                         continue;
                     }
 
-                    if (!is_receiving_photo)
-                    {
-                        // ignore it
-                    }
-                    else if (parent.set_resolution == Helper.RESOLUTION_128PX && parent.set_colordepth == Helper.COLORDEPTH_2BIT) // 2Bit, 128x128
-                    {
+                    if (is_receiving_photo)
                         for (int pixel = 0; pixel < 4; pixel++)
                         {
                             temp = inBuffer[i];
@@ -316,54 +299,9 @@ namespace GameboyCameraClient
                                 continue;
                             }
                         }
-                    }
-                    else if (parent.set_resolution == Helper.RESOLUTION_32PX && parent.set_colordepth == Helper.COLORDEPTH_8BIT) // 8Bit, 32x32
-                    {
-                        temp = inBuffer[i];
-                        Color c = Color.FromArgb(temp, temp, temp);
-
-                        // parent.bitmap_original.SetPixel(column, row, c);
-
-                        column++;
-
-                        if (column == 32)
-                        {
-                            column = 0;
-                            row++;
-                        }
-
-                        if (row == 32)
-                        {
-                            logOutput("Last byte reached (8Bit, 32x32)");
-                            is_receiving_photo = false;
-                            continue;
-                        }
-                        // TODO: Implement scaling here!
-                    }
-                    else if (parent.set_resolution == Helper.RESOLUTION_128PX && parent.set_colordepth == Helper.COLORDEPTH_8BIT) // 8Bit, 128x128
-                    {
-                        temp = inBuffer[i];
-                        Color c = Color.FromArgb(temp, temp, temp);
-                        // parent.bitmap_original.SetPixel(column, row, c);
-
-                        column++;
-
-                        if (column == 128)
-                        {
-                            column = 0;
-                            row++;
-                        }
-
-                        if (row == 128)
-                        {
-                            logOutput("Last byte reached (8Bit, 128x128)");
-                            is_receiving_photo = false;
-                            continue;
-                        }
-                    }
                 }
             }
-
+            
             try
             {
                 mySerialport.Close();
