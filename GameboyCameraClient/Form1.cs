@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.IO;
 using System.IO.Ports;
 using System.Runtime.InteropServices;
 using System.Threading;
@@ -73,10 +72,10 @@ namespace GameboyCameraClient
         public Graphics graph_live_parent;
         public TextBox log;
         public Button bt_start, bt_stop;
-        public TextBox tb_folder, tb_number;
+        public NumericUpDown nb_folder, nb_image;
         public int[] data = new int[128 * 128];
         byte tempbyte;
-
+        
         // Threads
         GetThread get;
         Thread get_thread;
@@ -85,8 +84,8 @@ namespace GameboyCameraClient
         // Saving
         Configuration config;
         public String PATH_OF_IMAGES;
-        public int currentFolder = 0;
-        public int currentImage = 0;
+        public decimal currentFolder = 0;
+        public decimal currentImage = 0;
         public String filename;
 
         public Form1()
@@ -107,16 +106,16 @@ namespace GameboyCameraClient
             comboBox_baud.SelectedIndex = 1; // 115200
             comboBox_baud_SelectedIndexChanged(null, null);
 
-            textBox_folder.Text = currentFolder + "";
-            textBox_number.Text = currentImage + "";
+            number_folder.Value = currentFolder;
+            number_image.Value = currentImage;
 
             // Create image:
             bitmap_live_parent = new Bitmap(256, 224, PixelFormat.Format24bppRgb);
             graph_live_parent = CreateGraphics();
             bt_start = button_start;
             bt_stop = button_stop;
-            tb_folder = textBox_folder;
-            tb_number = textBox_number;
+            nb_folder = number_folder;
+            nb_image = number_image;
         }
 
         private void loadValues()
@@ -162,7 +161,7 @@ namespace GameboyCameraClient
         {
             if (get != null)
                 get.stopThread();
-            // config.save_config();
+            config.save_config();
         }
 
         private void bt_start_Click(object sender, EventArgs e)
@@ -172,8 +171,8 @@ namespace GameboyCameraClient
             get_thread.Start();
             bt_start.Enabled = false;
             bt_stop.Enabled = true;
-            textBox_folder.Enabled = false;
-            textBox_number.Enabled = false;
+            number_folder.Enabled = false;
+            number_image.Enabled = false;
         }
 
         private void trackBar_c1_Scroll(object sender, EventArgs e)
@@ -384,22 +383,7 @@ namespace GameboyCameraClient
             haschanged_resolution = value;
             haschanged_mode = value;
         }
-
-        private void textBox_folder_TextChanged(object sender, EventArgs e)
-        {
-            if (get == null || !get.isRunning())
-                try
-                {
-                    this.currentFolder = Int32.Parse(textBox_folder.Text);
-                    log.AppendText("Changed current folder to: " + textBox_folder.Text);
-                }
-                catch (Exception ex)
-                {
-                    log.AppendText("Error parsing " + textBox_folder.Text);
-                    Console.WriteLine(ex.ToString());
-                }
-        }
-
+        
         private void bt_reset_Click_1(object sender, EventArgs e)
         {
             // Variables
@@ -496,19 +480,32 @@ namespace GameboyCameraClient
             trackBar_vref_Scroll(null, null);
         }
 
-        private void textBox_number_TextChanged(object sender, EventArgs e)
+        private void bt_setimage_Click(object sender, EventArgs e)
         {
-            if (get == null || !get.isRunning())
-                try
-                {
-                    this.currentImage = Int32.Parse(textBox_number.Text);
-                    log.AppendText("Changed current image to: " + textBox_number.Text);
-                }
-                catch (Exception ex)
-                {
-                    log.AppendText("Error parsing " + textBox_number.Text);
-                    Console.WriteLine(ex.ToString());
-                }
+            FolderBrowserDialog folderBrowserDialog1 = new FolderBrowserDialog();
+            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+            {
+                PATH_OF_IMAGES = folderBrowserDialog1.SelectedPath;
+                log.AppendText("New Imagepath: " + PATH_OF_IMAGES);
+            }
+        }
+
+        private void number_image_ValueChanged(object sender, EventArgs e)
+        {
+            if (nb_image != null && (get == null || !get.isRunning()))
+            {
+                this.currentImage = number_image.Value;
+                log.AppendText("Changed current image to: " + number_image.Value);
+            }
+        }
+
+        private void number_folder_ValueChanged(object sender, EventArgs e)
+        {
+            if (nb_folder != null && (get == null || !get.isRunning()))
+            {
+                this.currentFolder = number_folder.Value;
+                log.AppendText("Changed current folder to: " + nb_folder.Value);
+            }
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -538,21 +535,8 @@ namespace GameboyCameraClient
             bitmap_live_parent.UnlockBits(bmpData); // Unlock the bits.
             e.Graphics.DrawImage(bitmap_live_parent, 10, 10); // Left top
 
-            // for (int counter = 0; counter < data.Length; counter++)
-            //{
-            //   tempbyte = Convert.ToByte(data[counter]);
-            //   rgbValues[(counter * 3) + 0] = tempbyte;
-            //  rgbValues[(counter * 3) + 1] = tempbyte;
-            //  rgbValues[(counter * 3) + 2] = tempbyte;
-            // }
-
-            //Marshal.Copy(rgbValues, 0, ptr, numBytes); // Copy the RGB values back to the bitmap
-            // bitmap_live_parent.UnlockBits(bmpData); // Unlock the bits.
-
-            // e.Graphics.DrawImage(bitmap_live_parent, 10, 10); // Draw it
-
-            textBox_folder.Text = currentFolder + "";
-            textBox_number.Text = currentImage + "";
+            nb_folder.Value = currentFolder;
+            nb_image.Value= currentImage;
         }
         private void Form_Clicked(object sender, EventArgs e)
         {

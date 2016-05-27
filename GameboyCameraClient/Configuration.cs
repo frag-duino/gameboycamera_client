@@ -25,7 +25,7 @@ namespace GameboyCameraClient
 
             if (File.Exists(PATH_OF_CONFIG)) // Config already exists, read it
             {
-                parent.log.AppendText("Found " + PATH_OF_CONFIG + "\r\n");
+                parent.log.AppendText("Found Config: " + PATH_OF_CONFIG + "\r\n");
                 XmlReader reader = XmlReader.Create(PATH_OF_CONFIG);
 
                 while (reader.Read())
@@ -206,7 +206,10 @@ namespace GameboyCameraClient
                                 {
                                     reader.Read();
                                     if (reader.NodeType == XmlNodeType.Text)
+                                    {
                                         parent.PATH_OF_IMAGES = reader.Value;
+                                        parent.log.AppendText("Image path: " + parent.PATH_OF_IMAGES);
+                                    }
                                 }
                                 reader.Read();
                             }
@@ -236,7 +239,7 @@ namespace GameboyCameraClient
             }
             else // Create new config with default values
             {
-                parent.log.AppendText("Creating " + PATH_OF_CONFIG + "\r\n");
+                parent.log.AppendText("Creating Config:" + PATH_OF_CONFIG + "\r\n");
                 save_config();
             }
         }
@@ -269,7 +272,8 @@ namespace GameboyCameraClient
                 writer.WriteElementString("Mirrored", parent.set_mirrored + "");
                 writer.WriteElementString("Baud", parent.baud + "");
                 // TODO: Comport?
-                parent.PATH_OF_IMAGES = PATH_OF_EXE + "\\Images";
+                if (parent.PATH_OF_IMAGES == null)
+                    parent.PATH_OF_IMAGES = PATH_OF_EXE + "\\Images";
                 writer.WriteElementString("Imagepath", parent.PATH_OF_IMAGES);
                 writer.WriteElementString("CurrentFolder", parent.currentFolder + "");
                 writer.WriteElementString("CurrentImage", parent.currentImage + "");

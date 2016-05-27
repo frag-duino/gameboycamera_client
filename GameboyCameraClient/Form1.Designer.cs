@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.button_start = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.bt_c0minus = new System.Windows.Forms.Button();
@@ -49,13 +50,13 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.comboBox_comport = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label_number = new System.Windows.Forms.Label();
+            this.number_image = new System.Windows.Forms.NumericUpDown();
+            this.number_folder = new System.Windows.Forms.NumericUpDown();
+            this.label_image = new System.Windows.Forms.Label();
             this.bt_refresh = new System.Windows.Forms.Button();
             this.label_folder = new System.Windows.Forms.Label();
             this.checkBox_testmode = new System.Windows.Forms.CheckBox();
-            this.textBox_number = new System.Windows.Forms.TextBox();
             this.comboBox_baud = new System.Windows.Forms.ComboBox();
-            this.textBox_folder = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label_edge_enhancement_mode = new System.Windows.Forms.Label();
             this.comboBox_edge_enhancement_mode = new System.Windows.Forms.ComboBox();
@@ -91,11 +92,14 @@
             this.button_newview = new System.Windows.Forms.Button();
             this.bt_save = new System.Windows.Forms.Button();
             this.bt_reset = new System.Windows.Forms.Button();
+            this.bt_setimage = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_c0)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_c1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_gain)).BeginInit();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.number_image)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.number_folder)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_edge)).BeginInit();
             this.groupBox4.SuspendLayout();
@@ -307,13 +311,13 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.label_number);
+            this.groupBox2.Controls.Add(this.number_image);
+            this.groupBox2.Controls.Add(this.number_folder);
+            this.groupBox2.Controls.Add(this.label_image);
             this.groupBox2.Controls.Add(this.bt_refresh);
             this.groupBox2.Controls.Add(this.label_folder);
             this.groupBox2.Controls.Add(this.checkBox_testmode);
-            this.groupBox2.Controls.Add(this.textBox_number);
             this.groupBox2.Controls.Add(this.comboBox_baud);
-            this.groupBox2.Controls.Add(this.textBox_folder);
             this.groupBox2.Controls.Add(this.comboBox_comport);
             this.groupBox2.Location = new System.Drawing.Point(15, 251);
             this.groupBox2.Name = "groupBox2";
@@ -322,14 +326,30 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Settings";
             // 
-            // label_number
+            // number_image
             // 
-            this.label_number.AutoSize = true;
-            this.label_number.Location = new System.Drawing.Point(244, 47);
-            this.label_number.Name = "label_number";
-            this.label_number.Size = new System.Drawing.Size(47, 13);
-            this.label_number.TabIndex = 19;
-            this.label_number.Text = "Number:";
+            this.number_image.Location = new System.Drawing.Point(309, 44);
+            this.number_image.Name = "number_image";
+            this.number_image.Size = new System.Drawing.Size(64, 20);
+            this.number_image.TabIndex = 22;
+            this.number_image.ValueChanged += new System.EventHandler(this.number_image_ValueChanged);
+            // 
+            // number_folder
+            // 
+            this.number_folder.Location = new System.Drawing.Point(309, 18);
+            this.number_folder.Name = "number_folder";
+            this.number_folder.Size = new System.Drawing.Size(64, 20);
+            this.number_folder.TabIndex = 21;
+            this.number_folder.ValueChanged += new System.EventHandler(this.number_folder_ValueChanged);
+            // 
+            // label_image
+            // 
+            this.label_image.AutoSize = true;
+            this.label_image.Location = new System.Drawing.Point(244, 47);
+            this.label_image.Name = "label_image";
+            this.label_image.Size = new System.Drawing.Size(39, 13);
+            this.label_image.TabIndex = 19;
+            this.label_image.Text = "Image:";
             // 
             // bt_refresh
             // 
@@ -361,14 +381,6 @@
             this.checkBox_testmode.UseVisualStyleBackColor = true;
             this.checkBox_testmode.CheckedChanged += new System.EventHandler(this.checkBox_testmode_CheckedChanged);
             // 
-            // textBox_number
-            // 
-            this.textBox_number.Location = new System.Drawing.Point(309, 44);
-            this.textBox_number.Name = "textBox_number";
-            this.textBox_number.Size = new System.Drawing.Size(64, 20);
-            this.textBox_number.TabIndex = 17;
-            this.textBox_number.TextChanged += new System.EventHandler(this.textBox_number_TextChanged);
-            // 
             // comboBox_baud
             // 
             this.comboBox_baud.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -378,14 +390,6 @@
             this.comboBox_baud.Size = new System.Drawing.Size(74, 21);
             this.comboBox_baud.TabIndex = 5;
             this.comboBox_baud.SelectedIndexChanged += new System.EventHandler(this.comboBox_baud_SelectedIndexChanged);
-            // 
-            // textBox_folder
-            // 
-            this.textBox_folder.Location = new System.Drawing.Point(309, 18);
-            this.textBox_folder.Name = "textBox_folder";
-            this.textBox_folder.Size = new System.Drawing.Size(64, 20);
-            this.textBox_folder.TabIndex = 16;
-            this.textBox_folder.TextChanged += new System.EventHandler(this.textBox_folder_TextChanged);
             // 
             // groupBox3
             // 
@@ -771,11 +775,22 @@
             this.bt_reset.UseVisualStyleBackColor = true;
             this.bt_reset.Click += new System.EventHandler(this.bt_reset_Click_1);
             // 
+            // bt_setimage
+            // 
+            this.bt_setimage.Location = new System.Drawing.Point(269, 209);
+            this.bt_setimage.Name = "bt_setimage";
+            this.bt_setimage.Size = new System.Drawing.Size(128, 25);
+            this.bt_setimage.TabIndex = 15;
+            this.bt_setimage.Text = "Set Imagepath";
+            this.bt_setimage.UseVisualStyleBackColor = true;
+            this.bt_setimage.Click += new System.EventHandler(this.bt_setimage_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(803, 461);
+            this.Controls.Add(this.bt_setimage);
             this.Controls.Add(this.bt_reset);
             this.Controls.Add(this.bt_save);
             this.Controls.Add(this.button_newview);
@@ -789,6 +804,7 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button_start);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Gameboy Camera Client";
             this.groupBox1.ResumeLayout(false);
@@ -798,6 +814,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_gain)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.number_image)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.number_folder)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_edge)).EndInit();
@@ -861,10 +879,8 @@
         private System.Windows.Forms.Button button_newview;
         private System.Windows.Forms.Button bt_save;
         private System.Windows.Forms.Button bt_reset;
-        private System.Windows.Forms.TextBox textBox_folder;
-        private System.Windows.Forms.TextBox textBox_number;
         private System.Windows.Forms.Label label_folder;
-        private System.Windows.Forms.Label label_number;
+        private System.Windows.Forms.Label label_image;
         private System.Windows.Forms.CheckBox chk_mirrored;
         private System.Windows.Forms.Button bt_c0minus;
         private System.Windows.Forms.Button bt_c0plus;
@@ -876,6 +892,9 @@
         private System.Windows.Forms.Button bt_offsetplus;
         private System.Windows.Forms.Button bt_vrefminus;
         private System.Windows.Forms.Button bt_vrefplus;
+        private System.Windows.Forms.Button bt_setimage;
+        private System.Windows.Forms.NumericUpDown number_folder;
+        private System.Windows.Forms.NumericUpDown number_image;
     }
 }
 

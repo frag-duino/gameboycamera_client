@@ -3,13 +3,16 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.IO.Ports;
-
+using System.Media;
 using System.Windows.Forms;
 
 namespace GameboyCameraClient
 {
     class GetThread
     {
+
+        // Constants
+        int MAXIMUM_IMAGES_PER_FOLDER = 100;
 
         // Variables
         Form1 parent;
@@ -24,6 +27,7 @@ namespace GameboyCameraClient
         byte[] outBuffer = new byte[33];
         int receivedlength = 0;
         Boolean is_saving = false;
+        SoundPlayer shutterSound = new SoundPlayer(GameboyCameraClient.Properties.Resources.shutter);
 
         public Boolean something_has_changed()
         {
@@ -322,8 +326,8 @@ namespace GameboyCameraClient
             {
                 parent.bt_start.Enabled = true;
                 parent.bt_stop.Enabled = false;
-                parent.tb_folder.Enabled = true;
-                parent.tb_number.Enabled = true;
+                parent.nb_folder.Enabled = true;
+                parent.nb_image.Enabled = true;
             });
         }
 
@@ -374,15 +378,17 @@ namespace GameboyCameraClient
                 System.IO.Directory.CreateDirectory(parent.PATH_OF_IMAGES + "\\" + parent.currentFolder);
             }
 
+            parent.filename = "gb_" + parent.currentFolder + "_" + parent.currentImage + ".png";
+
             if (System.IO.File.Exists(parent.PATH_OF_IMAGES + "\\" + parent.currentFolder + "\\" + parent.filename))
                 logOutput("WARNING: Overwriting old photos!!!");
 
-            parent.filename = "gb_" + parent.currentFolder + "_" + parent.currentImage + ".png";
             parent.bitmap_live_parent.Save(parent.PATH_OF_IMAGES + "\\" + parent.currentFolder + "\\" + parent.filename, ImageFormat.Png);
+            shutterSound.Play();
 
             // Increment the counter:
             parent.currentImage++;
-            if (parent.currentImage == 10)
+            if (parent.currentImage == MAXIMUM_IMAGES_PER_FOLDER)
             {
                 parent.currentFolder++;
                 parent.currentImage = 0;
