@@ -74,6 +74,7 @@ namespace GameboyCameraClient
         public Button bt_start, bt_stop;
         public NumericUpDown nb_folder, nb_image;
         public int[] data = new int[128 * 128];
+        public TrackBar tb_offset;
         byte tempbyte;
         
         // Threads
@@ -94,6 +95,7 @@ namespace GameboyCameraClient
             this.FormClosing += Form1_FormClosing;
             this.DoubleBuffered = true;
             this.Click += Form_Clicked;
+            tb_offset = this.trackBar_offset;
             log = textBox1;
             config = new Configuration(this);
             loadValues();

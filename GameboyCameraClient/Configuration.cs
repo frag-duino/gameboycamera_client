@@ -153,6 +153,8 @@ namespace GameboyCameraClient
                                     reader.Read();
                                     if (reader.NodeType == XmlNodeType.Text)
                                     {
+                                        parent.tb_offset.Value = Byte.Parse(reader.Value);
+                                        // parent.trackBar_offset_Scroll(null, null);
                                         // parent.set_offset = Byte.Parse(reader.Value);
                                         //  parent.trackBar_offset_Scroll(null, null);
                                         // TODO: Offset is not saved/imported
@@ -265,7 +267,7 @@ namespace GameboyCameraClient
                 writer.WriteElementString("Vref", parent.set_vref + "");
                 writer.WriteElementString("I", parent.set_i + "");
                 writer.WriteElementString("EDGE", parent.set_edge + "");
-                writer.WriteElementString("OFFSET", parent.set_offset + "");
+                writer.WriteElementString("OFFSET", parent.tb_offset.Value + ""); // Workaround: Save value of the knob
                 writer.WriteElementString("Z", parent.set_z + "");
 
                 writer.WriteElementString("Mode", parent.set_mode + "");
