@@ -74,7 +74,7 @@ namespace GameboyCameraClient
         public TextBox log;
         public Button bt_start, bt_stop;
         public TextBox tb_folder, tb_number;
-        public int[] data = new int[128 * 112];
+        public int[] data = new int[128 * 128];
         byte tempbyte;
 
         // Threads

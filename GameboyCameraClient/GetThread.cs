@@ -293,7 +293,7 @@ namespace GameboyCameraClient
                                 row++;
                             }
 
-                            if (row == 128)
+                            if (row == 112)
                             {
                                 is_receiving_photo = false;
                                 continue;
@@ -340,13 +340,13 @@ namespace GameboyCameraClient
                 {
                     parent.view.label_save[image] = parent.view.label_save[image - 1]; // Shift the label
 
-                    for (int s = 0; s < parent.data.Length; s++) // and the image
+                    for (int s = 0; s < 128*112; s++) // and the image
                         parent.view.data_save[image, s] = parent.view.data_save[image - 1, s];
                 }
 
                 // Save the new one
                 parent.view.label_save[0] = parent.currentFolder + "-" + parent.currentImage;
-                for (int s = 0; s < parent.data.Length; s++)
+                for (int s = 0; s < 128*112; s++)
                     parent.view.data_save[0, s] = parent.data[s];
 
                 if (parent.view != null)
