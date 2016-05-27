@@ -232,27 +232,44 @@ namespace GameboyCameraClient
 
                 for (int i = 0; i < receivedlength; i++)
                 {
-                    if (inBuffer[i] == Helper.BYTE_PHOTO_BEGIN_SHOW)  // Check if the begin-byte arrived:
+                    if (inBuffer[i] == Helper.BYTE_PHOTO_BEGIN)  // Check if the begin-byte arrived:
                     {
-                        // logOutput("Found the beginning SHOWING");
+                        // logOutput("Found the beginning");
                         is_receiving_photo = true;
-                        is_saving = false;
                         row = 0;
                         column = 0;
                         continue;
                     }
-                    else if (inBuffer[i] == Helper.BYTE_PHOTO_BEGIN_SAVE)  // Check if the begin-byte arrived:
-                    {
-                        // logOutput("Found the beginning SAVING");
-                        is_receiving_photo = true;
-                        is_saving = true;
-                        row = 0;
-                        column = 0;
-                        continue;
-                    }
-                    else if (inBuffer[i] == Helper.BYTE_PHOTO_END) // Check if the last byte arrived:
+                    else if (inBuffer[i] == Helper.BYTE_PHOTO_END_SHOW || inBuffer[i] == Helper.BYTE_PHOTO_END_SAVE) // Check if the last byte arrived:
                     {
                         // logOutput("Found the ending");
+
+                        // Mirror image vertically
+                        if (parent.set_mirrored == 1)
+                            for (int row = 0; row < 112; row++)
+                            {
+                                for (int column = 0; column < 128 / 2; column++)
+                                {
+                                    temp = parent.data[row * 128 + column];
+                                    parent.data[row * 128 + column] = parent.data[row * 128 + 127 - column];
+                                    parent.data[row * 128 + 127 - column] = temp;
+                                }
+                            }
+
+
+                        if (inBuffer[i] == Helper.BYTE_PHOTO_END_SAVE)
+                            saveBitmap();
+
+                        is_receiving_photo = false;
+                        parent.Invalidate();
+                        if (parent.view != null)
+                            parent.view.Invalidate();
+                        continue;
+                    }
+                    else if (inBuffer[i] == Helper.BYTE_PHOTO_END_SAVE) // Check if the last byte arrived:
+                    {
+                        logOutput("Found the ending save");
+                        is_saving = true;
 
                         // Mirror image vertically
                         if (parent.set_mirrored == 1)

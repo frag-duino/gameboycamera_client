@@ -226,7 +226,7 @@ namespace GameboyCameraClient
             haschanged_z = true;
         }
 
-        private void trackBar_offset_Scroll(object sender, EventArgs e)
+        public void trackBar_offset_Scroll(object sender, EventArgs e)
         {
             byte temp2 = (byte)trackBar_offset.Value;
             if (trackBar_offset.Value >= 0)

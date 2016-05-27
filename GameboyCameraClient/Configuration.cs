@@ -153,11 +153,9 @@ namespace GameboyCameraClient
                                     reader.Read();
                                     if (reader.NodeType == XmlNodeType.Text)
                                     {
-                                        parent.tb_offset.Value = Byte.Parse(reader.Value);
-                                        // parent.trackBar_offset_Scroll(null, null);
-                                        // parent.set_offset = Byte.Parse(reader.Value);
-                                        //  parent.trackBar_offset_Scroll(null, null);
-                                        // TODO: Offset is not saved/imported
+                                        // parent.tb_offset.Value = Byte.Parse(reader.Value);
+                                        // parent.trackBar_offset_Scroll(null, null); 
+                                        // TODO: Offset wird noch nicht geladen
                                     }
                                 }
                                 reader.Read();
