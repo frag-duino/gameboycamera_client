@@ -130,16 +130,16 @@
             this.groupBox1.Controls.Add(this.trackBar_c0);
             this.groupBox1.Controls.Add(this.label_c0);
             this.groupBox1.Controls.Add(this.trackBar_c1);
-            this.groupBox1.Location = new System.Drawing.Point(403, 285);
+            this.groupBox1.Location = new System.Drawing.Point(403, 240);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(394, 116);
+            this.groupBox1.Size = new System.Drawing.Size(394, 90);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Light";
             // 
             // bt_c0minus
             // 
-            this.bt_c0minus.Location = new System.Drawing.Point(10, 80);
+            this.bt_c0minus.Location = new System.Drawing.Point(135, 46);
             this.bt_c0minus.Name = "bt_c0minus";
             this.bt_c0minus.Size = new System.Drawing.Size(20, 27);
             this.bt_c0minus.TabIndex = 24;
@@ -149,7 +149,7 @@
             // 
             // bt_c0plus
             // 
-            this.bt_c0plus.Location = new System.Drawing.Point(362, 80);
+            this.bt_c0plus.Location = new System.Drawing.Point(362, 44);
             this.bt_c0plus.Name = "bt_c0plus";
             this.bt_c0plus.Size = new System.Drawing.Size(20, 27);
             this.bt_c0plus.TabIndex = 23;
@@ -159,7 +159,7 @@
             // 
             // bt_c1minus
             // 
-            this.bt_c1minus.Location = new System.Drawing.Point(10, 32);
+            this.bt_c1minus.Location = new System.Drawing.Point(135, 11);
             this.bt_c1minus.Name = "bt_c1minus";
             this.bt_c1minus.Size = new System.Drawing.Size(20, 27);
             this.bt_c1minus.TabIndex = 22;
@@ -169,7 +169,7 @@
             // 
             // bt_c1plus
             // 
-            this.bt_c1plus.Location = new System.Drawing.Point(362, 32);
+            this.bt_c1plus.Location = new System.Drawing.Point(362, 11);
             this.bt_c1plus.Name = "bt_c1plus";
             this.bt_c1plus.Size = new System.Drawing.Size(20, 27);
             this.bt_c1plus.TabIndex = 21;
@@ -180,7 +180,7 @@
             // label_c0_value
             // 
             this.label_c0_value.AutoSize = true;
-            this.label_c0_value.Location = new System.Drawing.Point(36, 64);
+            this.label_c0_value.Location = new System.Drawing.Point(38, 55);
             this.label_c0_value.Name = "label_c0_value";
             this.label_c0_value.Size = new System.Drawing.Size(12, 13);
             this.label_c0_value.TabIndex = 5;
@@ -189,7 +189,7 @@
             // label_c1_value
             // 
             this.label_c1_value.AutoSize = true;
-            this.label_c1_value.Location = new System.Drawing.Point(36, 16);
+            this.label_c1_value.Location = new System.Drawing.Point(38, 19);
             this.label_c1_value.Name = "label_c1_value";
             this.label_c1_value.Size = new System.Drawing.Size(12, 13);
             this.label_c1_value.TabIndex = 4;
@@ -198,7 +198,7 @@
             // label_c1
             // 
             this.label_c1.AutoSize = true;
-            this.label_c1.Location = new System.Drawing.Point(7, 16);
+            this.label_c1.Location = new System.Drawing.Point(9, 18);
             this.label_c1.Name = "label_c1";
             this.label_c1.Size = new System.Drawing.Size(23, 13);
             this.label_c1.TabIndex = 3;
@@ -207,17 +207,17 @@
             // trackBar_c0
             // 
             this.trackBar_c0.LargeChange = 1;
-            this.trackBar_c0.Location = new System.Drawing.Point(29, 80);
+            this.trackBar_c0.Location = new System.Drawing.Point(158, 43);
             this.trackBar_c0.Maximum = 255;
             this.trackBar_c0.Name = "trackBar_c0";
-            this.trackBar_c0.Size = new System.Drawing.Size(327, 45);
+            this.trackBar_c0.Size = new System.Drawing.Size(201, 45);
             this.trackBar_c0.TabIndex = 2;
             this.trackBar_c0.Scroll += new System.EventHandler(this.trackBar_c0_Scroll);
             // 
             // label_c0
             // 
             this.label_c0.AutoSize = true;
-            this.label_c0.Location = new System.Drawing.Point(7, 64);
+            this.label_c0.Location = new System.Drawing.Point(9, 55);
             this.label_c0.Name = "label_c0";
             this.label_c0.Size = new System.Drawing.Size(26, 13);
             this.label_c0.TabIndex = 1;
@@ -226,17 +226,17 @@
             // trackBar_c1
             // 
             this.trackBar_c1.LargeChange = 1;
-            this.trackBar_c1.Location = new System.Drawing.Point(29, 32);
+            this.trackBar_c1.Location = new System.Drawing.Point(157, 11);
             this.trackBar_c1.Maximum = 255;
             this.trackBar_c1.Name = "trackBar_c1";
-            this.trackBar_c1.Size = new System.Drawing.Size(327, 45);
+            this.trackBar_c1.Size = new System.Drawing.Size(202, 45);
             this.trackBar_c1.TabIndex = 0;
             this.trackBar_c1.Scroll += new System.EventHandler(this.trackBar_c1_Scroll);
             // 
             // label_gain_value
             // 
             this.label_gain_value.AutoSize = true;
-            this.label_gain_value.Location = new System.Drawing.Point(35, 213);
+            this.label_gain_value.Location = new System.Drawing.Point(35, 167);
             this.label_gain_value.Name = "label_gain_value";
             this.label_gain_value.Size = new System.Drawing.Size(12, 13);
             this.label_gain_value.TabIndex = 8;
@@ -245,7 +245,7 @@
             // label_gain
             // 
             this.label_gain.AutoSize = true;
-            this.label_gain.Location = new System.Drawing.Point(6, 213);
+            this.label_gain.Location = new System.Drawing.Point(6, 167);
             this.label_gain.Name = "label_gain";
             this.label_gain.Size = new System.Drawing.Size(32, 13);
             this.label_gain.TabIndex = 7;
@@ -254,7 +254,7 @@
             // trackBar_gain
             // 
             this.trackBar_gain.LargeChange = 1;
-            this.trackBar_gain.Location = new System.Drawing.Point(32, 229);
+            this.trackBar_gain.Location = new System.Drawing.Point(32, 183);
             this.trackBar_gain.Maximum = 31;
             this.trackBar_gain.Name = "trackBar_gain";
             this.trackBar_gain.Size = new System.Drawing.Size(119, 45);
@@ -264,7 +264,7 @@
             // label_calibration_value
             // 
             this.label_calibration_value.AutoSize = true;
-            this.label_calibration_value.Location = new System.Drawing.Point(89, 163);
+            this.label_calibration_value.Location = new System.Drawing.Point(89, 126);
             this.label_calibration_value.Name = "label_calibration_value";
             this.label_calibration_value.Size = new System.Drawing.Size(12, 13);
             this.label_calibration_value.TabIndex = 12;
@@ -273,7 +273,7 @@
             // label_calibration
             // 
             this.label_calibration.AutoSize = true;
-            this.label_calibration.Location = new System.Drawing.Point(6, 163);
+            this.label_calibration.Location = new System.Drawing.Point(6, 126);
             this.label_calibration.Name = "label_calibration";
             this.label_calibration.Size = new System.Drawing.Size(78, 13);
             this.label_calibration.TabIndex = 11;
@@ -283,7 +283,7 @@
             // 
             this.comboBox_calibration.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_calibration.FormattingEnabled = true;
-            this.comboBox_calibration.Location = new System.Drawing.Point(17, 179);
+            this.comboBox_calibration.Location = new System.Drawing.Point(17, 142);
             this.comboBox_calibration.Name = "comboBox_calibration";
             this.comboBox_calibration.Size = new System.Drawing.Size(160, 21);
             this.comboBox_calibration.TabIndex = 10;
@@ -291,12 +291,12 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(15, 401);
+            this.textBox1.Location = new System.Drawing.Point(15, 336);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(782, 52);
+            this.textBox1.Size = new System.Drawing.Size(782, 117);
             this.textBox1.TabIndex = 3;
             // 
             // comboBox_comport
@@ -316,19 +316,18 @@
             this.groupBox2.Controls.Add(this.label_image);
             this.groupBox2.Controls.Add(this.bt_refresh);
             this.groupBox2.Controls.Add(this.label_folder);
-            this.groupBox2.Controls.Add(this.checkBox_testmode);
             this.groupBox2.Controls.Add(this.comboBox_baud);
             this.groupBox2.Controls.Add(this.comboBox_comport);
-            this.groupBox2.Location = new System.Drawing.Point(15, 251);
+            this.groupBox2.Location = new System.Drawing.Point(15, 243);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(382, 141);
+            this.groupBox2.Size = new System.Drawing.Size(251, 86);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Settings";
             // 
             // number_image
             // 
-            this.number_image.Location = new System.Drawing.Point(86, 108);
+            this.number_image.Location = new System.Drawing.Point(181, 45);
             this.number_image.Name = "number_image";
             this.number_image.Size = new System.Drawing.Size(64, 20);
             this.number_image.TabIndex = 22;
@@ -336,7 +335,7 @@
             // 
             // number_folder
             // 
-            this.number_folder.Location = new System.Drawing.Point(86, 82);
+            this.number_folder.Location = new System.Drawing.Point(181, 19);
             this.number_folder.Name = "number_folder";
             this.number_folder.Size = new System.Drawing.Size(64, 20);
             this.number_folder.TabIndex = 21;
@@ -345,7 +344,7 @@
             // label_image
             // 
             this.label_image.AutoSize = true;
-            this.label_image.Location = new System.Drawing.Point(21, 111);
+            this.label_image.Location = new System.Drawing.Point(146, 47);
             this.label_image.Name = "label_image";
             this.label_image.Size = new System.Drawing.Size(39, 13);
             this.label_image.TabIndex = 19;
@@ -355,7 +354,7 @@
             // 
             this.bt_refresh.Location = new System.Drawing.Point(86, 18);
             this.bt_refresh.Name = "bt_refresh";
-            this.bt_refresh.Size = new System.Drawing.Size(64, 48);
+            this.bt_refresh.Size = new System.Drawing.Size(54, 48);
             this.bt_refresh.TabIndex = 12;
             this.bt_refresh.Text = "Refresh";
             this.bt_refresh.UseVisualStyleBackColor = true;
@@ -364,7 +363,7 @@
             // label_folder
             // 
             this.label_folder.AutoSize = true;
-            this.label_folder.Location = new System.Drawing.Point(21, 85);
+            this.label_folder.Location = new System.Drawing.Point(146, 21);
             this.label_folder.Name = "label_folder";
             this.label_folder.Size = new System.Drawing.Size(39, 13);
             this.label_folder.TabIndex = 18;
@@ -373,7 +372,7 @@
             // checkBox_testmode
             // 
             this.checkBox_testmode.AutoSize = true;
-            this.checkBox_testmode.Location = new System.Drawing.Point(254, 34);
+            this.checkBox_testmode.Location = new System.Drawing.Point(51, 19);
             this.checkBox_testmode.Name = "checkBox_testmode";
             this.checkBox_testmode.Size = new System.Drawing.Size(77, 17);
             this.checkBox_testmode.TabIndex = 20;
@@ -404,7 +403,7 @@
             this.groupBox3.Controls.Add(this.checkBox_n);
             this.groupBox3.Location = new System.Drawing.Point(593, 2);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(204, 222);
+            this.groupBox3.Size = new System.Drawing.Size(204, 232);
             this.groupBox3.TabIndex = 6;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Edge extraction";
@@ -500,19 +499,22 @@
             this.groupBox4.Controls.Add(this.checkBox_x);
             this.groupBox4.Controls.Add(this.checkBox_m);
             this.groupBox4.Controls.Add(this.checkBox_p);
-            this.groupBox4.Location = new System.Drawing.Point(593, 230);
+            this.groupBox4.Controls.Add(this.chk_mirrored);
+            this.groupBox4.Controls.Add(this.checkBox_inverted);
+            this.groupBox4.Controls.Add(this.checkBox_testmode);
+            this.groupBox4.Location = new System.Drawing.Point(269, 243);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(204, 49);
+            this.groupBox4.Size = new System.Drawing.Size(128, 86);
             this.groupBox4.TabIndex = 7;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "1-D filtering kernel";
+            this.groupBox4.Text = "Image mode";
             // 
             // checkBox_x
             // 
             this.checkBox_x.AutoSize = true;
             this.checkBox_x.Checked = true;
             this.checkBox_x.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_x.Location = new System.Drawing.Point(141, 21);
+            this.checkBox_x.Location = new System.Drawing.Point(10, 56);
             this.checkBox_x.Name = "checkBox_x";
             this.checkBox_x.Size = new System.Drawing.Size(33, 17);
             this.checkBox_x.TabIndex = 12;
@@ -523,7 +525,7 @@
             // checkBox_m
             // 
             this.checkBox_m.AutoSize = true;
-            this.checkBox_m.Location = new System.Drawing.Point(88, 21);
+            this.checkBox_m.Location = new System.Drawing.Point(10, 36);
             this.checkBox_m.Name = "checkBox_m";
             this.checkBox_m.Size = new System.Drawing.Size(35, 17);
             this.checkBox_m.TabIndex = 11;
@@ -536,7 +538,7 @@
             this.checkBox_p.AutoSize = true;
             this.checkBox_p.Checked = true;
             this.checkBox_p.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_p.Location = new System.Drawing.Point(12, 21);
+            this.checkBox_p.Location = new System.Drawing.Point(10, 19);
             this.checkBox_p.Name = "checkBox_p";
             this.checkBox_p.Size = new System.Drawing.Size(33, 17);
             this.checkBox_p.TabIndex = 10;
@@ -547,7 +549,7 @@
             // checkBox_inverted
             // 
             this.checkBox_inverted.AutoSize = true;
-            this.checkBox_inverted.Location = new System.Drawing.Point(9, 135);
+            this.checkBox_inverted.Location = new System.Drawing.Point(51, 56);
             this.checkBox_inverted.Name = "checkBox_inverted";
             this.checkBox_inverted.Size = new System.Drawing.Size(74, 17);
             this.checkBox_inverted.TabIndex = 13;
@@ -563,11 +565,9 @@
             this.groupBox5.Controls.Add(this.bt_offsetplus);
             this.groupBox5.Controls.Add(this.bt_gainminus);
             this.groupBox5.Controls.Add(this.bt_gainplus);
-            this.groupBox5.Controls.Add(this.chk_mirrored);
             this.groupBox5.Controls.Add(this.label_gain_value);
             this.groupBox5.Controls.Add(this.label_calibration_value);
             this.groupBox5.Controls.Add(this.label_gain);
-            this.groupBox5.Controls.Add(this.checkBox_inverted);
             this.groupBox5.Controls.Add(this.trackBar_gain);
             this.groupBox5.Controls.Add(this.label_calibration);
             this.groupBox5.Controls.Add(this.label_vref_value);
@@ -579,7 +579,7 @@
             this.groupBox5.Controls.Add(this.label_offset);
             this.groupBox5.Location = new System.Drawing.Point(403, 2);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(184, 277);
+            this.groupBox5.Size = new System.Drawing.Size(184, 232);
             this.groupBox5.TabIndex = 8;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Image settings";
@@ -626,7 +626,7 @@
             // 
             // bt_gainminus
             // 
-            this.bt_gainminus.Location = new System.Drawing.Point(6, 229);
+            this.bt_gainminus.Location = new System.Drawing.Point(6, 183);
             this.bt_gainminus.Name = "bt_gainminus";
             this.bt_gainminus.Size = new System.Drawing.Size(20, 27);
             this.bt_gainminus.TabIndex = 25;
@@ -636,7 +636,7 @@
             // 
             // bt_gainplus
             // 
-            this.bt_gainplus.Location = new System.Drawing.Point(157, 229);
+            this.bt_gainplus.Location = new System.Drawing.Point(157, 183);
             this.bt_gainplus.Name = "bt_gainplus";
             this.bt_gainplus.Size = new System.Drawing.Size(20, 27);
             this.bt_gainplus.TabIndex = 25;
@@ -649,7 +649,7 @@
             this.chk_mirrored.AutoSize = true;
             this.chk_mirrored.Checked = true;
             this.chk_mirrored.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chk_mirrored.Location = new System.Drawing.Point(103, 135);
+            this.chk_mirrored.Location = new System.Drawing.Point(51, 36);
             this.chk_mirrored.Name = "chk_mirrored";
             this.chk_mirrored.Size = new System.Drawing.Size(64, 17);
             this.chk_mirrored.TabIndex = 18;

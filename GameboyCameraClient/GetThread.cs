@@ -92,7 +92,6 @@ namespace GameboyCameraClient
 
             while (running)
             {
-
                 if (parent.update_config || something_has_changed())
                 {
                     // Send the current config to the device

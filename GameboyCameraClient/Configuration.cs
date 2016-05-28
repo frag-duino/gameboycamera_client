@@ -208,7 +208,7 @@ namespace GameboyCameraClient
                                     if (reader.NodeType == XmlNodeType.Text)
                                     {
                                         parent.PATH_OF_IMAGES = reader.Value;
-                                        parent.log.AppendText("Image path: " + parent.PATH_OF_IMAGES);
+                                        parent.log.AppendText("Image path: " + parent.PATH_OF_IMAGES + "\r\n");
                                     }
                                 }
                                 reader.Read();

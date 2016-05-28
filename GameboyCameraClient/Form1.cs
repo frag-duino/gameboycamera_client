@@ -353,7 +353,7 @@ namespace GameboyCameraClient
             foreach (String s in SerialPort.GetPortNames())
                 comboBox_comport.Items.Add(s);
             if (comboBox_comport.Items.Count == 0)
-                textBox1.AppendText("Error: No COM-Port available");
+                textBox1.AppendText("Error: No COM-Port available\r\n");
             else {
                 comboBox_comport.SelectedIndex = 0;
                 comport = comboBox_comport.Items[0].ToString();
@@ -442,13 +442,15 @@ namespace GameboyCameraClient
 
         private void bt_c0plus_Click(object sender, EventArgs e)
         {
-            trackBar_c0.Value++;
+            if (trackBar_c0.Value < trackBar_c0.Maximum)
+                trackBar_c0.Value++;
             trackBar_c0_Scroll(null, null);
         }
 
         private void bt_c0minus_Click(object sender, EventArgs e)
         {
-            trackBar_c0.Value--;
+            if (trackBar_c0.Value > trackBar_c0.Minimum)
+                trackBar_c0.Value--;
             trackBar_c0_Scroll(null, null);
         }
 
@@ -505,7 +507,7 @@ namespace GameboyCameraClient
             if (nb_image != null && (get == null || !get.isRunning()))
             {
                 this.currentImage = number_image.Value;
-                log.AppendText("Changed current image to: " + number_image.Value + "\r\n");
+                // log.AppendText("Changed current image to: " + number_image.Value + "\r\n");
             }
         }
 
@@ -563,6 +565,10 @@ namespace GameboyCameraClient
                 bt_c1plus_Click(null, null);
             else if (e.KeyCode == Keys.Left)
                 bt_c1minus_Click(null, null);
+            else if (e.KeyCode == Keys.PageUp)
+                bt_c0plus_Click(null, null);
+            else if (e.KeyCode == Keys.PageDown)
+                bt_c0minus_Click(null, null);
             else if (e.KeyCode == Keys.Space && !bt_start.Enabled)
                 button_stop_Click(null, null);
             else if (e.KeyCode == Keys.Space && bt_start.Enabled)
@@ -576,13 +582,12 @@ namespace GameboyCameraClient
             else if (e.KeyCode == Keys.Tab)
             {
                 number_folder.Value++;
-                number_folder_ValueChanged(null, null);
                 number_image.Value = 0;
-                number_image_ValueChanged(null, null);
             }
 
             e.Handled = true;
         }
+
         protected override bool ProcessDialogKey(Keys keyData)
         {
             return false;
