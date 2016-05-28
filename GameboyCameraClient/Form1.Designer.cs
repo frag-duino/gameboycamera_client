@@ -130,9 +130,9 @@
             this.groupBox1.Controls.Add(this.trackBar_c0);
             this.groupBox1.Controls.Add(this.label_c0);
             this.groupBox1.Controls.Add(this.trackBar_c1);
-            this.groupBox1.Location = new System.Drawing.Point(15, 337);
+            this.groupBox1.Location = new System.Drawing.Point(403, 285);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(382, 116);
+            this.groupBox1.Size = new System.Drawing.Size(394, 116);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Light";
@@ -149,7 +149,7 @@
             // 
             // bt_c0plus
             // 
-            this.bt_c0plus.Location = new System.Drawing.Point(353, 80);
+            this.bt_c0plus.Location = new System.Drawing.Point(362, 80);
             this.bt_c0plus.Name = "bt_c0plus";
             this.bt_c0plus.Size = new System.Drawing.Size(20, 27);
             this.bt_c0plus.TabIndex = 23;
@@ -169,7 +169,7 @@
             // 
             // bt_c1plus
             // 
-            this.bt_c1plus.Location = new System.Drawing.Point(353, 32);
+            this.bt_c1plus.Location = new System.Drawing.Point(362, 32);
             this.bt_c1plus.Name = "bt_c1plus";
             this.bt_c1plus.Size = new System.Drawing.Size(20, 27);
             this.bt_c1plus.TabIndex = 21;
@@ -210,7 +210,7 @@
             this.trackBar_c0.Location = new System.Drawing.Point(29, 80);
             this.trackBar_c0.Maximum = 255;
             this.trackBar_c0.Name = "trackBar_c0";
-            this.trackBar_c0.Size = new System.Drawing.Size(318, 45);
+            this.trackBar_c0.Size = new System.Drawing.Size(327, 45);
             this.trackBar_c0.TabIndex = 2;
             this.trackBar_c0.Scroll += new System.EventHandler(this.trackBar_c0_Scroll);
             // 
@@ -229,7 +229,7 @@
             this.trackBar_c1.Location = new System.Drawing.Point(29, 32);
             this.trackBar_c1.Maximum = 255;
             this.trackBar_c1.Name = "trackBar_c1";
-            this.trackBar_c1.Size = new System.Drawing.Size(318, 45);
+            this.trackBar_c1.Size = new System.Drawing.Size(327, 45);
             this.trackBar_c1.TabIndex = 0;
             this.trackBar_c1.Scroll += new System.EventHandler(this.trackBar_c1_Scroll);
             // 
@@ -291,12 +291,12 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(403, 285);
+            this.textBox1.Location = new System.Drawing.Point(15, 401);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(394, 168);
+            this.textBox1.Size = new System.Drawing.Size(782, 52);
             this.textBox1.TabIndex = 3;
             // 
             // comboBox_comport
@@ -321,14 +321,14 @@
             this.groupBox2.Controls.Add(this.comboBox_comport);
             this.groupBox2.Location = new System.Drawing.Point(15, 251);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(382, 80);
+            this.groupBox2.Size = new System.Drawing.Size(382, 141);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Settings";
             // 
             // number_image
             // 
-            this.number_image.Location = new System.Drawing.Point(309, 44);
+            this.number_image.Location = new System.Drawing.Point(86, 108);
             this.number_image.Name = "number_image";
             this.number_image.Size = new System.Drawing.Size(64, 20);
             this.number_image.TabIndex = 22;
@@ -336,7 +336,7 @@
             // 
             // number_folder
             // 
-            this.number_folder.Location = new System.Drawing.Point(309, 18);
+            this.number_folder.Location = new System.Drawing.Point(86, 82);
             this.number_folder.Name = "number_folder";
             this.number_folder.Size = new System.Drawing.Size(64, 20);
             this.number_folder.TabIndex = 21;
@@ -345,7 +345,7 @@
             // label_image
             // 
             this.label_image.AutoSize = true;
-            this.label_image.Location = new System.Drawing.Point(244, 47);
+            this.label_image.Location = new System.Drawing.Point(21, 111);
             this.label_image.Name = "label_image";
             this.label_image.Size = new System.Drawing.Size(39, 13);
             this.label_image.TabIndex = 19;
@@ -355,7 +355,7 @@
             // 
             this.bt_refresh.Location = new System.Drawing.Point(86, 18);
             this.bt_refresh.Name = "bt_refresh";
-            this.bt_refresh.Size = new System.Drawing.Size(56, 48);
+            this.bt_refresh.Size = new System.Drawing.Size(64, 48);
             this.bt_refresh.TabIndex = 12;
             this.bt_refresh.Text = "Refresh";
             this.bt_refresh.UseVisualStyleBackColor = true;
@@ -364,7 +364,7 @@
             // label_folder
             // 
             this.label_folder.AutoSize = true;
-            this.label_folder.Location = new System.Drawing.Point(244, 21);
+            this.label_folder.Location = new System.Drawing.Point(21, 85);
             this.label_folder.Name = "label_folder";
             this.label_folder.Size = new System.Drawing.Size(39, 13);
             this.label_folder.TabIndex = 18;
@@ -373,7 +373,7 @@
             // checkBox_testmode
             // 
             this.checkBox_testmode.AutoSize = true;
-            this.checkBox_testmode.Location = new System.Drawing.Point(161, 34);
+            this.checkBox_testmode.Location = new System.Drawing.Point(254, 34);
             this.checkBox_testmode.Name = "checkBox_testmode";
             this.checkBox_testmode.Size = new System.Drawing.Size(77, 17);
             this.checkBox_testmode.TabIndex = 20;

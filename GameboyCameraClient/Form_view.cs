@@ -128,6 +128,8 @@ namespace GameboyCameraClient
             InitializeComponent();
             this.parent = parent;
             this.FormClosing += FormView_FormClosing;
+            this.KeyPreview = true;
+            this.KeyDown += parent.Form1_KeyDown;
             this.Click += FormView_Clicked;
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

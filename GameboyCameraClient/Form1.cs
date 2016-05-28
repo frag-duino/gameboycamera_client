@@ -76,7 +76,7 @@ namespace GameboyCameraClient
         public int[] data = new int[128 * 128];
         public TrackBar tb_offset;
         byte tempbyte;
-        
+
         // Threads
         GetThread get;
         Thread get_thread;
@@ -97,6 +97,10 @@ namespace GameboyCameraClient
             this.Click += Form_Clicked;
             tb_offset = this.trackBar_offset;
             log = textBox1;
+
+            this.KeyPreview = true;
+            this.KeyDown += Form1_KeyDown;
+                       
             config = new Configuration(this);
             loadValues();
 
@@ -119,7 +123,7 @@ namespace GameboyCameraClient
             nb_folder = number_folder;
             nb_image = number_image;
         }
-
+        
         private void loadValues()
         {
             // Load default values:
@@ -385,7 +389,7 @@ namespace GameboyCameraClient
             haschanged_resolution = value;
             haschanged_mode = value;
         }
-        
+
         private void bt_reset_Click_1(object sender, EventArgs e)
         {
             // Variables
@@ -424,13 +428,15 @@ namespace GameboyCameraClient
 
         private void bt_c1plus_Click(object sender, EventArgs e)
         {
-            trackBar_c1.Value++;
+            if (trackBar_c1.Value < trackBar_c1.Maximum)
+                trackBar_c1.Value++;
             trackBar_c1_Scroll(null, null);
         }
 
         private void bt_c1minus_Click(object sender, EventArgs e)
         {
-            trackBar_c1.Value--;
+            if (trackBar_c1.Value > trackBar_c1.Minimum)
+                trackBar_c1.Value--;
             trackBar_c1_Scroll(null, null);
         }
 
@@ -448,13 +454,15 @@ namespace GameboyCameraClient
 
         private void bt_gainplus_Click(object sender, EventArgs e)
         {
-            trackBar_gain.Value++;
+            if (trackBar_gain.Value < trackBar_gain.Maximum)
+                trackBar_gain.Value++;
             trackBar_gain_Scroll(null, null);
         }
 
         private void bt_gainminus_Click(object sender, EventArgs e)
         {
-            trackBar_gain.Value--;
+            if (trackBar_gain.Value > trackBar_gain.Minimum)
+                trackBar_gain.Value--;
             trackBar_gain_Scroll(null, null);
         }
 
@@ -497,7 +505,7 @@ namespace GameboyCameraClient
             if (nb_image != null && (get == null || !get.isRunning()))
             {
                 this.currentImage = number_image.Value;
-                log.AppendText("Changed current image to: " + number_image.Value);
+                log.AppendText("Changed current image to: " + number_image.Value + "\r\n");
             }
         }
 
@@ -506,7 +514,7 @@ namespace GameboyCameraClient
             if (nb_folder != null && (get == null || !get.isRunning()))
             {
                 this.currentFolder = number_folder.Value;
-                log.AppendText("Changed current folder to: " + nb_folder.Value);
+                log.AppendText("Changed current folder to: " + nb_folder.Value + "\r\n");
             }
         }
 
@@ -538,11 +546,46 @@ namespace GameboyCameraClient
             e.Graphics.DrawImage(bitmap_live_parent, 10, 10); // Left top
 
             nb_folder.Value = currentFolder;
-            nb_image.Value= currentImage;
+            nb_image.Value = currentImage;
         }
         private void Form_Clicked(object sender, EventArgs e)
         {
             button_newview_Click(null, null);
+        }
+
+        public void Form1_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Up)
+                bt_gainplus_Click(null, null);
+            else if (e.KeyCode == Keys.Down)
+                bt_gainminus_Click(null, null);
+            else if (e.KeyCode == Keys.Right)
+                bt_c1plus_Click(null, null);
+            else if (e.KeyCode == Keys.Left)
+                bt_c1minus_Click(null, null);
+            else if (e.KeyCode == Keys.Space && !bt_start.Enabled)
+                button_stop_Click(null, null);
+            else if (e.KeyCode == Keys.Space && bt_start.Enabled)
+                bt_start_Click(null, null);
+            else if (e.KeyCode == Keys.Enter && view == null)
+                button_newview_Click(null, null);
+            else if (e.KeyCode == Keys.Escape && view != null || e.KeyCode == Keys.Enter && view != null)
+                view.Close();
+            else if (e.KeyCode == Keys.Escape && view == null)
+                this.Close();
+            else if (e.KeyCode == Keys.Tab)
+            {
+                number_folder.Value++;
+                number_folder_ValueChanged(null, null);
+                number_image.Value = 0;
+                number_image_ValueChanged(null, null);
+            }
+
+            e.Handled = true;
+        }
+        protected override bool ProcessDialogKey(Keys keyData)
+        {
+            return false;
         }
     }
 }
