@@ -354,6 +354,8 @@ namespace GameboyCameraClient
         }
         public void saveBitmap()
         {
+            shutterSound.Play();
+
             if (parent.view != null)
             {
                 // First shift the images to the right:
@@ -401,8 +403,7 @@ namespace GameboyCameraClient
                 logOutput("WARNING: Overwriting old photos!!!");
 
             parent.bitmap_live_parent.Save(parent.PATH_OF_IMAGES + "\\" + parent.currentFolder + "\\" + parent.filename, ImageFormat.Png);
-            shutterSound.Play();
-
+            
             // Increment the counter:
             parent.currentImage++;
             if (parent.currentImage == MAXIMUM_IMAGES_PER_FOLDER)
