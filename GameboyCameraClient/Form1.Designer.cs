@@ -56,7 +56,6 @@
             this.bt_refresh = new System.Windows.Forms.Button();
             this.label_folder = new System.Windows.Forms.Label();
             this.checkBox_testmode = new System.Windows.Forms.CheckBox();
-            this.comboBox_baud = new System.Windows.Forms.ComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label_edge_enhancement_mode = new System.Windows.Forms.Label();
             this.comboBox_edge_enhancement_mode = new System.Windows.Forms.ComboBox();
@@ -71,6 +70,7 @@
             this.checkBox_x = new System.Windows.Forms.CheckBox();
             this.checkBox_m = new System.Windows.Forms.CheckBox();
             this.checkBox_p = new System.Windows.Forms.CheckBox();
+            this.chk_mirrored = new System.Windows.Forms.CheckBox();
             this.checkBox_inverted = new System.Windows.Forms.CheckBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.bt_vrefminus = new System.Windows.Forms.Button();
@@ -79,7 +79,6 @@
             this.bt_offsetplus = new System.Windows.Forms.Button();
             this.bt_gainminus = new System.Windows.Forms.Button();
             this.bt_gainplus = new System.Windows.Forms.Button();
-            this.chk_mirrored = new System.Windows.Forms.CheckBox();
             this.label_vref_value = new System.Windows.Forms.Label();
             this.trackBar_vref = new System.Windows.Forms.TrackBar();
             this.label_vref = new System.Windows.Forms.Label();
@@ -316,18 +315,17 @@
             this.groupBox2.Controls.Add(this.label_image);
             this.groupBox2.Controls.Add(this.bt_refresh);
             this.groupBox2.Controls.Add(this.label_folder);
-            this.groupBox2.Controls.Add(this.comboBox_baud);
             this.groupBox2.Controls.Add(this.comboBox_comport);
             this.groupBox2.Location = new System.Drawing.Point(15, 243);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(251, 86);
+            this.groupBox2.Size = new System.Drawing.Size(215, 86);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Settings";
             // 
             // number_image
             // 
-            this.number_image.Location = new System.Drawing.Point(181, 45);
+            this.number_image.Location = new System.Drawing.Point(131, 45);
             this.number_image.Name = "number_image";
             this.number_image.Size = new System.Drawing.Size(64, 20);
             this.number_image.TabIndex = 22;
@@ -335,7 +333,7 @@
             // 
             // number_folder
             // 
-            this.number_folder.Location = new System.Drawing.Point(181, 19);
+            this.number_folder.Location = new System.Drawing.Point(131, 19);
             this.number_folder.Name = "number_folder";
             this.number_folder.Size = new System.Drawing.Size(64, 20);
             this.number_folder.TabIndex = 21;
@@ -344,7 +342,7 @@
             // label_image
             // 
             this.label_image.AutoSize = true;
-            this.label_image.Location = new System.Drawing.Point(146, 47);
+            this.label_image.Location = new System.Drawing.Point(96, 47);
             this.label_image.Name = "label_image";
             this.label_image.Size = new System.Drawing.Size(39, 13);
             this.label_image.TabIndex = 19;
@@ -352,9 +350,9 @@
             // 
             // bt_refresh
             // 
-            this.bt_refresh.Location = new System.Drawing.Point(86, 18);
+            this.bt_refresh.Location = new System.Drawing.Point(6, 45);
             this.bt_refresh.Name = "bt_refresh";
-            this.bt_refresh.Size = new System.Drawing.Size(54, 48);
+            this.bt_refresh.Size = new System.Drawing.Size(74, 21);
             this.bt_refresh.TabIndex = 12;
             this.bt_refresh.Text = "Refresh";
             this.bt_refresh.UseVisualStyleBackColor = true;
@@ -363,7 +361,7 @@
             // label_folder
             // 
             this.label_folder.AutoSize = true;
-            this.label_folder.Location = new System.Drawing.Point(146, 21);
+            this.label_folder.Location = new System.Drawing.Point(96, 21);
             this.label_folder.Name = "label_folder";
             this.label_folder.Size = new System.Drawing.Size(39, 13);
             this.label_folder.TabIndex = 18;
@@ -372,23 +370,13 @@
             // checkBox_testmode
             // 
             this.checkBox_testmode.AutoSize = true;
-            this.checkBox_testmode.Location = new System.Drawing.Point(51, 19);
+            this.checkBox_testmode.Location = new System.Drawing.Point(69, 19);
             this.checkBox_testmode.Name = "checkBox_testmode";
             this.checkBox_testmode.Size = new System.Drawing.Size(77, 17);
             this.checkBox_testmode.TabIndex = 20;
             this.checkBox_testmode.Text = "Test-Mode";
             this.checkBox_testmode.UseVisualStyleBackColor = true;
             this.checkBox_testmode.CheckedChanged += new System.EventHandler(this.checkBox_testmode_CheckedChanged);
-            // 
-            // comboBox_baud
-            // 
-            this.comboBox_baud.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_baud.FormattingEnabled = true;
-            this.comboBox_baud.Location = new System.Drawing.Point(6, 45);
-            this.comboBox_baud.Name = "comboBox_baud";
-            this.comboBox_baud.Size = new System.Drawing.Size(74, 21);
-            this.comboBox_baud.TabIndex = 5;
-            this.comboBox_baud.SelectedIndexChanged += new System.EventHandler(this.comboBox_baud_SelectedIndexChanged);
             // 
             // groupBox3
             // 
@@ -502,9 +490,9 @@
             this.groupBox4.Controls.Add(this.chk_mirrored);
             this.groupBox4.Controls.Add(this.checkBox_inverted);
             this.groupBox4.Controls.Add(this.checkBox_testmode);
-            this.groupBox4.Location = new System.Drawing.Point(269, 243);
+            this.groupBox4.Location = new System.Drawing.Point(236, 243);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(128, 86);
+            this.groupBox4.Size = new System.Drawing.Size(161, 86);
             this.groupBox4.TabIndex = 7;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Image mode";
@@ -546,10 +534,23 @@
             this.checkBox_p.UseVisualStyleBackColor = true;
             this.checkBox_p.CheckedChanged += new System.EventHandler(this.checkBox_p_CheckedChanged);
             // 
+            // chk_mirrored
+            // 
+            this.chk_mirrored.AutoSize = true;
+            this.chk_mirrored.Checked = true;
+            this.chk_mirrored.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chk_mirrored.Location = new System.Drawing.Point(69, 36);
+            this.chk_mirrored.Name = "chk_mirrored";
+            this.chk_mirrored.Size = new System.Drawing.Size(64, 17);
+            this.chk_mirrored.TabIndex = 18;
+            this.chk_mirrored.Text = "Mirrored";
+            this.chk_mirrored.UseVisualStyleBackColor = true;
+            this.chk_mirrored.CheckedChanged += new System.EventHandler(this.chk_mirrored_CheckedChanged);
+            // 
             // checkBox_inverted
             // 
             this.checkBox_inverted.AutoSize = true;
-            this.checkBox_inverted.Location = new System.Drawing.Point(51, 56);
+            this.checkBox_inverted.Location = new System.Drawing.Point(69, 56);
             this.checkBox_inverted.Name = "checkBox_inverted";
             this.checkBox_inverted.Size = new System.Drawing.Size(74, 17);
             this.checkBox_inverted.TabIndex = 13;
@@ -643,19 +644,6 @@
             this.bt_gainplus.Text = "+";
             this.bt_gainplus.UseVisualStyleBackColor = true;
             this.bt_gainplus.Click += new System.EventHandler(this.bt_gainplus_Click);
-            // 
-            // chk_mirrored
-            // 
-            this.chk_mirrored.AutoSize = true;
-            this.chk_mirrored.Checked = true;
-            this.chk_mirrored.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chk_mirrored.Location = new System.Drawing.Point(51, 36);
-            this.chk_mirrored.Name = "chk_mirrored";
-            this.chk_mirrored.Size = new System.Drawing.Size(64, 17);
-            this.chk_mirrored.TabIndex = 18;
-            this.chk_mirrored.Text = "Mirrored";
-            this.chk_mirrored.UseVisualStyleBackColor = true;
-            this.chk_mirrored.CheckedChanged += new System.EventHandler(this.chk_mirrored_CheckedChanged);
             // 
             // label_vref_value
             // 
@@ -842,7 +830,6 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.ComboBox comboBox_comport;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.ComboBox comboBox_baud;
         private System.Windows.Forms.Label label_gain_value;
         private System.Windows.Forms.Label label_gain;
         private System.Windows.Forms.TrackBar trackBar_gain;

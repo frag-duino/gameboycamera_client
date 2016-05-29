@@ -105,13 +105,6 @@ namespace GameboyCameraClient
             loadValues();
 
             bt_refresh_Click(null, null); // Get the comports
-
-            comboBox_baud.Items.Add(9600);
-            comboBox_baud.Items.Add(115200);
-            comboBox_baud.Items.Add(250000);
-            comboBox_baud.SelectedIndex = 1; // 115200
-            comboBox_baud_SelectedIndexChanged(null, null);
-
             number_folder.Value = currentFolder;
             number_image.Value = currentImage;
 
@@ -192,15 +185,6 @@ namespace GameboyCameraClient
             set_c0 = trackBar_c0.Value;
             label_c0_value.Text = set_c0 + " / " + Helper.getBinaryRepresentation(set_c0, 8);
             haschanged_c0 = true;
-        }
-
-        private void comboBox_baud_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                this.baud = (int)comboBox_baud.Items[comboBox_baud.SelectedIndex];
-            }
-            catch (Exception ex) { textBox1.AppendText("Error Parsing Baud-Rate:\r\n" + ex + "\r\n\r\n"); }
         }
 
         private void trackBar_gain_Scroll(object sender, EventArgs e)
