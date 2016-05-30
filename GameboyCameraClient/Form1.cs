@@ -75,7 +75,7 @@ namespace GameboyCameraClient
         public TextBox log;
         public Button bt_start, bt_stop;
         public NumericUpDown nb_folder, nb_image;
-        public int[] data = new int[128 * 128];
+        public int[] data = new int[128 * 112];
         public TrackBar tb_offset;
         byte tempbyte;
 

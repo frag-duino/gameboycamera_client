@@ -4,6 +4,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.IO.Ports;
 using System.Media;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace GameboyCameraClient
@@ -15,7 +16,8 @@ namespace GameboyCameraClient
         int MAXIMUM_IMAGES_PER_FOLDER = 100;
 
         // Variables
-        Boolean save_new_images = true;
+        public Bitmap bitmap_for_saving;
+        byte tempbyte;
         Form1 parent;
         int temp = 0;
         int row = 0;
@@ -256,7 +258,6 @@ namespace GameboyCameraClient
                                 }
                             }
 
-
                         if (inBuffer[i] == Helper.BYTE_PHOTO_END_SAVE)
                             saveBitmap();
 
@@ -266,32 +267,7 @@ namespace GameboyCameraClient
                             parent.view.Invalidate();
                         continue;
                     }
-                    else if (inBuffer[i] == Helper.BYTE_PHOTO_END_SAVE) // Check if the last byte arrived:
-                    {
-                        logOutput("Found the ending save");
-                        is_saving = true;
-
-                        // Mirror image vertically
-                        if (parent.set_mirrored == 1)
-                            for (int row = 0; row < 112; row++)
-                            {
-                                for (int column = 0; column < 128 / 2; column++)
-                                {
-                                    temp = parent.data[row * 128 + column];
-                                    parent.data[row * 128 + column] = parent.data[row * 128 + 127 - column];
-                                    parent.data[row * 128 + 127 - column] = temp;
-                                }
-                            }
-
-
-                        if (is_saving) // Save it
-                            saveBitmap();
-                        is_receiving_photo = false;
-                        parent.Invalidate();
-                        if (parent.view != null)
-                            parent.view.Invalidate();
-                        continue;
-                    }
+                    
 
                     if (is_receiving_photo)
                         for (int pixel = 0; pixel < 4; pixel++)
@@ -354,10 +330,28 @@ namespace GameboyCameraClient
         }
         public void saveBitmap()
         {
-            save_new_images = false;
             if (parent.set_sound == 1)
                 shutterSound.Play();
 
+            // Create a bitmap for saving:
+            Rectangle rect = new Rectangle(0, 0, 128, 112);
+            bitmap_for_saving = new Bitmap(128, 112, PixelFormat.Format24bppRgb);
+            BitmapData bmpData =
+            bitmap_for_saving.LockBits(rect, ImageLockMode.ReadWrite,
+                         PixelFormat.Format24bppRgb);
+            IntPtr ptr = bmpData.Scan0; // Get the address of the first line.
+            int numBytes = bitmap_for_saving.Width * bitmap_for_saving.Height * 3; // RGB
+            byte[] rgbValues = new byte[numBytes];
+            for (int counter = 0; counter < parent.data.Length; counter++)
+            {
+                tempbyte = Convert.ToByte(parent.data[counter]);
+                rgbValues[(counter * 3) + 0] = tempbyte;
+                rgbValues[(counter * 3) + 1] = tempbyte;
+                rgbValues[(counter * 3) + 2] = tempbyte;
+            }
+            Marshal.Copy(rgbValues, 0, ptr, numBytes); // Copy the RGB values back to the bitmap
+                        bitmap_for_saving.UnlockBits(bmpData); // Unlock the bits.
+            
             if (parent.view != null)
             {
                 // First shift the images to the right:
@@ -404,7 +398,7 @@ namespace GameboyCameraClient
             if (System.IO.File.Exists(parent.PATH_OF_IMAGES + "\\" + parent.currentFolder + "\\" + parent.filename))
                 logOutput("WARNING: Overwriting old photos!!!");
 
-            parent.bitmap_live_parent.Save(parent.PATH_OF_IMAGES + "\\" + parent.currentFolder + "\\" + parent.filename, ImageFormat.Png);
+            bitmap_for_saving.Save(parent.PATH_OF_IMAGES + "\\" + parent.currentFolder + "\\" + parent.filename, ImageFormat.Png);
             
             // Increment the counter:
             parent.currentImage++;
@@ -414,7 +408,6 @@ namespace GameboyCameraClient
                 parent.currentImage = 0;
                 logOutput("Next folder: " + parent.currentFolder);
             }
-            save_new_images = true;
             inBuffer = new byte[mySerialport.ReadBufferSize]; // flush
         }
     }
