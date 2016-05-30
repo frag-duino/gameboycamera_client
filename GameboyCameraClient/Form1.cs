@@ -24,6 +24,7 @@ namespace GameboyCameraClient
         static byte default_offset = 0;
         static int default_z = 2;
         static int default_mirrored = 1;
+        static int default_sound = 1;
 
         // Variables
         public int set_gain = default_gain;
@@ -39,7 +40,7 @@ namespace GameboyCameraClient
         public int set_edge = default_edge;
         public byte set_offset = default_offset;
         public int set_z = default_z;
-
+                
         public Boolean haschanged_gain = true;
         public Boolean haschanged_vh = true;
         public Boolean haschanged_n = true;
@@ -50,7 +51,6 @@ namespace GameboyCameraClient
         public Boolean haschanged_x = true;
         public Boolean haschanged_vref = true;
         public Boolean haschanged_i = true;
-        public int set_mirrored = default_mirrored;
         public Boolean haschanged_edge = true;
         public Boolean haschanged_offset = true;
         public Boolean haschanged_z = true;
@@ -61,6 +61,8 @@ namespace GameboyCameraClient
         // Image variables
         static int default_mode = Helper.MODE_REGULAR;
         public int set_mode = default_mode;
+        public int set_mirrored = default_mirrored;
+        public int set_sound = default_sound;
 
         // Serial settings
         public String comport = "";
@@ -116,7 +118,7 @@ namespace GameboyCameraClient
             nb_folder = number_folder;
             nb_image = number_image;
         }
-        
+
         private void loadValues()
         {
             // Load default values:
@@ -150,11 +152,34 @@ namespace GameboyCameraClient
             comboBox_edge_enhancement_mode.SelectedIndex = 0;
             comboBox_edge_enhancement_mode_SelectedIndexChanged(null, null);
 
-            checkBox_inverted_CheckedChanged(null, null);
-            chk_mirrored_CheckedChanged(null, null);
-            checkBox_n_CheckedChanged(null, null);
-            checkBox_testmode_CheckedChanged(null, null);
-
+            if (set_i == 1)
+                checkBox_inverted.Checked = true;
+            else
+                checkBox_inverted.Checked = false;
+            if (set_mirrored == 1)
+                chk_mirrored.Checked = true;
+            else
+                chk_mirrored.Checked = false;
+            if (set_sound == 1)
+                checkBox_sound.Checked = true;
+            else
+                checkBox_sound.Checked = false;
+            if (set_n == 1)
+                checkBox_n.Checked = true;
+            else
+                checkBox_n.Checked = false;
+            if (set_p == 1)
+                checkBox_p.Checked = true;
+            else
+                checkBox_p.Checked = false;
+            if (set_m == 1)
+                checkBox_m.Checked = true;
+            else
+                checkBox_m.Checked = false;
+            if (set_x == 1)
+                checkBox_x.Checked = true;
+            else
+                checkBox_x.Checked = false;
         }
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -390,7 +415,9 @@ namespace GameboyCameraClient
             set_edge = default_edge;
             set_offset = default_offset;
             set_z = default_z;
-
+            set_mirrored = default_mirrored;
+            set_sound = default_sound;
+            
             // Image variables
             set_mode = default_mode;
             loadValues();
@@ -537,6 +564,14 @@ namespace GameboyCameraClient
         private void Form_Clicked(object sender, EventArgs e)
         {
             button_newview_Click(null, null);
+        }
+
+        private void checkBox_sound_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_sound.Checked)
+                this.set_sound= 1;
+            else
+                this.set_sound = 0;
         }
 
         public void Form1_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)

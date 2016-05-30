@@ -89,9 +89,9 @@
             this.button_clear = new System.Windows.Forms.Button();
             this.button_sendsettings = new System.Windows.Forms.Button();
             this.button_newview = new System.Windows.Forms.Button();
-            this.bt_save = new System.Windows.Forms.Button();
             this.bt_reset = new System.Windows.Forms.Button();
             this.bt_setimage = new System.Windows.Forms.Button();
+            this.checkBox_sound = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_c0)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_c1)).BeginInit();
@@ -302,9 +302,9 @@
             // 
             this.comboBox_comport.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_comport.FormattingEnabled = true;
-            this.comboBox_comport.Location = new System.Drawing.Point(6, 18);
+            this.comboBox_comport.Location = new System.Drawing.Point(21, 18);
             this.comboBox_comport.Name = "comboBox_comport";
-            this.comboBox_comport.Size = new System.Drawing.Size(74, 21);
+            this.comboBox_comport.Size = new System.Drawing.Size(87, 21);
             this.comboBox_comport.TabIndex = 4;
             this.comboBox_comport.SelectedIndexChanged += new System.EventHandler(this.comboBox_comport_SelectedIndexChanged);
             // 
@@ -318,14 +318,14 @@
             this.groupBox2.Controls.Add(this.comboBox_comport);
             this.groupBox2.Location = new System.Drawing.Point(15, 243);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(215, 86);
+            this.groupBox2.Size = new System.Drawing.Size(248, 86);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Settings";
             // 
             // number_image
             // 
-            this.number_image.Location = new System.Drawing.Point(131, 45);
+            this.number_image.Location = new System.Drawing.Point(162, 45);
             this.number_image.Name = "number_image";
             this.number_image.Size = new System.Drawing.Size(64, 20);
             this.number_image.TabIndex = 22;
@@ -333,7 +333,7 @@
             // 
             // number_folder
             // 
-            this.number_folder.Location = new System.Drawing.Point(131, 19);
+            this.number_folder.Location = new System.Drawing.Point(162, 19);
             this.number_folder.Name = "number_folder";
             this.number_folder.Size = new System.Drawing.Size(64, 20);
             this.number_folder.TabIndex = 21;
@@ -342,7 +342,7 @@
             // label_image
             // 
             this.label_image.AutoSize = true;
-            this.label_image.Location = new System.Drawing.Point(96, 47);
+            this.label_image.Location = new System.Drawing.Point(127, 47);
             this.label_image.Name = "label_image";
             this.label_image.Size = new System.Drawing.Size(39, 13);
             this.label_image.TabIndex = 19;
@@ -350,9 +350,9 @@
             // 
             // bt_refresh
             // 
-            this.bt_refresh.Location = new System.Drawing.Point(6, 45);
+            this.bt_refresh.Location = new System.Drawing.Point(21, 45);
             this.bt_refresh.Name = "bt_refresh";
-            this.bt_refresh.Size = new System.Drawing.Size(74, 21);
+            this.bt_refresh.Size = new System.Drawing.Size(87, 21);
             this.bt_refresh.TabIndex = 12;
             this.bt_refresh.Text = "Refresh";
             this.bt_refresh.UseVisualStyleBackColor = true;
@@ -361,7 +361,7 @@
             // label_folder
             // 
             this.label_folder.AutoSize = true;
-            this.label_folder.Location = new System.Drawing.Point(96, 21);
+            this.label_folder.Location = new System.Drawing.Point(127, 21);
             this.label_folder.Name = "label_folder";
             this.label_folder.Size = new System.Drawing.Size(39, 13);
             this.label_folder.TabIndex = 18;
@@ -370,7 +370,7 @@
             // checkBox_testmode
             // 
             this.checkBox_testmode.AutoSize = true;
-            this.checkBox_testmode.Location = new System.Drawing.Point(69, 19);
+            this.checkBox_testmode.Location = new System.Drawing.Point(54, 19);
             this.checkBox_testmode.Name = "checkBox_testmode";
             this.checkBox_testmode.Size = new System.Drawing.Size(77, 17);
             this.checkBox_testmode.TabIndex = 20;
@@ -484,15 +484,16 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.checkBox_sound);
             this.groupBox4.Controls.Add(this.checkBox_x);
             this.groupBox4.Controls.Add(this.checkBox_m);
             this.groupBox4.Controls.Add(this.checkBox_p);
             this.groupBox4.Controls.Add(this.chk_mirrored);
             this.groupBox4.Controls.Add(this.checkBox_inverted);
             this.groupBox4.Controls.Add(this.checkBox_testmode);
-            this.groupBox4.Location = new System.Drawing.Point(236, 243);
+            this.groupBox4.Location = new System.Drawing.Point(269, 207);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(161, 86);
+            this.groupBox4.Size = new System.Drawing.Size(128, 122);
             this.groupBox4.TabIndex = 7;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Image mode";
@@ -502,7 +503,7 @@
             this.checkBox_x.AutoSize = true;
             this.checkBox_x.Checked = true;
             this.checkBox_x.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_x.Location = new System.Drawing.Point(10, 56);
+            this.checkBox_x.Location = new System.Drawing.Point(10, 65);
             this.checkBox_x.Name = "checkBox_x";
             this.checkBox_x.Size = new System.Drawing.Size(33, 17);
             this.checkBox_x.TabIndex = 12;
@@ -513,7 +514,7 @@
             // checkBox_m
             // 
             this.checkBox_m.AutoSize = true;
-            this.checkBox_m.Location = new System.Drawing.Point(10, 36);
+            this.checkBox_m.Location = new System.Drawing.Point(10, 42);
             this.checkBox_m.Name = "checkBox_m";
             this.checkBox_m.Size = new System.Drawing.Size(35, 17);
             this.checkBox_m.TabIndex = 11;
@@ -539,7 +540,7 @@
             this.chk_mirrored.AutoSize = true;
             this.chk_mirrored.Checked = true;
             this.chk_mirrored.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chk_mirrored.Location = new System.Drawing.Point(69, 36);
+            this.chk_mirrored.Location = new System.Drawing.Point(54, 42);
             this.chk_mirrored.Name = "chk_mirrored";
             this.chk_mirrored.Size = new System.Drawing.Size(64, 17);
             this.chk_mirrored.TabIndex = 18;
@@ -550,7 +551,7 @@
             // checkBox_inverted
             // 
             this.checkBox_inverted.AutoSize = true;
-            this.checkBox_inverted.Location = new System.Drawing.Point(69, 56);
+            this.checkBox_inverted.Location = new System.Drawing.Point(10, 88);
             this.checkBox_inverted.Name = "checkBox_inverted";
             this.checkBox_inverted.Size = new System.Drawing.Size(74, 17);
             this.checkBox_inverted.TabIndex = 13;
@@ -743,19 +744,9 @@
             this.button_newview.UseVisualStyleBackColor = true;
             this.button_newview.Click += new System.EventHandler(this.button_newview_Click);
             // 
-            // bt_save
-            // 
-            this.bt_save.Location = new System.Drawing.Point(269, 146);
-            this.bt_save.Name = "bt_save";
-            this.bt_save.Size = new System.Drawing.Size(128, 25);
-            this.bt_save.TabIndex = 13;
-            this.bt_save.Text = "Save config";
-            this.bt_save.UseVisualStyleBackColor = true;
-            this.bt_save.Click += new System.EventHandler(this.bt_save_Click);
-            // 
             // bt_reset
             // 
-            this.bt_reset.Location = new System.Drawing.Point(269, 177);
+            this.bt_reset.Location = new System.Drawing.Point(269, 144);
             this.bt_reset.Name = "bt_reset";
             this.bt_reset.Size = new System.Drawing.Size(128, 25);
             this.bt_reset.TabIndex = 14;
@@ -765,13 +756,26 @@
             // 
             // bt_setimage
             // 
-            this.bt_setimage.Location = new System.Drawing.Point(269, 209);
+            this.bt_setimage.Location = new System.Drawing.Point(269, 176);
             this.bt_setimage.Name = "bt_setimage";
             this.bt_setimage.Size = new System.Drawing.Size(128, 25);
             this.bt_setimage.TabIndex = 15;
             this.bt_setimage.Text = "Set Imagepath";
             this.bt_setimage.UseVisualStyleBackColor = true;
             this.bt_setimage.Click += new System.EventHandler(this.bt_setimage_Click);
+            // 
+            // checkBox_sound
+            // 
+            this.checkBox_sound.AutoSize = true;
+            this.checkBox_sound.Checked = true;
+            this.checkBox_sound.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_sound.Location = new System.Drawing.Point(54, 65);
+            this.checkBox_sound.Name = "checkBox_sound";
+            this.checkBox_sound.Size = new System.Drawing.Size(57, 17);
+            this.checkBox_sound.TabIndex = 21;
+            this.checkBox_sound.Text = "Sound";
+            this.checkBox_sound.UseVisualStyleBackColor = true;
+            this.checkBox_sound.CheckedChanged += new System.EventHandler(this.checkBox_sound_CheckedChanged);
             // 
             // Form1
             // 
@@ -780,7 +784,6 @@
             this.ClientSize = new System.Drawing.Size(803, 461);
             this.Controls.Add(this.bt_setimage);
             this.Controls.Add(this.bt_reset);
-            this.Controls.Add(this.bt_save);
             this.Controls.Add(this.button_newview);
             this.Controls.Add(this.button_sendsettings);
             this.Controls.Add(this.button_clear);
@@ -864,7 +867,6 @@
         private System.Windows.Forms.CheckBox checkBox_testmode;
         private System.Windows.Forms.Button bt_refresh;
         private System.Windows.Forms.Button button_newview;
-        private System.Windows.Forms.Button bt_save;
         private System.Windows.Forms.Button bt_reset;
         private System.Windows.Forms.Label label_folder;
         private System.Windows.Forms.Label label_image;
@@ -882,6 +884,7 @@
         private System.Windows.Forms.Button bt_setimage;
         private System.Windows.Forms.NumericUpDown number_folder;
         private System.Windows.Forms.NumericUpDown number_image;
+        private System.Windows.Forms.CheckBox checkBox_sound;
     }
 }
 

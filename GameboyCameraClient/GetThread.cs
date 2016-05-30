@@ -15,6 +15,7 @@ namespace GameboyCameraClient
         int MAXIMUM_IMAGES_PER_FOLDER = 100;
 
         // Variables
+        Boolean save_new_images = true;
         Form1 parent;
         int temp = 0;
         int row = 0;
@@ -353,7 +354,9 @@ namespace GameboyCameraClient
         }
         public void saveBitmap()
         {
-            shutterSound.Play();
+            save_new_images = false;
+            if (parent.set_sound == 1)
+                shutterSound.Play();
 
             if (parent.view != null)
             {
@@ -411,6 +414,8 @@ namespace GameboyCameraClient
                 parent.currentImage = 0;
                 logOutput("Next folder: " + parent.currentFolder);
             }
+            save_new_images = true;
+            inBuffer = new byte[mySerialport.ReadBufferSize]; // flush
         }
     }
 }
