@@ -71,7 +71,6 @@ namespace GameboyCameraClient
         // UI:
         public Form_view view;
         public Bitmap bitmap_live_parent;
-        public Graphics graph_live_parent;
         public TextBox log;
         public Button bt_start, bt_stop;
         public NumericUpDown nb_folder, nb_image;
@@ -112,7 +111,6 @@ namespace GameboyCameraClient
 
             // Create image:
             bitmap_live_parent = new Bitmap(256, 224, PixelFormat.Format24bppRgb);
-            graph_live_parent = CreateGraphics();
             bt_start = button_start;
             bt_stop = button_stop;
             nb_folder = number_folder;
@@ -572,6 +570,12 @@ namespace GameboyCameraClient
                 this.set_sound= 1;
             else
                 this.set_sound = 0;
+        }
+
+        private void bt_scaler_Click(object sender, EventArgs e)
+        {
+            Form_scaler scaler = new Form_scaler();
+            scaler.Show();
         }
 
         public void Form1_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
