@@ -350,8 +350,8 @@ namespace GameboyCameraClient
                 rgbValues[(counter * 3) + 2] = tempbyte;
             }
             Marshal.Copy(rgbValues, 0, ptr, numBytes); // Copy the RGB values back to the bitmap
-                        bitmap_for_saving.UnlockBits(bmpData); // Unlock the bits.
-            
+            bitmap_for_saving.UnlockBits(bmpData); // Unlock the bits.
+
             if (parent.view != null)
             {
                 // First shift the images to the right:
@@ -359,13 +359,13 @@ namespace GameboyCameraClient
                 {
                     parent.view.label_save[image] = parent.view.label_save[image - 1]; // Shift the label
 
-                    for (int s = 0; s < 128*112; s++) // and the image
+                    for (int s = 0; s < 128 * 112; s++) // and the image
                         parent.view.data_save[image, s] = parent.view.data_save[image - 1, s];
                 }
 
                 // Save the new one
                 parent.view.label_save[0] = parent.currentFolder + "-" + parent.currentImage;
-                for (int s = 0; s < 128*112; s++)
+                for (int s = 0; s < 128 * 112; s++)
                     parent.view.data_save[0, s] = parent.data[s];
 
                 if (parent.view != null)
@@ -399,7 +399,7 @@ namespace GameboyCameraClient
                 logOutput("WARNING: Overwriting old photos!!!");
 
             bitmap_for_saving.Save(parent.PATH_OF_IMAGES + "\\" + parent.currentFolder + "\\" + parent.filename, ImageFormat.Png);
-            
+
             // Increment the counter:
             parent.currentImage++;
             if (parent.currentImage == MAXIMUM_IMAGES_PER_FOLDER)
@@ -408,7 +408,6 @@ namespace GameboyCameraClient
                 parent.currentImage = 0;
                 logOutput("Next folder: " + parent.currentFolder);
             }
-            inBuffer = new byte[mySerialport.ReadBufferSize]; // flush
         }
     }
 }
