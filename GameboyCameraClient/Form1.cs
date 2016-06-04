@@ -574,7 +574,7 @@ namespace GameboyCameraClient
 
         private void bt_scaler_Click(object sender, EventArgs e)
         {
-            Form_scaler scaler = new Form_scaler();
+            Form_scaler scaler = new Form_scaler(this);
             scaler.Show();
         }
 

@@ -29,7 +29,6 @@ namespace GameboyCameraClient
         byte[] inBuffer;
         byte[] outBuffer = new byte[33];
         int receivedlength = 0;
-        Boolean is_saving = false;
         SoundPlayer shutterSound = new SoundPlayer(GameboyCameraClient.Properties.Resources.shutter);
 
         public Boolean something_has_changed()
