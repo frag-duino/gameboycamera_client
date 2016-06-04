@@ -25,7 +25,8 @@ namespace GameboyCameraClient
 
         private int scale_factor = 4;
 
-        public Bitmap bitmap_input, bitmap_output;
+        private Bitmap bitmap_input, bitmap_output;
+        private Graphics graph_show;
         private int counterImage = 0;
         private Color tempColor;
         private String currentFilename;
@@ -69,10 +70,10 @@ namespace GameboyCameraClient
 
                 bitmap_input = (Bitmap)Image.FromFile(currentImagePath, true);
                 if (bitmap_input.Width == 128 && bitmap_input.Height == 112)
-                    log.AppendText("Processing image " + counterImage + ": " + currentFilename + "\r\n");
+                    log.AppendText("Scaling image " + counterImage + ": " + currentFilename + "\r\n");
                 else
                 {
-                    log.AppendText("Skipping image " + counterImage + ":" + currentFilename + " ( Wrong resolution)\r\n");
+                    log.AppendText("Skipping image " + counterImage + ": " + currentFilename + " (Wrong resolution)\r\n");
                     continue;
                 }
 
@@ -88,9 +89,15 @@ namespace GameboyCameraClient
                             for (int scaler_column = 0; scaler_column < scale_factor; scaler_column++)
                                 bitmap_output.SetPixel(column * scale_factor + scaler_column, row * scale_factor + scaler_row, tempColor);
                         }
-                // Save the image:
-                bitmap_output.Save(path_output + "\\" + currentFilename + "_" + bitmap_output.Width + "x" + bitmap_output.Height + ".png", ImageFormat.Png);
-                this.Invalidate();
+                try
+                {
+                    // Save the image:
+                    bitmap_output.Save(path_output + "\\" + currentFilename + "_" + bitmap_output.Width + "x" + bitmap_output.Height + ".png", ImageFormat.Png);
+                }
+                catch (Exception ex)
+                {
+                    log.AppendText("Could not save " + currentFilename + ": " + ex.ToString());
+                }
             }
         }
 
