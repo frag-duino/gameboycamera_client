@@ -67,6 +67,7 @@
             this.comboBox_vhmode = new System.Windows.Forms.ComboBox();
             this.checkBox_n = new System.Windows.Forms.CheckBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.checkBox_sound = new System.Windows.Forms.CheckBox();
             this.checkBox_x = new System.Windows.Forms.CheckBox();
             this.checkBox_m = new System.Windows.Forms.CheckBox();
             this.checkBox_p = new System.Windows.Forms.CheckBox();
@@ -91,7 +92,7 @@
             this.button_newview = new System.Windows.Forms.Button();
             this.bt_reset = new System.Windows.Forms.Button();
             this.bt_setimage = new System.Windows.Forms.Button();
-            this.checkBox_sound = new System.Windows.Forms.CheckBox();
+            this.bt_scaler = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_c0)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_c1)).BeginInit();
@@ -109,9 +110,9 @@
             // 
             // button_start
             // 
-            this.button_start.Location = new System.Drawing.Point(269, 2);
+            this.button_start.Location = new System.Drawing.Point(269, 11);
             this.button_start.Name = "button_start";
-            this.button_start.Size = new System.Drawing.Size(128, 25);
+            this.button_start.Size = new System.Drawing.Size(59, 25);
             this.button_start.TabIndex = 1;
             this.button_start.Text = "Listen";
             this.button_start.UseVisualStyleBackColor = true;
@@ -498,6 +499,19 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Image mode";
             // 
+            // checkBox_sound
+            // 
+            this.checkBox_sound.AutoSize = true;
+            this.checkBox_sound.Checked = true;
+            this.checkBox_sound.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_sound.Location = new System.Drawing.Point(54, 65);
+            this.checkBox_sound.Name = "checkBox_sound";
+            this.checkBox_sound.Size = new System.Drawing.Size(57, 17);
+            this.checkBox_sound.TabIndex = 21;
+            this.checkBox_sound.Text = "Sound";
+            this.checkBox_sound.UseVisualStyleBackColor = true;
+            this.checkBox_sound.CheckedChanged += new System.EventHandler(this.checkBox_sound_CheckedChanged);
+            // 
             // checkBox_x
             // 
             this.checkBox_x.AutoSize = true;
@@ -706,9 +720,9 @@
             // button_stop
             // 
             this.button_stop.Enabled = false;
-            this.button_stop.Location = new System.Drawing.Point(269, 30);
+            this.button_stop.Location = new System.Drawing.Point(338, 11);
             this.button_stop.Name = "button_stop";
-            this.button_stop.Size = new System.Drawing.Size(128, 25);
+            this.button_stop.Size = new System.Drawing.Size(59, 25);
             this.button_stop.TabIndex = 9;
             this.button_stop.Text = "Stop";
             this.button_stop.UseVisualStyleBackColor = true;
@@ -716,7 +730,7 @@
             // 
             // button_clear
             // 
-            this.button_clear.Location = new System.Drawing.Point(269, 117);
+            this.button_clear.Location = new System.Drawing.Point(269, 99);
             this.button_clear.Name = "button_clear";
             this.button_clear.Size = new System.Drawing.Size(128, 23);
             this.button_clear.TabIndex = 10;
@@ -726,7 +740,7 @@
             // 
             // button_sendsettings
             // 
-            this.button_sendsettings.Location = new System.Drawing.Point(269, 58);
+            this.button_sendsettings.Location = new System.Drawing.Point(269, 72);
             this.button_sendsettings.Name = "button_sendsettings";
             this.button_sendsettings.Size = new System.Drawing.Size(128, 25);
             this.button_sendsettings.TabIndex = 11;
@@ -736,7 +750,7 @@
             // 
             // button_newview
             // 
-            this.button_newview.Location = new System.Drawing.Point(269, 89);
+            this.button_newview.Location = new System.Drawing.Point(269, 42);
             this.button_newview.Name = "button_newview";
             this.button_newview.Size = new System.Drawing.Size(128, 25);
             this.button_newview.TabIndex = 12;
@@ -746,7 +760,7 @@
             // 
             // bt_reset
             // 
-            this.bt_reset.Location = new System.Drawing.Point(269, 144);
+            this.bt_reset.Location = new System.Drawing.Point(269, 124);
             this.bt_reset.Name = "bt_reset";
             this.bt_reset.Size = new System.Drawing.Size(128, 25);
             this.bt_reset.TabIndex = 14;
@@ -756,7 +770,7 @@
             // 
             // bt_setimage
             // 
-            this.bt_setimage.Location = new System.Drawing.Point(269, 176);
+            this.bt_setimage.Location = new System.Drawing.Point(269, 152);
             this.bt_setimage.Name = "bt_setimage";
             this.bt_setimage.Size = new System.Drawing.Size(128, 25);
             this.bt_setimage.TabIndex = 15;
@@ -764,24 +778,22 @@
             this.bt_setimage.UseVisualStyleBackColor = true;
             this.bt_setimage.Click += new System.EventHandler(this.bt_setimage_Click);
             // 
-            // checkBox_sound
+            // bt_scaler
             // 
-            this.checkBox_sound.AutoSize = true;
-            this.checkBox_sound.Checked = true;
-            this.checkBox_sound.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_sound.Location = new System.Drawing.Point(54, 65);
-            this.checkBox_sound.Name = "checkBox_sound";
-            this.checkBox_sound.Size = new System.Drawing.Size(57, 17);
-            this.checkBox_sound.TabIndex = 21;
-            this.checkBox_sound.Text = "Sound";
-            this.checkBox_sound.UseVisualStyleBackColor = true;
-            this.checkBox_sound.CheckedChanged += new System.EventHandler(this.checkBox_sound_CheckedChanged);
+            this.bt_scaler.Location = new System.Drawing.Point(269, 179);
+            this.bt_scaler.Name = "bt_scaler";
+            this.bt_scaler.Size = new System.Drawing.Size(128, 25);
+            this.bt_scaler.TabIndex = 16;
+            this.bt_scaler.Text = "Open image scaler";
+            this.bt_scaler.UseVisualStyleBackColor = true;
+            this.bt_scaler.Click += new System.EventHandler(this.bt_scaler_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(803, 461);
+            this.Controls.Add(this.bt_scaler);
             this.Controls.Add(this.bt_setimage);
             this.Controls.Add(this.bt_reset);
             this.Controls.Add(this.button_newview);
@@ -795,7 +807,9 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button_start);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Gameboy Camera Client";
             this.groupBox1.ResumeLayout(false);
@@ -885,6 +899,7 @@
         private System.Windows.Forms.NumericUpDown number_folder;
         private System.Windows.Forms.NumericUpDown number_image;
         private System.Windows.Forms.CheckBox checkBox_sound;
+        private System.Windows.Forms.Button bt_scaler;
     }
 }
 

@@ -17,9 +17,7 @@ namespace GameboyCameraClient
         // UI
         Form1 parent;
         public Bitmap bitmap_live_child;
-        public Graphics graph_live_child;
         public Bitmap[] bitmap_save = new Bitmap[3];
-        public Graphics[] graph_save = new Graphics[3];
         public int[,] data_save = new int[3, 128 * 112];
         public String[] label_save = new String[3];
 
@@ -136,14 +134,10 @@ namespace GameboyCameraClient
 
             // Create image:
             bitmap_live_child = new Bitmap(512, 448);
-            graph_live_child = CreateGraphics();
             bitmap_save[0] = new Bitmap(256, 224);
-            graph_save[0] = CreateGraphics();
             bitmap_save[1] = new Bitmap(128, 112);
-            graph_save[1] = CreateGraphics();
             bitmap_save[2] = new Bitmap(128, 112);
-            graph_save[2] = CreateGraphics();
-
+            
             for (int i = 0; i < 3; i++)
                 label_save[i] = "-";
         }
