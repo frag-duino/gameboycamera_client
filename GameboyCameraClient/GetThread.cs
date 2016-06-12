@@ -407,7 +407,7 @@ namespace GameboyCameraClient
             if (System.IO.File.Exists(parent.PATH_OF_IMAGES + "\\" + parent.currentFolder + "\\" + parent.filename))
             {
                 parent.errormessage = "Image not saved, file already exists: \r\n" + parent.filename;
-                logOutput("\r\n\r\n" + parent.errormessage + "\r\n");
+                logOutput("\r\n\r\n\r" + parent.errormessage + "\r\n");
                 return;
             }
             else
