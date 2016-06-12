@@ -20,12 +20,10 @@ namespace GameboyCameraClient
         public Bitmap[] bitmap_save = new Bitmap[3];
         public int[,] data_save = new int[3, 128 * 112];
         public String[] label_save = new String[3];
-
         byte tempbyte;
         
         protected override void OnPaint(PaintEventArgs e)
         {
-
             // ------------------------------------------
             // Draw the live image (512*448):
             // ------------------------------------------
@@ -56,7 +54,11 @@ namespace GameboyCameraClient
             bitmap_live_child.UnlockBits(bmpData); // Unlock the bits.
             e.Graphics.DrawImage(bitmap_live_child, 44, 44); // Draw it
 
-
+            // Check if file exists
+            labelerror.Text = parent.errormessage;
+            if (!parent.errormessage.Equals(""))
+                            return;
+            
             // ------------------------------------------
             // Draw the first save image (256*224):
             // ------------------------------------------

@@ -77,6 +77,7 @@ namespace GameboyCameraClient
         public int[] data = new int[128 * 112];
         public TrackBar tb_offset;
         byte tempbyte;
+        public String errormessage = ""; // If the file already exists
 
         // Threads
         GetThread get;

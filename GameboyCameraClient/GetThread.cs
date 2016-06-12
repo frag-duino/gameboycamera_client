@@ -393,12 +393,7 @@ namespace GameboyCameraClient
             }
 
             parent.filename = "gb_" + parent.currentFolder + "_" + parent.currentImage + ".png";
-
-            if (System.IO.File.Exists(parent.PATH_OF_IMAGES + "\\" + parent.currentFolder + "\\" + parent.filename))
-                logOutput("WARNING: Overwriting old photos!!!");
-
-            bitmap_for_saving.Save(parent.PATH_OF_IMAGES + "\\" + parent.currentFolder + "\\" + parent.filename, ImageFormat.Png);
-
+            
             // Increment the counter:
             parent.currentImage++;
             if (parent.currentImage == MAXIMUM_IMAGES_PER_FOLDER)
@@ -406,6 +401,19 @@ namespace GameboyCameraClient
                 parent.currentFolder++;
                 parent.currentImage = 0;
                 logOutput("Next folder: " + parent.currentFolder);
+            }
+
+            // Check if file already exists:
+            if (System.IO.File.Exists(parent.PATH_OF_IMAGES + "\\" + parent.currentFolder + "\\" + parent.filename))
+            {
+                parent.errormessage = "Image not saved, file already exists: \r\n" + parent.filename;
+                logOutput("\r\n\r\n" + parent.errormessage + "\r\n");
+                return;
+            }
+            else
+            {
+                parent.errormessage = "";
+                bitmap_for_saving.Save(parent.PATH_OF_IMAGES + "\\" + parent.currentFolder + "\\" + parent.filename, ImageFormat.Png);
             }
         }
     }
