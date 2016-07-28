@@ -452,15 +452,17 @@ namespace GameboyCameraClient
 
         private void bt_c0plus_Click(object sender, EventArgs e)
         {
-            if (trackBar_c0.Value < trackBar_c0.Maximum)
-                trackBar_c0.Value++;
+            for (int i = 0; i < 5; i++)
+                if (trackBar_c0.Value < trackBar_c0.Maximum)
+                    trackBar_c0.Value++;
             trackBar_c0_Scroll(null, null);
         }
 
         private void bt_c0minus_Click(object sender, EventArgs e)
         {
-            if (trackBar_c0.Value > trackBar_c0.Minimum)
-                trackBar_c0.Value--;
+            for (int i = 0; i < 5; i++)
+                if (trackBar_c0.Value > trackBar_c0.Minimum)
+                    trackBar_c0.Value--;
             trackBar_c0_Scroll(null, null);
         }
 
@@ -581,7 +583,9 @@ namespace GameboyCameraClient
 
         public void Form1_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Up)
+            if (e.KeyCode == Keys.ControlKey && get !=null)
+                get.save_manually = true;
+            else if (e.KeyCode == Keys.Up)
                 bt_gainplus_Click(null, null);
             else if (e.KeyCode == Keys.Down)
                 bt_gainminus_Click(null, null);
@@ -589,9 +593,9 @@ namespace GameboyCameraClient
                 bt_c1plus_Click(null, null);
             else if (e.KeyCode == Keys.Left)
                 bt_c1minus_Click(null, null);
-            else if (e.KeyCode == Keys.PageUp)
+            else if (e.KeyCode == Keys.PageUp || e.KeyCode == Keys.OemPeriod)
                 bt_c0plus_Click(null, null);
-            else if (e.KeyCode == Keys.PageDown)
+            else if (e.KeyCode == Keys.PageDown || e.KeyCode == Keys.Oemcomma)
                 bt_c0minus_Click(null, null);
             else if (e.KeyCode == Keys.Space && !bt_start.Enabled)
                 button_stop_Click(null, null);

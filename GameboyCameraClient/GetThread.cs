@@ -17,6 +17,7 @@ namespace GameboyCameraClient
 
         // Variables
         public Bitmap bitmap_for_saving;
+        public Boolean save_manually = false;
         byte tempbyte;
         Form1 parent;
         int temp = 0;
@@ -257,8 +258,11 @@ namespace GameboyCameraClient
                                 }
                             }
 
-                        if (inBuffer[i] == Helper.BYTE_PHOTO_END_SAVE)
+                        if (inBuffer[i] == Helper.BYTE_PHOTO_END_SAVE || save_manually)
+                        {
                             saveBitmap();
+                            save_manually = false;
+                        }
 
                         is_receiving_photo = false;
                         parent.Invalidate();
