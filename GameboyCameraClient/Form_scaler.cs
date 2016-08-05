@@ -26,7 +26,6 @@ namespace GameboyCameraClient
         private int scale_factor = 4;
 
         private Bitmap bitmap_input, bitmap_output;
-        private Graphics graph_show;
         private int counterImage = 0;
         private Color tempColor;
         private String currentFilename;

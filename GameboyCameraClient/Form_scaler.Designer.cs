@@ -159,7 +159,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Form_scaler";
-            this.Text = "Form_scaler";
+            this.Text = "Image Scaler";
             this.ResumeLayout(false);
             this.PerformLayout();
 

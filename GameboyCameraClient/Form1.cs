@@ -581,6 +581,12 @@ namespace GameboyCameraClient
             scaler.Show();
         }
 
+        private void bt_mosaik_Click(object sender, EventArgs e)
+        {
+            Form_mosaic mosaic = new Form_mosaic(this);
+            mosaic.Show();
+        }
+
         public void Form1_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
         {
             if (e.KeyCode == Keys.ControlKey && get !=null)

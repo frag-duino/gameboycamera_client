@@ -93,6 +93,7 @@
             this.bt_reset = new System.Windows.Forms.Button();
             this.bt_setimage = new System.Windows.Forms.Button();
             this.bt_scaler = new System.Windows.Forms.Button();
+            this.bt_mosaic = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_c0)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_c1)).BeginInit();
@@ -782,17 +783,28 @@
             // 
             this.bt_scaler.Location = new System.Drawing.Point(269, 179);
             this.bt_scaler.Name = "bt_scaler";
-            this.bt_scaler.Size = new System.Drawing.Size(128, 25);
+            this.bt_scaler.Size = new System.Drawing.Size(59, 25);
             this.bt_scaler.TabIndex = 16;
-            this.bt_scaler.Text = "Open image scaler";
+            this.bt_scaler.Text = "Scaler";
             this.bt_scaler.UseVisualStyleBackColor = true;
             this.bt_scaler.Click += new System.EventHandler(this.bt_scaler_Click);
+            // 
+            // bt_mosaic
+            // 
+            this.bt_mosaic.Location = new System.Drawing.Point(338, 179);
+            this.bt_mosaic.Name = "bt_mosaic";
+            this.bt_mosaic.Size = new System.Drawing.Size(59, 25);
+            this.bt_mosaic.TabIndex = 17;
+            this.bt_mosaic.Text = "Mosaic";
+            this.bt_mosaic.UseVisualStyleBackColor = true;
+            this.bt_mosaic.Click += new System.EventHandler(this.bt_mosaik_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(803, 461);
+            this.Controls.Add(this.bt_mosaic);
             this.Controls.Add(this.bt_scaler);
             this.Controls.Add(this.bt_setimage);
             this.Controls.Add(this.bt_reset);
@@ -900,6 +912,7 @@
         private System.Windows.Forms.NumericUpDown number_image;
         private System.Windows.Forms.CheckBox checkBox_sound;
         private System.Windows.Forms.Button bt_scaler;
+        private System.Windows.Forms.Button bt_mosaic;
     }
 }
 
