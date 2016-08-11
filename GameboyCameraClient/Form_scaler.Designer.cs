@@ -43,7 +43,7 @@
             // 
             // bt_input
             // 
-            this.bt_input.Location = new System.Drawing.Point(182, 34);
+            this.bt_input.Location = new System.Drawing.Point(12, 32);
             this.bt_input.Name = "bt_input";
             this.bt_input.Size = new System.Drawing.Size(128, 25);
             this.bt_input.TabIndex = 16;
@@ -53,7 +53,7 @@
             // 
             // bt_output
             // 
-            this.bt_output.Location = new System.Drawing.Point(182, 92);
+            this.bt_output.Location = new System.Drawing.Point(12, 92);
             this.bt_output.Name = "bt_output";
             this.bt_output.Size = new System.Drawing.Size(128, 25);
             this.bt_output.TabIndex = 17;
@@ -64,9 +64,9 @@
             // bt_run
             // 
             this.bt_run.Enabled = false;
-            this.bt_run.Location = new System.Drawing.Point(182, 187);
+            this.bt_run.Location = new System.Drawing.Point(474, 164);
             this.bt_run.Name = "bt_run";
-            this.bt_run.Size = new System.Drawing.Size(263, 25);
+            this.bt_run.Size = new System.Drawing.Size(62, 21);
             this.bt_run.TabIndex = 18;
             this.bt_run.Text = "Run";
             this.bt_run.UseVisualStyleBackColor = true;
@@ -76,7 +76,7 @@
             // 
             this.comboBox_resolution.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_resolution.FormattingEnabled = true;
-            this.comboBox_resolution.Location = new System.Drawing.Point(316, 160);
+            this.comboBox_resolution.Location = new System.Drawing.Point(146, 161);
             this.comboBox_resolution.Name = "comboBox_resolution";
             this.comboBox_resolution.Size = new System.Drawing.Size(125, 21);
             this.comboBox_resolution.TabIndex = 19;
@@ -85,7 +85,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(182, 9);
+            this.label1.Location = new System.Drawing.Point(12, 7);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(250, 13);
             this.label1.TabIndex = 20;
@@ -94,7 +94,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(216, 163);
+            this.label2.Location = new System.Drawing.Point(12, 164);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(90, 13);
             this.label2.TabIndex = 21;
@@ -103,7 +103,7 @@
             // label_input
             // 
             this.label_input.AutoSize = true;
-            this.label_input.Location = new System.Drawing.Point(182, 62);
+            this.label_input.Location = new System.Drawing.Point(12, 60);
             this.label_input.Name = "label_input";
             this.label_input.Size = new System.Drawing.Size(56, 13);
             this.label_input.TabIndex = 22;
@@ -112,7 +112,7 @@
             // label_output
             // 
             this.label_output.AutoSize = true;
-            this.label_output.Location = new System.Drawing.Point(182, 123);
+            this.label_output.Location = new System.Drawing.Point(12, 123);
             this.label_output.Name = "label_output";
             this.label_output.Size = new System.Drawing.Size(56, 13);
             this.label_output.TabIndex = 23;
@@ -125,7 +125,7 @@
             this.log.Name = "log";
             this.log.ReadOnly = true;
             this.log.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.log.Size = new System.Drawing.Size(432, 182);
+            this.log.Size = new System.Drawing.Size(528, 182);
             this.log.TabIndex = 24;
             // 
             // checkBox_subdirectory
@@ -133,7 +133,7 @@
             this.checkBox_subdirectory.AutoSize = true;
             this.checkBox_subdirectory.Checked = true;
             this.checkBox_subdirectory.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_subdirectory.Location = new System.Drawing.Point(316, 39);
+            this.checkBox_subdirectory.Location = new System.Drawing.Point(146, 37);
             this.checkBox_subdirectory.Name = "checkBox_subdirectory";
             this.checkBox_subdirectory.Size = new System.Drawing.Size(129, 17);
             this.checkBox_subdirectory.TabIndex = 25;
@@ -144,7 +144,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(456, 412);
+            this.ClientSize = new System.Drawing.Size(548, 412);
             this.Controls.Add(this.checkBox_subdirectory);
             this.Controls.Add(this.log);
             this.Controls.Add(this.label_output);

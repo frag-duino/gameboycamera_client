@@ -100,12 +100,6 @@ namespace GameboyCameraClient
             }
         }
 
-        protected override void OnPaint(PaintEventArgs e)
-        {
-            if (bitmap_input != null)
-                e.Graphics.DrawImage(bitmap_input, 10, 10);
-        }
-
         private void comboBox_resolution_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (comboBox_resolution.SelectedIndex == 0)

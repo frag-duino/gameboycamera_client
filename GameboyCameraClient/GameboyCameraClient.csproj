@@ -119,6 +119,10 @@
   <ItemGroup>
     <Content Include="gameboy_32.ico" />
     <Content Include="icon_128px.ico" />
+    <EmbeddedResource Include="mosaic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -390,14 +390,6 @@ namespace GameboyCameraClient
                 }
             }
 
-            if (!System.IO.Directory.Exists(parent.PATH_OF_IMAGES + "\\" + parent.currentFolder))
-            {
-                logOutput("Image-Path for " + parent.currentFolder + " does not exist, creating it: ");
-                System.IO.Directory.CreateDirectory(parent.PATH_OF_IMAGES + "\\" + parent.currentFolder);
-            }
-
-            parent.filename = "gb_" + parent.currentFolder + "_" + parent.currentImage + ".png";
-            
             // Increment the counter:
             parent.currentImage++;
             if (parent.currentImage == MAXIMUM_IMAGES_PER_FOLDER)
@@ -406,6 +398,16 @@ namespace GameboyCameraClient
                 parent.currentImage = 0;
                 logOutput("Next folder: " + parent.currentFolder);
             }
+
+            if (!System.IO.Directory.Exists(parent.PATH_OF_IMAGES + "\\" + parent.currentFolder))
+            {
+                logOutput("Image-Path for " + parent.currentFolder + " does not exist, creating it: ");
+                System.IO.Directory.CreateDirectory(parent.PATH_OF_IMAGES + "\\" + parent.currentFolder);
+            }
+
+
+            parent.filename = "gb_" + parent.currentFolder + "_" + parent.currentImage + ".png";
+
 
             // Check if file already exists:
             if (System.IO.File.Exists(parent.PATH_OF_IMAGES + "\\" + parent.currentFolder + "\\" + parent.filename))
